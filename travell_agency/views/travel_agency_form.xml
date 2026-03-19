@@ -1,0 +1,147 @@
+<odoo>
+    <record id="travel_booking_form_action" model="ir.ui.view">
+        <field name="name">travel_agency_booking</field>
+        <field name="model">travel.agency_booking</field>
+
+        <field name="arch" type="xml">
+            <form string="travel_booking form">
+                <group>
+                     <group>
+                     <button type="object" name="action_view_invoice" string="invoice" class="btn btn-primary"/>
+                     <button type="object" name="action_confirmed" string="Confirmed"/>
+                </group>
+                    <group>
+                        <button type="object" name="reshedule_booking" invisible="state in ('draft')" string="Reschedule" />
+
+                    </group>
+
+                <field name="state" widget="statusbar" />
+
+                </group>
+
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="t_booking_id"/>
+                        <field name="name" readonly="state in ('confirmed')"/>
+                        <field name="cust_address" readonly="state in ('confirmed')"/>
+                        <field name="phone" readonly="state in ('confirmed')"/>
+                        <field name="email" readonly="state in ('confirmed')"/>
+                        <field name="sale_order"/>
+
+                    </group>
+                    <group readonly="state in ('confirmed')" >
+                        <field name="date" readonly="state in ('confirmed')"/>
+                        <field name="members" readonly="state in ('confirmed')"/>
+                        <field name="package_name" readonly="state in ('confirmed')"/>
+                        <field name="days" readonly="state in ('confirmed')"/>
+                        <field name="transportation_mode" readonly="state in ('confirmed')"/>
+<!--                        <field name="state" readonly="state in ('confirmed')"/>-->
+                        <field name="total_amount"/>
+
+                    </group>
+                     <notebook>
+
+                                 <page string="Team">
+                                     <group readonly="state in ('confirmed')">
+                                <field name="booking_team"/>
+                                     </group>
+                            </page>
+
+
+                        </notebook>
+                </group>
+                  </sheet>
+            </form>
+        </field>
+    </record>
+
+
+     <record id="cust_booking_form_action" model="ir.ui.view">
+        <field name="name">cust_booking</field>
+        <field name="model">cust.booking</field>
+        <field name="arch" type="xml">
+            <form string="cust_booking form">
+                <group>
+                    <group>
+                        <field name="cust_name"/>
+                        <field name="c_address"/>
+                        <field name="cust_phone"/>
+                        <field name="cust_email"/>
+                        <field name="cust_date"/>
+                        <field name="cust_members"/>
+
+                    </group>
+                    <group>
+                        <field name="d_from"/>
+                        <field name="cust_des"/>
+                        <field name="h_days"/>
+                        <field name="cust_hotel"/>
+                        <field name="cust_food"/>
+                        <field name="cust_transportation_mode"/>
+                        <field name="t_amount"/>
+
+                    </group>
+                      <notebook>
+
+                                 <page string="Team">
+                                      <group>
+                                <field name="cust_booking_team"/>
+                                      </group>
+                            </page>
+
+
+                        </notebook>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="booking_management_form" model="ir.ui.view">
+        <field name="name">booking_management</field>
+        <field name="model">booking.team</field>
+        <field name="arch" type="xml">
+            <form string="book_management_form">
+                <sheet>
+                    <group>
+                        <field name="team_name"/>
+                <field name="employee"/>
+                     </group>
+                <field name="booked_cards_id">
+                    <list>
+                        <field name="name"/>
+                        <field name="phone"/>
+                        <field name="date"/>
+                        <field name="package_name"/>
+                        <field name="days"/>
+                        <field name="transportation_mode"/>
+                    </list>
+                </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="reschedule_form" model="ir.ui.view">
+        <field name="name">Reschedule</field>
+        <field name="model">reschedule.booking</field>
+        <field name="arch" type="xml">
+            <form string="reschedule_form">
+                <group>
+                    <button type="object" name="delete_record_another_rc" string="Save"/>
+                </group>
+                <field name="stage" widget="statusbar"/>
+                <sheet>
+                    <group>
+                         <field name="stage" readonly="stage in ('confirm')"/>
+                        <field name="b_id" readonly="stage in ('confirm')" />
+                        <field name="ree_customer" readonly="stage in ('confirm')"/>
+                        <field name="reshedule_package" readonly="stage in ('confirm')" />
+                        <field name="re_date" readonly="stage in ('confirm')" />
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,6 @@
+<odoo>
+    <record id="order_list_action" model="ir.actions.act_window">
+        <field name="name">order_list</field>
+        <field name="res_model">order.list</field>
+    </record>
+</odoo>

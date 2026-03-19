@@ -1,0 +1,39 @@
+<odoo>
+    <record id="travel_agency_booking_action" model="ir.actions.act_window">
+        <field name="name">Booking</field>
+        <field name="res_model">travel.agency_booking</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+
+    <record id="package_action" model="ir.actions.act_window">
+        <field name="name">Packages</field>
+        <field name="res_model">travel.package</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+    <record id="hotel_action" model="ir.actions.act_window">
+        <field name="name">Hotels</field>
+        <field name="res_model">travel.hotel</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+
+    <record id="cust_booking_action" model="ir.actions.act_window">
+        <field name="name">Custom Booking</field>
+        <field name="res_model">cust.booking</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+     <record id="booking_team_action" model="ir.actions.act_window">
+        <field name="name">Booking Management Teams</field>
+        <field name="res_model">booking.team</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+    <record id="reschedule_action" model="ir.actions.act_window">
+        <field name="name">reschedule</field>
+        <field name="res_model">reschedule.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

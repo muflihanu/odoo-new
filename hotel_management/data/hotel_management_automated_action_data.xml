@@ -1,0 +1,20 @@
+<odoo>
+    <!-- lunch product automated action-->
+    <record id="action_creating_product_to_lunch" model="ir.actions.server">
+        <field name="name">action creating product to lunch module</field>
+        <field name="model_id" ref="model_food_items"/>
+        <field name="state">code</field>
+        <field name="code">records.create_product_to_lunch()</field>
+    </record>
+
+    <record id="automated_actions_for_creating_lunch_product" model="base.automation">
+        <field name="name">automated actions creating lunch product</field>
+        <field name="model_id" ref="model_food_items"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_creating_product_to_lunch'))]"/>
+    </record>
+
+
+
+
+</odoo>

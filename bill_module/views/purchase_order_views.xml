@@ -1,0 +1,14 @@
+<odoo>
+     <record id="purchase_order_view_list" model="ir.ui.view">
+        <field name="name">purchase_order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_order_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//partner_ref" position="after">
+              <field name="bill_id"/>
+           </xpath>
+        </field>
+    </record>
+</odoo>
+
+

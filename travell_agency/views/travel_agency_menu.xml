@@ -1,0 +1,31 @@
+ <odoo>
+
+     <menuitem id="travel_agency_menu_root" name="Travel Agency">
+          <menuitem id="travel_agency_first_level_menu" name="Booking">
+              <menuitem id="travel_agency_booking_menu_action" action="travel_agency_booking_action"/>
+              <menuitem id="cust_menu_item" action="cust_booking_action"/>
+
+          </menuitem>
+
+         <menuitem id="packages_menu" name="Packages">
+              <menuitem id="package_menu_action" action="package_action"/>
+
+          </menuitem>
+
+         <menuitem id="hotel_menu" name="Hotels">
+              <menuitem id="hotel_menu_action" action="hotel_action"/>
+
+          </menuitem>
+
+          <menuitem id="booking_team_menu" name="Booking Teams ">
+              <menuitem id="booking_team_menu_action" action="booking_team_action"/>
+
+          </menuitem>
+
+           <menuitem id="reschedule_action_menu" name="Reschedule">
+              <menuitem id="reshedule_menu_action" action="reschedule_action"/>
+          </menuitem>
+     </menuitem>
+
+ </odoo>
+

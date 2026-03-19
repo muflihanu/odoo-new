@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+
+
+     <!--category-->
+    <record id="hotel_management_category" model="ir.module.category">
+        <field name="name">hotel_management module management</field>
+        <field name="description">hotel_management access right security</field>
+    </record>
+
+    <!--privilege -->
+    <record id="privilege_access" model="res.groups.privilege">
+        <field name="name">hotel_management privilege access control</field>
+        <field name="category_id" ref="hotel_management_category"/>
+    </record>
+
+    <!-- defines groups-->
+    <record  model="res.groups" id="group_reception">
+        <field name="name">Reception</field>
+        <field name="privilege_id" ref="privilege_access"/>
+        <field name="comment">Can create, edit</field>
+    </record>
+
+    <record  model="res.groups" id="group_manager">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="privilege_access"/>
+         <field name="implied_ids" eval="[(4, ref('group_reception'))]"/>
+        <field name="comment">Can create, edit, and manage</field>
+
+    </record>
+
+
+</data>
+
+
+</odoo>

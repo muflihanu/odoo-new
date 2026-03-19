@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_travel_agency_booking,access_travel_agency_booking,model_travel_agency_booking,base.group_user,1,1,1,1
+access_travel_package,access_travel_package,model_travel_package,base.group_user,1,1,1,1
+access_travel_hotel,access_travel_hotel,model_travel_hotel,base.group_user,1,1,1,1
+access_cust_booking,access_cust_booking,model_cust_booking,base.group_user,1,1,1,1
+access_booking_team,access_booking_team,model_booking_team,base.group_user,1,1,1,1
+access_reschedule_booking,access_reschedule_booking,model_reschedule_booking,base.group_user,1,1,1,1

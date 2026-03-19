@@ -1,0 +1,50 @@
+<odoo>
+     <record id="food_items_action" model="ir.actions.act_window">
+        <field name="name">Food Items</field>
+        <field name="res_model">food.items</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+     <record id="food_items_view_form" model="ir.ui.view">
+        <field name="name">Food Items</field>
+        <field name="model">food.items</field>
+        <field name="arch" type="xml">
+            <form string="food items form" >
+                <sheet>
+                    <group>
+                         <group>
+                             <field name="food_name"/>
+                             <field name="item"/>
+                             <field name="category_id"/>
+                             <field name="food_price"/>
+                             <field name="food_quantity"/>
+                             <field name="food_description"/>
+                             <field name="supplier_id"/>
+                         </group>
+                         <group>
+                         <field name="image" widget="image" options="{'size':[130,130]}"/>
+                        </group>
+                        <footer>
+                            <button type="object"  name="add_to_list" string="Add To List"  class="oe_highlight"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="food_items_view_list" model="ir.ui.view">
+        <field name="name">food items</field>
+        <field name="model">food.items</field>
+        <field name="arch" type="xml">
+            <list>
+                 <field name="food_name"/>
+                <field name="category_id"/>
+                <field name="food_price"/>
+                <field name="food_quantity"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

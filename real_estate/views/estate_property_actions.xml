@@ -1,0 +1,22 @@
+<odoo>
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="context">{'search_default_available': True}</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+
+    <record id="property_type_form_action" model="ir.actions.act_window">
+         <field name="name">Property_ype </field>
+        <field name="res_model">property.type</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>>
+
+    <record id="property_tags_action" model="ir.actions.act_window">
+        <field name="name">Property_Tags</field>
+        <field name="res_model">property.tags</field>
+        <field name="view_mode">list,form,kanban,graph</field>
+    </record>
+
+</odoo>

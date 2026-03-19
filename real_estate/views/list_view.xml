@@ -1,0 +1,80 @@
+<odoo>
+<record id="estate_property_view" model="ir.ui.view">
+    <field name="name">estate_property_name</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+        <list string="estate property list view" editable="top" decoration-success="state in ('offer received','Offer accepted')"  decoration-bf="state=='Offer accepted'" decoration-muted="state in ('sold')">
+            <field name="name"/>
+            <field name="property__type"/>
+            <field name="postcode"/>
+            <field name="tag" widget="many2many_tags" />
+            <field name="bedrooms"/>
+            <field name="living_area"/>
+            <field name="expected_price"/>
+            <field name="selling_price"/>
+            <field name="date_availability" optional="hide" />
+        </list>
+    </field>
+</record>
+
+
+    <record id="estate_property_search" model="ir.ui.view">
+         <field name="name">Property_search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="search_tab">
+            <field name="name" />
+             <field name="selling_price" />
+             <field name="expected_price" />
+             <field name="bedrooms" />
+             <field name="date_availability" />
+             <field name="garage" />
+            <field name="living_area" filter_domain="['|',('living_area','&gt;',self),('living_area','ilike',self)]"/>
+
+            <field name="garden" />
+            <field name="property__type"/>
+                <filter string="Active"  name="active" domain="[('active','=',False)]" />
+                <filter  string="State" name="code"  domain="['|',('state','=','offer received'),('state','=','new')]" />
+                <filter string="Postcode" name="postcode" context="{'group_by':'postcode','residual_visible':True} "/>
+                <filter string="available" name="available" domain="[('state','=','new')]"/>
+        </search>
+        </field>
+    </record>
+
+    <record id="property_type_view" model="ir.ui.view">
+        <field name="name">property_type</field>
+        <field name="model">property.type</field>
+        <field name="arch" type="xml">
+            <list string="property_type_list">
+                <field name="property_type"/>
+                <field name="sequence" widget="handle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="property_tags_view" model="ir.ui.view">
+        <field name="name">property_tags</field>
+        <field name="model">property.tags</field>
+        <field name="arch" type="xml">
+            <list string="property_tags_list" default_order="tags" >
+                <field name="tags"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="property_offer_view" model="ir.ui.view">
+        <field name="name">property_offer</field>
+        <field name="model">property.offer</field>
+        <field name="arch" type="xml">
+            <list string="offer_list" editable="top" decoration-success="status in ('accepted')" decoration-danger="status in ('refused')" >
+                <field name="offer_price"/>
+                <field name="partner_id" class="ml-4"/>
+                <field name="validity"/>
+                    <button type="object" name="accept_confirm" icon="fa-check" invisible="status in ('accepted','refused')"/>
+                <button type="object" name="accept_reject" icon="oi-close"   invisible="status in ('accepted','refused')"/>
+                <field name="status" optional="hide" />
+
+            </list>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<odoo>
+    order food
+    <record id="order_food_reception_rule" model="ir.rule">
+        <field name="name">Reception rule for order food</field>
+        <field name="model_id" ref="model_order_food"/>
+        <field name="groups" eval="[(4, ref('group_reception'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+
+      <record id="order_food_manager_rule" model="ir.rule">
+        <field name="name">manager rule for order food</field>
+        <field name="model_id" ref="model_order_food"/>
+        <field name="groups" eval="[(4, ref('group_manager'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- food items -->
+     <record id="food_items_manager_rules" model="ir.rule">
+        <field name="name"> manager food items</field>
+        <field name="model_id" ref="model_food_items"/>
+        <field name="groups"   eval="[(4, ref('group_manager'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="food_items_reception_rules" model="ir.rule">
+        <field name="name"> reception food items</field>
+        <field name="model_id" ref="model_food_items"/>
+        <field name="groups"   eval="[(4, ref('group_reception'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- hotel accommodation-->
+
+    <record id="hotel_accommodation_reception_rule" model="ir.rule">
+        <field name="name">hotel accommodation</field>
+        <field name="model_id" ref="model_hotel_accommodation"/>
+        <field name="groups" eval="[(4, ref('group_reception'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+      <record id="hotel_accommodation_manager_rule" model="ir.rule">
+        <field name="name"> manager hotel accommodation</field>
+        <field name="model_id" ref="model_hotel_accommodation"/>
+        <field name="groups" eval="[(4, ref('group_manager'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- hotel rooms-->
+       <record id="hotel_rooms_reception_rules" model="ir.rule">
+        <field name="name"> reception hotel rooms</field>
+        <field name="model_id" ref="model_hotel_rooms"/>
+        <field name="groups"   eval="[(4, ref('group_reception'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+     <record id="hotel_room_manager_rule" model="ir.rule">
+        <field name="name">manager rule for hotel room</field>
+        <field name="model_id" ref="model_hotel_rooms"/>
+        <field name="groups" eval="[(4, ref('group_manager'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,95 @@
+<odoo>
+
+    <record id="travel_agencybooking_view" model="ir.ui.view">
+        <field name="name">travel_agencybookingl</field>
+        <field name="model">travel.agency_booking</field>
+        <field name="arch" type="xml">
+            <list string="travel_agency_booking_list">
+                <field name="t_booking_id"/>
+                <field name="name"/>
+                <field name="cust_address" class="ml-4"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="date"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="package_view" model="ir.ui.view">
+        <field name="name">package</field>
+        <field name="model">travel.package</field>
+        <field name="arch"  type="xml">
+            <list string="package_list">
+                <field name="package_name"/>
+                <field name="de_from"/>
+                <field name="destination" />
+                <field name="p_hotel"/>
+                <field name="t_food"/>
+                <field name="Amount"/>
+            </list>
+        </field>
+    </record>
+
+
+
+     <record id="hotel_view" model="ir.ui.view">
+        <field name="name">hotels</field>
+        <field name="model">travel.hotel</field>
+        <field name="arch"  type="xml">
+            <list string="hotel_list">
+                <field name="hotel_name"/>
+                <field name="room_available"/>
+
+            </list>
+        </field>
+    </record>
+
+
+
+     <record id="cust_booking_view" model="ir.ui.view">
+        <field name="name">cust_booking</field>
+        <field name="model">cust.booking</field>
+        <field name="arch"  type="xml">
+            <list string="cust_booking_list">
+                <field name="cust_name"/>
+                <field name="cust_phone"/>
+                <field name="cust_date"/>
+                <field name="cust_members"/>
+                <field name="d_from"/>
+                <field name="cust_des"/>
+
+            </list>
+        </field>
+    </record>
+
+
+
+     <record id="booking_team_view" model="ir.ui.view">
+        <field name="name">booking_team</field>
+        <field name="model">booking.team</field>
+        <field name="arch"  type="xml">
+            <list string="booking_team_list">
+                <field name="team_name"/>
+                <field name="employee"/>
+                <field name="booked_cards_id"/>
+            </list>
+        </field>
+    </record>
+
+
+
+    <record id="reschedule_view" model="ir.ui.view">
+        <field name="name">reschedule</field>
+        <field name="model">reschedule.booking</field>
+        <field name="arch"  type="xml">
+            <list string="reshedule">
+                <field name="b_id"/>
+                <field name="ree_customer"/>
+                <field name="re_date"/>
+                <field name="reshedule_package"/>
+            </list>
+        </field>
+    </record>
+</odoo>
+
+

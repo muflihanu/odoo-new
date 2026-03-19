@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+    <record id="demo_room1" model="hotel.rooms">
+        <field name="room_no">1</field>
+        <field name="bed">single</field>
+        <field name="available_beds">3</field>
+        <field name="rent">2000</field>
+<!--        <field name="facility_id" ref="hotel.facility_0"/>-->
+    </record>
+
+     <record id="demo_room2" model="hotel.rooms">
+        <field name="room_no">2</field>
+        <field name="bed">double</field>
+        <field name="available_beds">2</field>
+        <field name="rent">3000</field>
+<!--        <field name="facility_id">TV</field>-->
+    </record>
+      <record id="demo_room3" model="hotel.rooms">
+        <field name="room_no">3</field>
+        <field name="bed">single</field>
+        <field name="available_beds">4</field>
+        <field name="rent">3000</field>
+<!--        <field name="facility_id">TV</field>-->
+    </record>
+
+        <!-- facilities-->
+        <record id="facility_1" model="hotel.facility">
+            <field name="facility">AC</field>
+        </record>
+
+        <record id="facility_2" model="hotel.facility">
+            <field name="facility">TV</field>
+        </record>
+        <record id="facility_3" model="hotel.facility">
+            <field name="facility">Refrigerator</field>
+        </record>
+
+      <!-- food category -->
+         <record id="food_category_1" model="food.category">
+            <field name="food_category_name">VEG</field>
+        </record>
+
+         <record id="food_category_2" model="food.category">
+            <field name="food_category_name">NON VEG</field>
+        </record>
+
+         <record id="food_category_3" model="food.category">
+            <field name="food_category_name">MEAL</field>
+        </record>
+
+         <record id="food_category_4" model="food.category">
+            <field name="food_category_name">Brekfast</field>
+        </record>
+
+        <record id="food_category_5" model="food.category">
+            <field name="food_category_name">Lunch</field>
+        </record>
+
+        <record id="food_category_6" model="food.category">
+            <field name="food_category_name">Dinner</field>
+        </record>
+
+         <record id="food_category_7" model="food.category">
+            <field name="food_category_name">Dessert</field>
+        </record>
+        <record id="food_category_8" model="food.category">
+            <field name="food_category_name">Hot Drinks</field>
+        </record>
+        <record id="food_category_8" model="food.category">
+            <field name="food_category_name">Cool Drinks</field>
+        </record>
+
+        <record id="product_1" model="product.template">
+            <field name="name">Food expense</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+        </record>
+
+        <record id="product_2" model="product.template">
+            <field name="name">Rent</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+        </record>
+</data>
+</odoo>

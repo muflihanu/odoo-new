@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- email template!!!!!!!!!!!!!!!-->
+    <data>
+    <record id="email_template_for_check_out" model="mail.template">
+        <field name="name">check out mail</field>
+        <field name="model_id" ref="model_hotel_accommodation"/>
+        <field name="subject"> Today is your check-out day!</field>
+        <field name="email_from">i {{ user.email_formatted or user.company_id.email_formatted }}</field>
+        <field name="partner_to">{{ object.guest_id.id }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>
+                    Hello ,
+                    <br/>
+                    <br/>
+                     today is your check-out day ! <t t-out="object.expected_date"/>
+                    <br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+    </data>
+</odoo>
