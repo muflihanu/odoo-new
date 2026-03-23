@@ -3,3 +3,4 @@ access_sale_order,access_sale_order,model_sale_order,base.group_user,1,1,1,1
 access_product_template,access_product_template,model_product_template,base.group_user,1,1,1,1
 access_res_partner,access_res_partner,model_res_partner,base.group_user,1,1,1,1
 access_purchase_order,access_purchase_order,model_purchase_order,base.group_user,1,1,1,1
+access_account_move,access_account.move,model_account_move,base.group_user,1,1,1,1

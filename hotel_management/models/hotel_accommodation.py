@@ -272,7 +272,6 @@ class  HotelAccommodation(models.Model):
 
         email_values = {'email_from': self.env.user.email}
         for record in  expected_checkout_today_records:
-           print('!!!!!!!!!!!!!!!!!!!',record.read())
            template.send_mail(record.id, force_send=True, email_values=email_values)
 
     #sequence series......

@@ -21,3 +21,4 @@ class SaleOrder(models.Model):
              self.state='open'
          else:
             raise UserError('all the products are delivered.')
+
