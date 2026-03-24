@@ -2,7 +2,7 @@ import typing
 
 from odoo import fields,models,api
 from odoo import Command
-from odoo.orm.types import ValuesType
+
 
 
 class AccountMove(models.Model):
@@ -30,6 +30,7 @@ class AccountMove(models.Model):
 
     @api.onchange('related_so')
     def onchange_related_so(self):
+        self.invoice_line_ids=[Command.clear()]
         if  self.related_so:
             unique_id=[]
             for record in self.related_so:
@@ -43,8 +44,7 @@ class AccountMove(models.Model):
                             'product_id': rec.product_id.id,
                             'price_unit': rec.price_unit,
                             'quantity':rec.product_uom_qty,
-                            'sale_line_ids': rec.order_id.id,
-                         })  for rec in record.order_line if rec.order_id.id not in self.invoice_line_ids.sale_line_ids]})
+                         })  for rec in record.order_line ]})
 
             print(unique_id)
 

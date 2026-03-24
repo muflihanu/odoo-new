@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+
+     <record id="employee_loan_sequence_number" model="ir.sequence">
+         <field name="name">employee_loan sequence number</field>
+         <field name="code">loan_employee_name</field>
+         <field name="prefix">LM/</field>
+         <field name="padding">4</field>
+         <field name="number_next">1</field>
+       </record>
+    </data>
+</odoo>
