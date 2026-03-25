@@ -1,0 +1,34 @@
+<odoo>
+    <record id="hotel_management_repor_action_wizard" model="ir.actions.act_window">
+   <field name="name">Hotel Management Report</field>
+   <field name="res_model">hotel.management.report.wizard</field>
+   <field name="view_mode">form</field>
+   <field name="target">new</field>
+   <field name="binding_model_id" ref="model_hotel_accommodation"/>
+   <field name="binding_view_types">list,form</field>
+</record>
+
+
+    <record id="hotel_management_report_wizard_form" model="ir.ui.view">
+   <field name="name">hotel.management.wizard.form</field>
+   <field name="model">hotel.management.report.wizard</field>
+   <field name="arch" type="xml">
+       <form>
+           <group>
+               <field name="from_date"/>
+               <field name="to_date"/>
+               <field name="guest"/>
+           </group>
+           <footer>
+               <button string="Print"
+                       name="action_report_wizard"
+                       type="object"
+                       class="btn-primary"/>
+               <button string="Cancel"
+                       class="btn-secondary"
+                       special="cancel"/>
+           </footer>
+       </form>
+   </field>
+</record>
+</odoo>

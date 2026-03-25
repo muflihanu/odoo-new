@@ -14,7 +14,4 @@
         <field name="action_server_ids" eval="[(4, ref('action_creating_product_to_lunch'))]"/>
     </record>
 
-
-
-
 </odoo>

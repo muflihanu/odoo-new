@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- email template!!!!!!!!!!!!!!!-->
+    <!-- email template!!-->
     <data>
     <record id="email_template_for_check_out" model="mail.template">
         <field name="name">check out mail</field>

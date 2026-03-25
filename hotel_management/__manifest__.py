@@ -18,8 +18,11 @@
         'data/hotel_management_automated_action_data.xml',
         'data/hotel_management_archive_automation_data.xml',
         'security/ir.model.access.csv',
+        'report/hotel_management_report_template.xml',
+        'report/ir.actions.report.xml',
         'security/hotel_management_groups.xml',
-        'security/hotel_management_security.xml'
+        'security/hotel_management_security.xml',
+        'wizard/hotel_management_report_wizard.xml'
 
 
 
