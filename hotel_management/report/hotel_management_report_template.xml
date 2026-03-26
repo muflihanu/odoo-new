@@ -1,15 +1,16 @@
 <odoo>
      <template id="hotel_management_report">
        <t t-call="web.html_container">
-           <t t-foreach="docs" t-as="o">
+<!--           <t t-foreach="docs" t-as="o">-->
                <t t-call="web.external_layout">
                    <div class="page">
                        <div class="oe_structure"/>
                        <h2>Hotel Management Report</h2>
                        <br/>
-                       <h4>Date from</h4>
-                       <h4>Date to</h4>
-                       <h4>Guest :<span t-field="o.room_id"/></h4>
+                       <h4>Date from: <t t-out="date['from_date']"/> </h4>
+                       <h4>Date to:<t t-esc="date['to_date']"/></h4>
+                       <h4>Guest:<t t-esc="date['guest'][1]"/></h4>
+
                        <br/>
                        <br/>
                        <table class="table">
@@ -20,11 +21,20 @@
                                <th>Check-Out</th>
                                <th>State</th>
                            </tr>
+                         <t t-foreach="report" t-as="re">
+                           <tr>
+                               <td><t t-esc="re['reference_number']"/></td>
+                               <td><t t-esc="re['name']"/></td>
+                               <td><t t-esc="re['check_in']"/></td>
+                               <td><t t-esc="re['check_out']"/></td>
+                               <td><t t-esc="re['state']"/></td>
+                           </tr>
+                           </t>
                        </table>
 
                    </div>
                </t>
            </t>
-       </t>
+<!--       </t>-->
    </template>
 </odoo>

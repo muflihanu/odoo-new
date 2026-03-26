@@ -78,8 +78,8 @@ class  HotelAccommodation(models.Model):
     def get_food_order_smart_record(self):
         self.ensure_one()
         food_orders=[]
-        for i in self.food_order_id:
-          food_orders.append(i.id)
+        for order in self.food_order_id:
+          food_orders.append(order.id)
 
         return{
             'type': 'ir.actions.act_window',
@@ -109,9 +109,9 @@ class  HotelAccommodation(models.Model):
 
       for record in self:
           rent_total=0
-          for i in record.expense_ids:
-              if i:
-                  rent_total+=i.subtotal
+          for expence in record.expense_ids:
+              if expence:
+                  rent_total+=expence.subtotal
 
               else:
                   record.full_total = None
@@ -252,10 +252,9 @@ class  HotelAccommodation(models.Model):
         for record in all_records:
               print(record.reference_number)
               if record.cancel_date:
-               mm = fields.Datetime.now().day - record.cancel_date.day
+               date = fields.Datetime.now().day - record.cancel_date.day
 
-               if 2<=mm:
-                print('mm', mm)
+               if 2<=date:
                 record.write({
                     'archive':False
                 })
