@@ -9,11 +9,17 @@
                        <br/>
                        <h4>Date from: <t t-out="date['from_date']"/> </h4>
                        <h4>Date to:<t t-esc="date['to_date']"/></h4>
-                       <h4>Guest:<t t-esc="date['guest'][1]"/></h4>
+                      <div>
+                           <h4  t-if="date['guest']==False">Guest:</h4>
+                            <h4 t-else=""> Guest:<t t-esc="date['guest'][1]"/></h4>
+                      </div>
+
+
 
                        <br/>
                        <br/>
-                       <table class="table">
+                       <table  class="table">
+                          <thead>
                            <tr>
                                <th>SL.No</th>
                                <th>Guest</th>
@@ -21,7 +27,9 @@
                                <th>Check-Out</th>
                                <th>State</th>
                            </tr>
+                            </thead>
                          <t t-foreach="report" t-as="re">
+                             <tbody>
                            <tr>
                                <td><t t-esc="re['reference_number']"/></td>
                                <td><t t-esc="re['name']"/></td>
@@ -29,6 +37,7 @@
                                <td><t t-esc="re['check_out']"/></td>
                                <td><t t-esc="re['state']"/></td>
                            </tr>
+                             </tbody>
                            </t>
                        </table>
 

@@ -20,9 +20,13 @@
                <field name="guest"/>
            </group>
            <footer>
-               <button string="Print"
+               <button string="Print PDF"
                        name="action_report_wizard"
                        type="object"
+                       class="btn-primary"/>
+               <button string="Excel Report"
+                       type="object"
+                       name="xlsx_accommodation_report"
                        class="btn-primary"/>
                <button string="Cancel"
                        class="btn-secondary"

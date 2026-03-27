@@ -1,5 +1,9 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+import io
+import json
+import xlsxwriter
+from odoo.tools import json_default
 class HotelManagementReportWizard(models.TransientModel):
     _name = "hotel.management.report.wizard"
     _description = "Hotel Management Report Wizard"

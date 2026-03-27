@@ -22,7 +22,8 @@
         'report/ir.actions.report.xml',
         'security/hotel_management_groups.xml',
         'security/hotel_management_security.xml',
-        'wizard/hotel_management_report_wizard.xml'
+        'wizard/hotel_management_report_wizard.xml',
+        'static/src/js/action_manager.js',
 
 
 
