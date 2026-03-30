@@ -1,15 +1,13 @@
 from  odoo import api
 import json
 from  odoo import http
-from odoo.http import content_disposition,request
+from odoo.http import content_disposition,request,serialize_exception
 from odoo.tools import html_escape
 
 class XLSXReportController(http.Controller):
-    @http.route('/xlsx_reports',type='jsonrpc',auth="user",csrf=False)
-    def get_xlsx_reports(self,model,options,output_format,report_name):
-        print(options)
-        print(output_format)
-        print(report_name)
+    @http.route('/xlsx_reports',type='http',auth="user",csrf=False)
+
+    def create_xlsx_reports(self,model,options,output_format,report_name):
         report_obj = request.env[model].with_user(request.session.uid)
         options = json.loads(options)
         token = 'dummy-because-api-expects-one'

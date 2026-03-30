@@ -23,7 +23,7 @@
         'security/hotel_management_groups.xml',
         'security/hotel_management_security.xml',
         'wizard/hotel_management_report_wizard.xml',
-        'static/src/js/action_manager.js',
+
 
 
 
@@ -31,5 +31,10 @@
     'demo':[
         'demo/data_demo.xml',
 
-    ]
+    ],
+
+    'assets':{
+'web.assets_backend':['hotel_management/static/src/js/action_manager.js' ]
+
+    },
 }
