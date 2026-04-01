@@ -54,11 +54,13 @@ class  HotelAccommodation(models.Model):
 
     @api.depends('invoice_id')
     def compute_invoice_count(self):
+        """invoice count for smart button"""
         for record in self:
             record.invoice_count=len(record.invoice_id)
 
 
     def get_invoice_record(self):
+        """invoice record """
         self.ensure_one()
 
         return{
@@ -72,10 +74,12 @@ class  HotelAccommodation(models.Model):
 
     @api.depends('food_order_id')
     def compute_food_order_count(self):
+        """order food records count"""
         for record in self:
             order_count=len(record.expense_ids)
             record.order_food_count=order_count-1
     def get_food_order_smart_record(self):
+        """order food records"""
         self.ensure_one()
         food_orders=[]
         for order in self.food_order_id:
@@ -94,6 +98,7 @@ class  HotelAccommodation(models.Model):
 
 
     def order_food_now(self):
+        """creating order food from accommodation record"""
         return{
             'type': 'ir.actions.act_window',
             'name': 'food order now',
@@ -106,6 +111,7 @@ class  HotelAccommodation(models.Model):
 
     @api.depends('expense_ids')
     def _compute_total(self):
+      """calculate total from expense_ids"""
 
       for record in self:
           rent_total=0
@@ -121,6 +127,7 @@ class  HotelAccommodation(models.Model):
 
     @api.depends('bed_type','facilities_ids')
     def _compute_bed_type_base_rooms_id(self):
+        """ user can select rooms based on bed type """
         for record in self:
             if record.bed_type:
                 if record.facilities_ids:
@@ -137,6 +144,7 @@ class  HotelAccommodation(models.Model):
 
 
     def check_in_check(self):
+       """check in function"""
        for record in self:
            file=self.env['ir.attachment'].search([('res_model','=','hotel.accommodation'),('res_id','=',self.id)])
            if len(file)==0 :
@@ -179,6 +187,7 @@ class  HotelAccommodation(models.Model):
                 }
 
     def check_out_check(self):
+            """check out function"""
             if self.state=='check-in':
                 self.state='check-out'
                 self.room_id.state='available'
@@ -235,6 +244,7 @@ class  HotelAccommodation(models.Model):
 
 
     def accommodation_cancel(self):
+        """cancel accommodation"""
         if self.state=='check-in':
             self.state='cancel'
             self.room_id.state='available'
@@ -247,7 +257,7 @@ class  HotelAccommodation(models.Model):
                     results.write({'active':False})
 
     def archive_automation(self):
-
+        """archive automation archive  more than 2 days canceled records"""
         all_records=self.env['hotel.accommodation'].search([('state','in','cancel'),('active','=',False),('archive','=',True)])
         for record in all_records:
               print(record.reference_number)
@@ -267,6 +277,7 @@ class  HotelAccommodation(models.Model):
 
     #mail send  function
     def action_send_mail(self):
+        """send mail to guest"""
         template = self.env.ref('hotel_management.email_template_for_check_out')
         expected_checkout_today_records=self.search([('expected_date','=',fields.Date.today()),('state','=','check-in')])
 
@@ -277,8 +288,9 @@ class  HotelAccommodation(models.Model):
     #sequence series......
     @api.model_create_multi
     def create(self, vals):
-        for r in vals:
-            r['reference_number']=self.env['ir.sequence'].next_by_code('hotel.accommodation_code')
+        """create sequence"""
+        for sequence in vals:
+            sequence['reference_number']=self.env['ir.sequence'].next_by_code('hotel.accommodation_code')
 
         res=super().create(vals)
         return res

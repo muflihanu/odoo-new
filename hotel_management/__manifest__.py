@@ -1,9 +1,11 @@
 {
     'name':'Hotel Management',
-    'depends':['base','mail','account','base_automation','lunch'],
+    'category': 'Website',
+    'depends':['base','mail','account','base_automation','lunch','website'],
     'installable':True,
     'application':True,
     'data':{
+        'security/ir.model.access.csv',
         'views/hotel_accommodation_views.xml',
         'views/hotel_managment_menu.xml',
         'views/hotel_rooms_views.xml',

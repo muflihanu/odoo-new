@@ -1,0 +1,29 @@
+<odoo>
+    <record id="sale_orders_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath  expr="//header" position="inside">
+                <button type="object" name="discount_approved_sale" string="Approve Discount"  invisible="state in ('cancel') or discount_approved==True "/>
+                    </xpath>
+
+            <xpath  expr="//notebook" position="inside">
+                <page  name="delivery info">
+                    <group>
+                         <field name="delivery_remark"/>
+                <field name="is_urgent_delivery"/>
+                <field name="preferred_delivery_time" invisible="is_urgent_delivery ==False" />
+                        <field name="discount_approved"/>
+                        <field name="discount_approved_by"/>
+                        <field name="flag" invisible="1"/>
+                    </group>
+
+                </page>
+
+
+            </xpath>
+        </field>
+
+    </record>
+</odoo>
