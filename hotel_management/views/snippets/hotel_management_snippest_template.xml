@@ -1,0 +1,21 @@
+<odoo>
+       <template id="hotel_management_template_highlight" name="hotel accommodation banner">
+       <section class="hotel_section">
+           <div class="container">
+               <div class="col-12 text-center mt-5 " style="background-image: url('/hotel_management/static/src/images/hotel1.jpeg'); height: 400px; width: 100%;"/>
+           </div>
+       </section>
+   </template>
+   <template id="hotel_management_highlight_snippet" inherit_id="website.snippets"
+             name="Hotel Accommodation Highlight Snippet">
+       <xpath expr="//snippets[@id='snippet_content']" position="inside">
+           <t t-snippet="hotel_management.hotel_management_template_highlight"
+              t-thumbnail="/hotel_management/static/src/images/hotel.jpeg"/>
+       </xpath>
+       <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+           <t t-snippet="hotel_management.hotel_management_template_highlight"/>
+       </xpath>
+   </template>
+
+
+</odoo>

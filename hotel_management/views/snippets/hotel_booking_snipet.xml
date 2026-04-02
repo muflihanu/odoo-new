@@ -1,0 +1,57 @@
+<odoo>
+     <template id="hotel_booking_template_highlight" name="Hotel Room Booking Form">
+                <section class=" hotel_room_booking_section container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-lg-5">
+                            <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-center">Room Booking</h3>
+                                    <form  class="booking_form" method="post">
+                                        <div class="mb-3">
+                                            <label class="form-label">Check In:</label>
+                                            <input type="date" name="check_in" required="required" class="check_in form-control"/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Expected Days:</label>
+                                            <input type="number" name="expected_days" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                    <label class='sel1'>Room Type:</label>
+                                  <select name="room type" class="form-control" >
+                                       <option value="single">Single</option>
+                                       <option value="double">Double</option>
+                                       <option value="dormitory">Dormitory</option>
+                                 </select>
+                                 </div>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="d-grid mt-5">
+                                            <button type="submit" class="btn btn-primary">Book Now</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </template>
+
+
+     <template id="booking_success_template" name="booking success">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h3>Booking Created Successfully!</h3>
+                </div>
+            </t>
+        </template>
+
+   <template id="hotel_booking_highlight_snippet" inherit_id="website.snippets"
+             name="Hotel Accommodation Booking Highlight Snippet">
+       <xpath expr="//snippets[@id='snippet_content']" position="inside">
+           <t t-snippet="hotel_management.hotel_booking_template_highlight"/>
+<!--              t-thumbnail="/hotel_management/static/src/images/hotel.jpeg"/>-->
+       </xpath>
+       <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+           <t t-snippet="hotel_management.hotel_booking_template_highlight"/>
+       </xpath>
+   </template>
+</odoo>

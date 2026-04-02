@@ -3,13 +3,13 @@
       <menuitem id="hotel_management_sub_menu_one" name="Reception"  sequence="1" parent="hotel_management_menu_root"/>
      <menuitem id="hotel_accommodation_menu_action" action="hotel_accommodation_action" parent="hotel_management_sub_menu_one"/>
      <menuitem id="hotel_guests_menu_action" action="guests_action" parent="hotel_management_sub_menu_one"/>
-     <menuitem id="hotel_management_sub_menu_two" name="Configuration"  sequence="3" parent="hotel_management_menu_root"/>
+     <menuitem id="hotel_management_sub_menu_two" name="Configuration"  sequence="4" parent="hotel_management_menu_root"/>
      <menuitem id="room_actions_menu" action="hotel_rooms_action" parent="hotel_management_sub_menu_two"/>
      <menuitem id="facility_action_menu" action="hotel_facility_action" parent="hotel_management_sub_menu_two"/>
      <menuitem id="food_item_menu" action="food_items_action" parent="hotel_management_sub_menu_two"/>
      <menuitem id="food_category_menu" action="food_category_action" parent="hotel_management_sub_menu_two"/>
      <menuitem id="hotel_management_sub_menu_third"  action="order_food_action" sequence="2" parent="hotel_management_menu_root"/>
-    <menuitem id="hotel_management_reporting_menu" name="Report" parent="hotel_management_menu_root"/>
+    <menuitem id="hotel_management_reporting_menu" name="Report"  sequence="3" parent="hotel_management_menu_root"/>
     <menuitem id="management_report_submenu" action="hotel_management_repor_action_wizard"  parent="hotel_management_reporting_menu"/>
 
 </odoo>

@@ -1,0 +1,22 @@
+<odoo>
+           <template id="hotel_accommodation_booking_template" name="booking page">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row">
+                           <div class="col-12 text-center mt-5">
+                               <h1>Welcome to our Booking  Page!</h1>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+
+    </template>
+       <record id="hotel_accommodation_page_menu" model="website.menu">
+           <field name="name">Room Booking</field>
+           <field name="url">/hotel_accommodations</field>
+           <field name="parent_id" ref="website.main_menu"/>
+           <field name="sequence" type="int">99</field>
+       </record>
+</odoo>

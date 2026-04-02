@@ -14,83 +14,39 @@ class HotelManagementReportWizard(models.TransientModel):
     # guest= fields.Char(string="Guest")
     guest=fields.Many2one('res.partner',string="Guest")
 
+    def get_values(self):
+        print('values',self.guest,self.from_date,self.to_date)
+        query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE '''
+        if self.from_date and self.to_date and self.guest:
+            query += f''' guest_id={self.guest.id}  AND check_in BETWEEN'{self.from_date}' AND '{self.to_date}' ORDER BY reference_number '''
+        elif self.from_date:
+            query += f'''  check_in  BETWEEN '{self.from_date}' AND '{fields.Datetime.now()}' ORDER BY reference_number '''
+        elif self.to_date:
+            query += f'''  check_in<='{self.to_date}'  ORDER BY reference_number'''
+        elif self.guest:
+            query += f''' guest_id={self.guest.id} ORDER BY reference_number '''
+        elif self.from_date and self.to_date:
+            query += f''' check_in BETWEEN'{self.from_date}' AND '{self.to_date}' '''
+        else:
+            query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  ORDER BY reference_number'''
+
+        self.env.cr.execute(query)
+        all_rec = self.env.cr.dictfetchall()
+        return all_rec
 
 
     def action_report_wizard(self):
 
-        if self.from_date and self.to_date and self.guest:
-           query=f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE guest_id={self.guest.id}  AND check_in='{self.from_date}' AND expected_date='{self.to_date}' '''
-           self.env.cr.execute(query)
-           all_rec=self.env.cr.dictfetchall()
-           if all_rec:
-               data = {'date':self.read()[0],'report': all_rec}
-               return self.env.ref('hotel_management.action_report_hotel_management').report_action(self,data=data)
+        record= self.get_values()
 
-        elif self.from_date:
-            query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE   check_in='{self.from_date}' '''
-            self.env.cr.execute(query)
-            all_rec = self.env.cr.dictfetchall()
-            if all_rec:
-                data = {'date': self.read()[0], 'report': all_rec}
-                return self.env.ref('hotel_management.action_report_hotel_management').report_action(self, data=data)
-
-        elif self.to_date:
-            query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE   expected_date='{self.to_date}' '''
-            self.env.cr.execute(query)
-            all_rec = self.env.cr.dictfetchall()
-            if all_rec:
-                data = {'date': self.read()[0], 'report': all_rec}
-                return self.env.ref('hotel_management.action_report_hotel_management').report_action(self, data=data)
-
-        elif self.guest:
-            query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE   guest_id={self.guest.id} '''
-            self.env.cr.execute(query)
-            all_rec = self.env.cr.dictfetchall()
-            if all_rec:
-                data = {'date': self.read()[0], 'report': all_rec}
-                return self.env.ref('hotel_management.action_report_hotel_management').report_action(self, data=data)
-
-        elif self.from_date and self.to_date:
-            query = f''' SELECT m.reference_number,p.name,m.check_in,m.check_out,m.state from hotel_accommodation AS m  INNER JOIN res_partner AS p ON   p.id=m.guest_id  WHERE   check_in='{self.from_date}' AND expected_date='{self.to_date}' '''
-            self.env.cr.execute(query)
-            all_rec = self.env.cr.dictfetchall()
-            if all_rec:
-                data = {'date': self.read()[0], 'report': all_rec}
-                return self.env.ref('hotel_management.action_report_hotel_management').report_action(self, data=data)
-        else:
-            return False
+        data = {'date': self.read()[0], 'report': record}
+        return self.env.ref('hotel_management.action_report_hotel_management').report_action(self, data=data)
 
     def xlsx_accommodation_report(self):
-      if self.guest and self.from_date and self.to_date:
-        xl_query=f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id WHERE  guest_id={self.guest.id}  AND check_in='{self.from_date}' AND expected_date='{self.to_date}' """
-        self.env.cr.execute(xl_query)
-        xls_report=self.env.cr.dictfetchall()
-        xl_data={'from_date':self.from_date,'to_date':self.to_date,'guest':self.guest.name,'report':xls_report}
-      elif  self.from_date and self.to_date:
-          xl_query = f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id WHERE  check_in='{self.from_date}' AND expected_date='{self.to_date}' """
-          self.env.cr.execute(xl_query)
-          xls_report = self.env.cr.dictfetchall()
-          xl_data = {'from_date': self.from_date, 'to_date': self.to_date,'guest':self.guest.name, 'report': xls_report}
-      elif self.from_date:
-          xl_query = f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id WHERE  check_in='{self.from_date}' """
-          self.env.cr.execute(xl_query)
-          xls_report = self.env.cr.dictfetchall()
-          xl_data = {'from_date': self.from_date, 'to_date': self.to_date,'guest':self.guest.name,'report': xls_report}
-      elif self.to_date:
-          xl_query = f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id WHERE expected_date='{self.to_date}'  """
-          self.env.cr.execute(xl_query)
-          xls_report = self.env.cr.dictfetchall()
-          xl_data = {'from_date': self.from_date, 'to_date': self.to_date,'guest':self.guest.name,'report': xls_report}
-      elif self.guest:
-          xl_query = f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id WHERE guest_id={self.guest.id}  """
-          self.env.cr.execute(xl_query)
-          xls_report = self.env.cr.dictfetchall()
-          xl_data = {'from_date': self.from_date, 'to_date': self.to_date,'guest':self.guest.name,'report': xls_report}
-      else:
-          xl_query = f""" SELECT m.reference_number ,p.name,m.check_in,m.check_out,m.state From hotel_accommodation AS m INNER JOIN res_partner AS p ON p.id=m.guest_id  """
-          self.env.cr.execute(xl_query)
-          xls_report = self.env.cr.dictfetchall()
-          xl_data = {'from_date': self.from_date, 'to_date': self.to_date, 'guest': self.guest.name, 'report': xls_report}
+
+      rec=self.get_values()
+
+      xl_data = {'from_date': self.from_date, 'to_date': self.to_date, 'guest': self.guest.name, 'report':rec}
       return {
         'type':'ir.actions.report',
         'data':{
@@ -110,38 +66,41 @@ class HotelManagementReportWizard(models.TransientModel):
             {'font_size': '12px', 'align': 'center'})
         head = workbook.add_format(
             {'align': 'center', 'bold': True, 'font_size': '20px'})
-
-        txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
+        txt = workbook.add_format({'font_size': '8px', 'align': 'center','border':3,})
+        theading=workbook.add_format({'align': 'center', 'bold': True, 'font_size': '8px','border':3})
+        sheet.set_column(0, 2, 15)
+        sheet.set_column(0, 4, 15)
 
         sheet.merge_range('B2:I3', 'EXCEL REPORT', head)
-        sheet.merge_range('A4:B4', 'Customer:', cell_format)
-        if xl_data['guest']:
-            sheet.merge_range('C4:D4', xl_data['guest'], cell_format)
-        else:
-            sheet.merge_range('C4:D4','', cell_format)
+        sheet.merge_range('A4:B4', 'Customer:', cell_format)if xl_data['guest'] else sheet.merge_range('A4:B4', '', cell_format)
+        sheet.merge_range('C4:D4', xl_data['guest'], cell_format) if xl_data['guest'] else sheet.merge_range('C4:D4','', cell_format)
 
         sheet.merge_range('A5:B5', 'from_date:', cell_format)
         sheet.merge_range('C5:D5', xl_data['from_date'], cell_format)
         sheet.merge_range('A6:B6', 'to_date:', cell_format)
         sheet.merge_range('C6:D6', xl_data['to_date'], cell_format)
 
+        sheet.merge_range('A5:B5', 'From Date:', cell_format) if xl_data['from_date'] else sheet.merge_range('A5:B5','', cell_format)
+        sheet.merge_range('C5:D5', xl_data['from_date'], cell_format) if xl_data['from_date'] else sheet.merge_range('C5:D5','', cell_format)
+        sheet.merge_range('A6:B6', 'To Date:', cell_format) if xl_data['to_date'] else sheet.merge_range('A6:B6','', cell_format)
+        sheet.merge_range('C6:D6', xl_data['to_date'], cell_format) if xl_data['to_date'] else sheet.merge_range('C6:D6','', cell_format)
 
-        sheet.write('I10:J10', 'SL.NO')
-        sheet.write('K10:L10', 'GUEST')
-        sheet.write('M10:N10', 'CHECK IN')
-        sheet.write('O10:P10', 'CHECK OUT')
-        sheet.write('Q10:R10', 'STATE')
-        row = 11
+        sheet.write('B10', 'SL.NO',theading)
+        sheet.write('C10', 'GUEST',theading)
+        sheet.write('D10', 'CHECK IN',theading)
+        sheet.write('E10', 'CHECK OUT',theading)
+        sheet.write('F10', 'STATE',theading)
+        row = 10
         for i in xl_data['report']:
-            col = 8
+            col = 1
             sheet.write(row,col,i['reference_number'],txt)
-            col+=2
+            col+=1
             sheet.write(row,col,i['name'],txt)
-            col+=2
+            col+=1
             sheet.write(row, col, i['check_in'], txt)
-            col += 2
+            col += 1
             sheet.write(row, col, i['check_out'], txt)
-            col += 2
+            col += 1
             sheet.write(row, col, i['state'], txt)
             row += 1
         workbook.close()

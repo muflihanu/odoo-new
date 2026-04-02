@@ -23,13 +23,16 @@
                <button string="Print PDF"
                        name="action_report_wizard"
                        type="object"
+                       data-hotkey="P"
                        class="btn-primary"/>
                <button string="Excel Report"
                        type="object"
+                       data-hotkey="E"
                        name="xlsx_accommodation_report"
                        class="btn-primary"/>
                <button string="Cancel"
                        class="btn-secondary"
+                       data-hotkey="C"
                        special="cancel"/>
            </footer>
        </form>
