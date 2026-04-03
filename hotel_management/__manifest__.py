@@ -5,6 +5,8 @@
     'installable':True,
     'application':True,
     'data':{
+        'security/hotel_management_groups.xml',
+        'security/hotel_management_security.xml',
         'security/ir.model.access.csv',
         'views/hotel_accommodation_views.xml',
         'views/hotel_managment_menu.xml',

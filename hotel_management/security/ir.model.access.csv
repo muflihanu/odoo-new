@@ -6,17 +6,17 @@ access_order_list,access_order_list,model_order_list,base.group_user,1,1,1,1
 access_account_move,access_account_move,model_account_move,base.group_user,1,1,1,1
 access_order_expense,access_order_expense,model_order_expense,base.group_user,1,1,1,1
 access_res_partner,access_res_partner,model_res_partner,base.group_user,1,1,1,1
-access_hotel_rooms_manager,access.hotel.rooms.manager,model_hotel_rooms,group_manager,1,1,1,1
+access_hotel_rooms_manager,access.hotel.rooms.manager,model_hotel_rooms,hotel_management.group_manager,1,1,1,1
 access_hotel_rooms_reception,access.hotel.rooms.reception,model_hotel_rooms,group_reception,1,1,0,0
-access_food_items_manager,access.food.items.manager,model_food_items,group_manager,1,1,1,1
+access_food_items_manager,access.food.items.manager,model_food_items,hotel_management.group_manager,1,1,1,1
 access_food_items_reception,access.food.items.reception,model_food_items,group_reception,1,1,0,0
 access_order_food_reception,access.order.food.reception,model_order_food,group_reception,1,1,1,0
-access_order_food_manager,access.order.food.manager,model_order_food,group_manager,1,1,1,1
+access_order_food_manager,access.order.food.manager,model_order_food,hotel_management.group_manager,1,1,1,1
 access_hotel_accommodation_reception,access.hotel.accommodation.reception,model_hotel_accommodation,group_reception,1,1,1,0
-access_hotel_accommodation_manager,access.hotel.accommodation.manager,model_hotel_accommodation,group_manager,1,1,1,1
-access_account_move_manager,access.account.move.manager,model_account_move,group_manager,1,1,1,1
-access_ir_sequence_base_user,access.ir.sequence.base.user,base.model_ir_sequence,group_manager,1,1,1,1
-access_hotel_management_report_wizard_manager,access.hotel.management.report.wizard.manager,model_hotel_management_report_wizard,group_manager,1,1,1,1
+access_hotel_accommodation_manager,access.hotel.accommodation.manager,model_hotel_accommodation,hotel_management.group_manager,1,1,1,1
+access_account_move_manager,access.account.move.manager,model_account_move,hotel_management.group_manager,1,1,1,1
+access_ir_sequence_base_user,access.ir.sequence.base.user,base.model_ir_sequence,hotel_management.group_manager,1,1,1,1
+access_hotel_management_report_wizard_manager,access.hotel.management.report.wizard.manager,model_hotel_management_report_wizard,hotel_management.group_manager,1,1,1,1
 
 
 

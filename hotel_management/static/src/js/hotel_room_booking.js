@@ -1,18 +1,29 @@
-import { Interaction } from "@web/public/interaction";
-import { registry } from "@web/core/registry";
+import { renderToElement } from "@web/core/utils/render";
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { rpc } from "@web/core/network/rpc";
 
-class  RoomBookingInteraction extends Interaction{
 
-      static selector="booking_form"
 
-      setup(){
-      this.inputCheckIn='';
-      }
 
-      ".check_in":{
-       "t-on-input": (ev) => {
-                this.inputCheckIn = ev.target.value;
+publicWidget.registry.HotelRoomBooking = publicWidget.Widget.extend({
+    selector: ".booking_form",
 
-      }
-      console.log( this.inputCheckIn,'muflih')
-}
+     events:{
+     "click  #btn_submit":'_form_values',
+
+     },
+     start: function () {
+        console.log("dgh")
+//        this._super.apply(this,arguments);
+
+     },
+     _form_values: function(ev){
+     ev.preventDefault();
+     const form_data =this.$el;
+     console.log(form_data)
+
+     }
+
+
+    });
+

@@ -62,7 +62,6 @@ class  HotelAccommodation(models.Model):
     def get_invoice_record(self):
         """invoice record """
         self.ensure_one()
-
         return{
             'type': 'ir.actions.act_window',
             'name': 'invoice',

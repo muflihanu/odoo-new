@@ -6,7 +6,7 @@
                             <div class="card shadow rounded-3 border-0">
                                 <div class="card-body p-4">
                                     <h3 class="mb-4 text-center">Room Booking</h3>
-                                    <form  class="booking_form" method="post">
+                                    <form  class="booking_form">
                                         <div class="mb-3">
                                             <label class="form-label">Check In:</label>
                                             <input type="date" name="check_in" required="required" class="check_in form-control"/>
@@ -23,9 +23,9 @@
                                        <option value="dormitory">Dormitory</option>
                                  </select>
                                  </div>
-                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+<!--                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
                                         <div class="d-grid mt-5">
-                                            <button type="submit" class="btn btn-primary">Book Now</button>
+                                            <button  id="btn_submit" class="btn btn-primary">Book Now</button>
                                         </div>
                                     </form>
                                 </div>
