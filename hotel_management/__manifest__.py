@@ -18,7 +18,7 @@
         'views/hotel_guests_views.xml',
         'views/snippets/hotel_accommodation_webpage_template.xml',
         'views/snippets/hotel_management_snippest_template.xml',
-        'views/snippets/hotel_booking_snipet.xml'
+        'views/snippets/hotel_booking_snipet.xml',
         'data/sequence_data.xml',
         'data/hotel_accommodation_email_templates.xml',
         'data/hotel_accommodation_automatic_email_data.xml',
@@ -42,7 +42,7 @@
 
     'assets':{
 'web.assets_backend':['hotel_management/static/src/js/action_manager.js' ],
- 'we.assets_frontend':['static/src/js/hotel_room_booking.js' ],
+ 'web.assets_frontend':['hotel_management/static/src/js/hotel_room_booking.js' ],
 
 
     },
