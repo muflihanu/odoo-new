@@ -7,6 +7,7 @@
         <field name="domain">[('state','in',('check-in','check-out','draft','cancel'))]</field>
         <field name="view_mode">list,form</field>
 
+
     </record>
     <record id="hotel_accomodation_view_form" model="ir.ui.view">
         <field name="name">Accommodation</field>

@@ -13,6 +13,7 @@ class  HotelAccommodation(models.Model):
     _inherit=['mail.thread','mail.activity.mixin']
     _order = 'check_in desc'
 
+
     active = fields.Boolean(string='active', default=True)
     reference_number=fields.Char(string='Reference Number',copy=False,readonly=True,default='New' ,tracking=True)
     guest_id=fields.Many2one('res.partner',string='Guest',tracking=True)
@@ -27,7 +28,7 @@ class  HotelAccommodation(models.Model):
     # available_facilities_ids=fields.Many2many( 'hotel.facility',string='Available Facilities',tracking=True,required=True)
     facilities_ids=fields.Many2many('hotel.facility',string='Facilities',tracking=True)
     bed_type_base_rooms_ids = fields.Many2many('hotel.rooms', string='Bed Type', tracking=True, compute="_compute_bed_type_base_rooms_id")
-    room_id=fields.Many2one('hotel.rooms',string='Room',tracking=True,required=True,)
+    room_id=fields.Many2one('hotel.rooms',string='Room',tracking=True)
     state=fields.Selection(selection=[('draft','Draft'),('check-in','Check-In'),('check-out','Check-Out'),('cancel','Cancel')],string='State',default='draft',tracking=True)
     payment_status=fields.Selection(selection=[('not_paid','Not_paid'),('paid','Paid')],default='not_paid')
     identification_proof=fields.Binary(string='Identification Proof')
@@ -268,10 +269,7 @@ class  HotelAccommodation(models.Model):
                     'archive':False
                 })
                 print('archive', record.archive)
-                print('hello')
-              # else:
-              #   record.archive = False
-              #   print('archive!!!!!!!!', record.archive)
+
 
 
     #mail send  function

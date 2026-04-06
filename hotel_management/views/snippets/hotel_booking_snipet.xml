@@ -10,12 +10,20 @@
                                         <div class="mb-3">
                                             <label class="form-label">Check In:</label>
                                             <input type="date" name="check_in"  class="check_in form-control" />
-                                            <p id="check_in_error" name="check_in_error" ></p>
+                                            <p id="check_in_error" class="text-danger"></p>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Expected Days:</label>
-                                            <input type="number" name="expected_days" class="number form-control"/>
+                                            <input type="number" name="expected_days" class="expected_days form-control"/>
+                                             <p id="expected_error" class="text-danger"></p>
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Attachement:</label>
+                                            <input type="file" name="attach_id" class="attach_id form-control"/>
+                                             <p id="attach_error" class="text-danger"></p>
 
                                         </div>
                                         <div class="form-group">
@@ -26,7 +34,6 @@
                                        <option value="dormitory">Dormitory</option>
                                  </select>
                                  </div>
-<!--                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
                                         <div class="d-grid mt-5">
                                             <button  id="btn_submit" class="btn btn-primary">Book Now</button>
                                         </div>
@@ -39,13 +46,22 @@
         </template>
 
 
-     <template id="booking_success_template" name="booking success">
-            <t t-call="website.layout">
-                <div class="container">
-                    <h3>Booking Created Successfully!</h3>
-                </div>
-            </t>
-        </template>
+
+           <template id="room_booking_success_template" name="booking success">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row">
+                           <div class="col-12 text-center mt-5">
+                                <h3>Booking  Successfully Completed!</h3>
+                                <div class="col-12 text-center mt-5 " style="background-image: url('/hotel_management/static/src/images/success.webp'); height: 700px; width: 100%;"/>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+
+       </template>
 
    <template id="hotel_booking_highlight_snippet" inherit_id="website.snippets"
              name="Hotel Accommodation Booking Highlight Snippet">
