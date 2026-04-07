@@ -1,10 +1,10 @@
 {
-    'name':'Hotel Management',
+    'name': 'Hotel Management',
     'category': 'Website',
-    'depends':['base','mail','account','base_automation','lunch','website'],
-    'installable':True,
-    'application':True,
-    'data':{
+    'depends': ['base', 'mail', 'account', 'base_automation', 'lunch', 'website'],
+    'installable': True,
+    'application': True,
+    'data': {
         'security/hotel_management_groups.xml',
         'security/hotel_management_security.xml',
         'security/ir.model.access.csv',
@@ -37,10 +37,14 @@
 
     ],
 
-    'assets':{
-'web.assets_backend':['hotel_management/static/src/js/action_manager.js' ],
- 'web.assets_frontend':['hotel_management/static/src/js/hotel_room_booking.js' ],
-
+    'assets': {
+        'web.assets_backend': ['hotel_management/static/src/js/action_manager.js'],
+        'web.assets_frontend': [
+            'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js',
+            'hotel_management/static/src/js/chosen.jquery.min.js',
+            'hotel_management/static/src/js/chosen.min.css',
+            'hotel_management/static/src/js/hotel_room_booking.js',
+        ],
 
     },
 }
