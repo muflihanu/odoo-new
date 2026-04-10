@@ -22,9 +22,9 @@ export class HotelRoomBooking extends Interaction {
       }
 
     setup() {
-    document.getElementById('output').innerHTML = location.search;
-    console.log(123123123, $(".p_ids"))
-//$(".p_ids").chosen();
+    // document.getElementById('output').innerHTML = location.search;
+
+      $(".p_ids").chosen();
         this.check_in='';
         this.expected_days=0;
         this.bed_type='';

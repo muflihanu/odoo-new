@@ -19,6 +19,9 @@
         'views/snippets/hotel_accommodation_webpage_template.xml',
         'views/snippets/hotel_management_snippest_template.xml',
         'views/snippets/hotel_booking_snipet.xml',
+        'views/snippets/hotel_management_room_snippet.xml',
+        'views/snippets/hotel_management_romms_template.xml',
+        'views/snippets/hotel_management_gallery_carousel_snippet.xml',
         'data/sequence_data.xml',
         'data/hotel_accommodation_email_templates.xml',
         'data/hotel_accommodation_automatic_email_data.xml',
@@ -32,7 +35,7 @@
 
 
     },
-    'demo':[
+    'demo': [
         'demo/data_demo.xml',
 
     ],
@@ -41,9 +44,14 @@
         'web.assets_backend': ['hotel_management/static/src/js/action_manager.js'],
         'web.assets_frontend': [
             'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js',
-            'hotel_management/static/src/js/chosen.jquery.min.js',
-            'hotel_management/static/src/js/chosen.min.css',
+            'hotel_management/static/src/js/lib/chosen.jquery.min.js',
+            'hotel_management/static/src/js/lib/chosen.min.css',
             'hotel_management/static/src/js/hotel_room_booking.js',
+            'hotel_management/static/src/xml/hotel_management_room_content.xml',
+            'hotel_management/static/src/js/hotel_rooms.js',
+             'hotel_management/static/src/js/hotel_gallery.js',
+            'hotel_management/static/src/xml/hotel_management_gallery_content.xml',
+
         ],
 
     },

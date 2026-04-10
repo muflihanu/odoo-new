@@ -26,7 +26,7 @@
                                         <div id="output" style="padding:20px;background: #dadada;"></div>
                                         <div class="form-group">
                                     <label class='sel1'>Other Guests:</label>
-                                  <select   id="p_ids" name="p_ids"   class="p_ids form-control"  multiple="multiple"  style="width:300px" >
+                                  <select   id="p_ids" name="p_ids"   class="p_ids form-control"  multiple="multiple"  style="height:30px!important; border:1px solid!important; border-radius:3px!important;">
                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="p">
                                        <option t-att-value="p.id"><t t-esc="p.name"/></option>
                                        </t>

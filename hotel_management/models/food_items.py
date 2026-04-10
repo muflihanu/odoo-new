@@ -66,7 +66,7 @@ class FoodItems(models.Model):
 
     def create_product_to_lunch(self):
         self.ensure_one()
-        lunch_category=self.env['lunch.product.category'].search([('name','=','Lunch')])
+        lunch_category=self.env['lunch.product.category'].search([('name','=','Pizza')])
         print(lunch_category)
         vals = {
             'name': self.food_name,

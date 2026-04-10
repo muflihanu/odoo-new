@@ -15,8 +15,8 @@
         <field name="arch" type="xml">
             <form string="accommodation form">
                 <header>
-                    <button type="object" name="check_in_check" string="Check_in" invisible="state in ('check-in','check-out','cancel')" class="oe_highlight" />
-                    <button type="object" name="check_out_check" string="Check_out" invisible="state in ('check-out','draft','cancel')" class="btn btn-warning" />
+                    <button type="object" name="check_in_check" string="Check-in" invisible="state in ('check-in','check-out','cancel')" class="oe_highlight" />
+                    <button type="object" name="check_out_check" string="Check-out" invisible="state in ('check-out','draft','cancel')" class="btn btn-warning" />
                     <button type="object" name="order_food_now" string="Food Order" invisible="state in ('check-out','draft','cancel')" />
                     <button type="object" name="accommodation_cancel" string="Cancel" invisible="state in ('check-out','cancel','draft')" class="btn btn-danger" />
                     <field name="payment_status" invisible="1"/>
@@ -57,7 +57,7 @@
                         </group>
                         <notebook>
                             <page name="Other Guests Information">
-                                <group>
+
                                     <field name="other_guest_ids" invisible="guest_no in [0,1]">
                                         <list string="other guest list" editable="bottom" >
                                             <field name="Guest_name"/>
@@ -65,7 +65,7 @@
                                             <field name="age"/>
                                         </list>
                                     </field>
-                                </group>
+
                             </page>
                             <page name="Payment">
                                  <field name="expense_ids">

@@ -1,0 +1,27 @@
+<odoo>
+    <template id="hotel_gallery_snippet_template" name="hotel gallery Snippet">
+   	<section class="oe_structure container hotel_gallery_snippet">
+       	<div class="row">
+           	<div class="col-md-12">
+               	<div class="text-center py-5">
+                    	<h1 class="h1">Hotel Gallery</h1>
+                   	<div id="courosel">
+                   	</div>
+                	</div>
+           	</div>
+       	</div>
+   	</section>
+</template>
+
+
+
+    <template id="hotel_gallery_highlight_snippet" inherit_id="website.snippets"
+             name="Hotel Gallery Highlight Snippet">
+       <xpath expr="//snippets[@id='snippet_content']" position="inside">
+           <t t-snippet="hotel_management.hotel_gallery_snippet_template"/>
+       </xpath>
+       <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+           <t t-snippet="hotel_management.hotel_gallery_snippet_template"/>
+       </xpath>
+   </template>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+   <t t-name="room_snippet.room_data">
+       <section class="room_section">
+           <div class="container">
+                 <h1 class="text-center  mt-5" style="color:#483D8B;">AVAILABLE ROOMS</h1>
+               <div class="row d-flex alight-items-center">
+                   <div class="d-flex justify-content-center mt-5 mb-5">
+                       <t t-foreach="result" t-as="room" t-key="room.id">
+                           <div class="card me-5" style="width: 18rem;">
+                                <t t-if="room.image">
+                                        <img t-att-src="'data:image/png;base64,' + room.image"
+                                             class="img img-fluid rotate-center"
+                                             t-att-alt="'Room Image'"
+                                             loading="lazy" style="width:300px; height:300px;"/>
+                                    </t>
+                              <div class="card-body">
+                                  <h4 class="card-text">Room No: <t t-esc="room.room_no"/></h4>
+                               <h4 class="card-text">Type:<span class="text-primary"><t t-esc="room.room_type"/></span> </h4>
+                               <h4 class="card-text">Rent:$ <span class="text-success"><t t-esc="room.room_rent"/></span></h4>
+                               <h4 class="card-text">Facility: <t t-esc="room.room_facility"/></h4>
+                              </div>
+
+                           </div>
+                   </t>
+                   </div>
+
+               </div>
+           </div>
+       </section>
+   </t>
+</templates>

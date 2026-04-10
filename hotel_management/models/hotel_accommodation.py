@@ -42,7 +42,7 @@ class  HotelAccommodation(models.Model):
     expense_ids=fields.One2many('order.expense','accommodation_id',ondelete='cascade')
     rent_room=fields.Float(string='Rent')
     full_total=fields.Float(string='Total',compute='_compute_total')
-    order_food_count=fields.Integer(string='order count',tracking=True,compute='compute_food_order_count')
+    order_food_count=fields.Integer(string='order count',tracking=True,compute="compute_food_order_count")
     # invoice_id=fields.Many2one(comodel_name='account.move',string='invoice_id')
     invoice_id=fields.One2many(comodel_name='account.move',inverse_name='accommodation_id',string='invoice_id',)
     user_id=fields.Many2one('res.users',string='user',default=lambda self: self.env.user.id)

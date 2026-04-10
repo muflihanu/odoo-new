@@ -17,6 +17,7 @@ access_hotel_accommodation_manager,access.hotel.accommodation.manager,model_hote
 access_account_move_manager,access.account.move.manager,model_account_move,hotel_management.group_manager,1,1,1,1
 access_ir_sequence_base_user,access.ir.sequence.base.user,base.model_ir_sequence,hotel_management.group_manager,1,1,1,1
 access_hotel_management_report_wizard_manager,access.hotel.management.report.wizard.manager,model_hotel_management_report_wizard,hotel_management.group_manager,1,1,1,1
+access_hotel_gallery_manager,access.hotel.gallery.manager,model_hotel_gallery,hotel_management.group_manager,1,1,1,1
 
 
 

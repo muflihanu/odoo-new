@@ -1,0 +1,26 @@
+
+<templates id="template" xml:space="preserve">
+	<t t-name="hotel_management.gallery_snippet_carousel">
+    	<div id="hotel_gallery_carousel" class="container carousel slide  d-flex" data-bs-ride="carousel" t-att-data-bs-interval="interval">
+       	<div class="carousel-inner  row w-100 mx-auto" role="listbox">
+          	<t t-foreach="chunks" t-as="chunk" t-key="chunk.id">
+                     	<div class="row  justify-content-center">
+							<t t-if="chunk">
+                        	<t t-foreach="chunk" t-as="item" t-key="item.id">
+                           	<div class="span3 col-3 bg-primary d-flex  justify-content-center">
+                               	<div class="card-group carousel-item  d-flex">
+                                   	<div class="card">
+                    <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image}}" style="padding: 0px; margin: 0px; height: 300px; width:500px;"/>
+
+                                   	</div>
+                               	</div>
+                    	</div>
+							</t>
+							</t>
+                	</div>
+          	</t>
+      	</div>
+    	</div>
+
+	</t>
+</templates>

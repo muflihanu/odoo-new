@@ -9,3 +9,4 @@ from . import order_list
 from . import account_move
 from . import order_expense
 from . import hotel_guests
+from . import hotel_gallery
