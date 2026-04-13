@@ -1,8 +1,11 @@
 <odoo>
        <template id="hotel_management_template_highlight" name="hotel accommodation banner">
-       <section class="hotel_section">
-           <div class="container">
-               <div class="col-12 text-center mt-5 " style="background-image: url('/hotel_management/static/src/images/hotel1.jpeg'); height: 400px; width: 100%;"/>
+       <section class="hotel_section" style="background-image: url('/hotel_management/static/src/images/hotel1.jpeg'); height: 250px; width:100%;">
+           <div class="container" >
+               <div class="row text-center mt-5" >
+                   <h1 class="text-center"  style="color:#ffff;">Welcome To Our Booking Page</h1>
+               </div>
+
            </div>
        </section>
    </template>

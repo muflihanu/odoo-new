@@ -16,6 +16,7 @@
         'views/hotel_facility_views.xml',
         'views/order_food_views.xml',
         'views/hotel_guests_views.xml',
+        'views/hotel_gallery_views.xml',
         'views/snippets/hotel_accommodation_webpage_template.xml',
         'views/snippets/hotel_management_snippest_template.xml',
         'views/snippets/hotel_booking_snipet.xml',
@@ -30,9 +31,6 @@
         'report/hotel_management_report_template.xml',
         'report/ir.actions.report.xml',
         'wizard/hotel_management_report_wizard.xml',
-
-
-
 
     },
     'demo': [

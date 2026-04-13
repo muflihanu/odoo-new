@@ -5,6 +5,7 @@ from odoo import fields,models,api
 class HotelRooms(models.Model):
     _name='hotel.rooms'
     _description='hotel rooms'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name ='room_no'
 
     room_no=fields.Integer(string='Room Number')

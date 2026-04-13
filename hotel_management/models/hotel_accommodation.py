@@ -71,13 +71,15 @@ class  HotelAccommodation(models.Model):
             'res_id':self.invoice_id.id,
         }
 
-
-    @api.depends('food_order_id')
+    @api.depends('food_order_id','state')
     def compute_food_order_count(self):
         """order food records count"""
         for record in self:
-            order_count=len(record.expense_ids)
-            record.order_food_count=order_count-1
+            if record.state != 'draft':
+                order_count = len(record.expense_ids)
+                record.order_food_count =order_count - 1
+            else:
+                record.order_food_count =0
     def get_food_order_smart_record(self):
         """order food records"""
         self.ensure_one()

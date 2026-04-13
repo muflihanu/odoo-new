@@ -1,10 +1,9 @@
 <odoo>
     <template id="hotel_gallery_snippet_template" name="hotel gallery Snippet">
-   	<section class="oe_structure container hotel_gallery_snippet">
-       	<div class="row">
+   	<section class="oe_structure container hotel_gallery_snippet mt-5 w-100%"  >
+       	<div class="row" >
            	<div class="col-md-12">
                	<div class="text-center py-5">
-                    	<h1 class="h1">Hotel Gallery</h1>
                    	<div id="courosel">
                    	</div>
                 	</div>

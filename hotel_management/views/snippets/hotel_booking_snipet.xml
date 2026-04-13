@@ -1,11 +1,11 @@
 <odoo>
      <template id="hotel_booking_template_highlight" name="Hotel Room Booking Form">
-                <section class=" hotel_room_booking_section container py-5">
+                <section class=" hotel_room_booking_section container   w-100% py-5 ">
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-lg-5">
                             <div class="card shadow rounded-3 border-0">
                                 <div class="card-body p-4">
-                                    <h3 class="mb-4 text-center">Room Booking</h3>
+                                    <h3 class="mb-4 text-center" style="color:#5A40DD;">Room Booking</h3>
                                     <form  style="margin-top: 20px;" class="booking_form">
 
                                          <div class="form-group">
@@ -23,7 +23,7 @@
                                             <input type="number" name="count" class="count form-control" value="0"/>
                                         </div>
 
-                                        <div id="output" style="padding:20px;background: #dadada;"></div>
+
                                         <div class="form-group">
                                     <label class='sel1'>Other Guests:</label>
                                   <select   id="p_ids" name="p_ids"   class="p_ids form-control"  multiple="multiple"  style="height:30px!important; border:1px solid!important; border-radius:3px!important;">
@@ -44,7 +44,6 @@
                                             <label class="form-label">Expected Days:</label>
                                             <input type="number" name="expected_days" class="expected_days form-control"/>
                                              <p id="expected_error" class="text-danger"></p>
-
                                         </div>
 
                                         <div class="mb-3">
@@ -62,7 +61,7 @@
                                  </select>
                                  </div>
                                         <div class="d-grid mt-5">
-                                            <button  id="btn_submit" class="btn btn-primary">Book Now</button>
+                                            <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Book Now</button>
                                         </div>
                                     </form>
                                 </div>

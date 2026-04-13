@@ -59,6 +59,7 @@ class HotelManagementReportWizard(models.TransientModel):
     }
 
     def get_xlsx_report(self, xl_data, response):
+
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         sheet = workbook.add_worksheet()
@@ -75,10 +76,6 @@ class HotelManagementReportWizard(models.TransientModel):
         sheet.merge_range('A4:B4', 'Customer:', cell_format)if xl_data['guest'] else sheet.merge_range('A4:B4', '', cell_format)
         sheet.merge_range('C4:D4', xl_data['guest'], cell_format) if xl_data['guest'] else sheet.merge_range('C4:D4','', cell_format)
 
-        sheet.merge_range('A5:B5', 'from_date:', cell_format)
-        sheet.merge_range('C5:D5', xl_data['from_date'], cell_format)
-        sheet.merge_range('A6:B6', 'to_date:', cell_format)
-        sheet.merge_range('C6:D6', xl_data['to_date'], cell_format)
 
         sheet.merge_range('A5:B5', 'From Date:', cell_format) if xl_data['from_date'] else sheet.merge_range('A5:B5','', cell_format)
         sheet.merge_range('C5:D5', xl_data['from_date'], cell_format) if xl_data['from_date'] else sheet.merge_range('C5:D5','', cell_format)
@@ -117,7 +114,6 @@ class HotelManagementReportPDF(models.AbstractModel):
 
     @api.model
     def _get_report_values(self,docids,data=None):
-        print(data)
         return {
             'doc_ids': docids,
             'doc_model': 'hotel.accommodation',

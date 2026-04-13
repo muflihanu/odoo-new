@@ -1,5 +1,6 @@
 from odoo import http
 from odoo.http import request
+from datetime import datetime as Datetime
 
 class HotelGalleryController(http.Controller):
     @http.route('/gallery',type='jsonrpc',auth='user',website=True)
@@ -8,6 +9,6 @@ class HotelGalleryController(http.Controller):
         images=request.env['hotel.gallery'].sudo().search([])
         for image in images:
             img.append({'image':image.gallery_images})
-        print('image>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',img)
 
+        time=Datetime.now().microsecond
         return img

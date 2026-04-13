@@ -1,0 +1,35 @@
+<odoo>
+           <template id="hotel_roomdetails_template" name="booking page">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure" style="background:#092234;">
+                   <div class="container">
+                       <div class="row" >
+                           <div class="col-12 text-center mt-5">
+                                <h1 class="card-text text-warning">Room Facilities</h1>
+                                  <h4 class="card-text" style="color:#ffff;">Room ID: <t t-esc="room_id"/></h4>
+
+
+
+                   <div class="d-flex justify-content-center mt-5 mb-5">
+                       <t t-foreach="room_images" t-as="room_img" t-key="room_img_id">
+                           <div class="card me-5" style="width: 18rem;">
+                                <t t-if="room_img">
+                                        <img t-attf-src="data:image/png;base64,{{room_img.datas}}"
+                                             class="img img-fluid rotate-center"
+                                             t-att-alt="'Room Image'"
+                                             loading="lazy" style="width:300px; height:300px;"/>
+                                    </t>
+
+                           </div>
+                   </t>
+                   </div>
+
+
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+    </template>
+</odoo>

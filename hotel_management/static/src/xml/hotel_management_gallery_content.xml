@@ -1,26 +1,36 @@
 
-<templates id="template" xml:space="preserve">
-	<t t-name="hotel_management.gallery_snippet_carousel">
-    	<div id="hotel_gallery_carousel" class="container carousel slide  d-flex" data-bs-ride="carousel" t-att-data-bs-interval="interval">
-       	<div class="carousel-inner  row w-100 mx-auto" role="listbox">
+
+<templates id="hotel_gallery_template_id" xml:space="preserve">
+	<t t-name="hotel_management.gallery_snippet_carousel" >
+    	<div t-attf-id="hotel_gallery_carousel/{{unique}}" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="2000" style="background-color:#0E392E;">
+			<h1 class="text-center" t-attf-style="color:#ffff;">Hotel Images</h1>
+       	<div class="carousel-inner row w-60   align-items-center  d-flex mt-5 " role="listbox">
           	<t t-foreach="chunks" t-as="chunk" t-key="chunk.id">
-                     	<div class="row  justify-content-center">
-							<t t-if="chunk">
+                	<div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
+                     	<div class="row  align-items-center  d-flex justify-content-center">
                         	<t t-foreach="chunk" t-as="item" t-key="item.id">
-                           	<div class="span3 col-3 bg-primary d-flex  justify-content-center">
-                               	<div class="card-group carousel-item  d-flex">
-                                   	<div class="card">
-                    <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image}}" style="padding: 0px; margin: 0px; height: 300px; width:500px;"/>
+                           	<div class="block  span3 col-2 " >
+                               	<div class="card-group  shadow rounded-3 border-0 ml-5">
+                                   	<div class=" card border-3" style="width:50%;height:300px;">
+                                           <img class="card-img-top" t-attf-src="data:image/png;base64,{{item.image}}" style="padding: 0px; margin: 0px; height: 400px; width:500px;"/>
 
                                    	</div>
                                	</div>
+                           	</div>
+                        	</t>
                     	</div>
-							</t>
-							</t>
                 	</div>
           	</t>
       	</div>
     	</div>
-
+    	<a t-attf-href="#hotel_gallery_carousel/{{unique}}" class="carousel-control-prev" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous" style="margin-top:100px;">
+        	<span class="fa fa-chevron-circle-left fa-2x"/>
+<span class="visually-hidden">Previous</span>
+    	</a>
+ <a t-attf-href="#hotel_gallery_carousel/{{unique}}" class="carousel-control-next" data-bs-slide="next" role="button" aria-label="Next" title="Next" style="margin-top:100px; margin-right:30px;">
+        	<span class="fa fa-chevron-circle-right fa-2x"/>
+        	<span class="visually-hidden">Next</span>
+    	</a>
 	</t>
 </templates>
+
