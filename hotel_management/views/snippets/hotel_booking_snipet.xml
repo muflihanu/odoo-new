@@ -77,10 +77,16 @@
            <t t-call="website.layout">
                <div id="wrap" class="oe_structure">
                    <div class="container">
-                       <div class="row">
-                           <div class="col-12 text-center mt-5">
-                                <h3>Booking  Successfully Completed!</h3>
-                                <div class="col-12 text-center mt-5 " style="background-image: url('/hotel_management/static/src/images/success.webp'); height: 700px; width: 100%;"/>
+                       <div class="row d-flex">
+                            <h1 class="text-center text-success mt-5">Booking  Successfully Completed!</h1>
+                           <div class="col-12 text-center align-items-center d-flex mt-5">
+
+                                  <div class="card bg-success mb-5 mt-5 text-center" style="width:500px;  margin-left:380px;">
+                                 <img class="card-img-top" src="/hotel_management/static/src/images/success.webp" alt="Card image"/>
+                                <div class="card-img-overlay">
+                               <h4 class="card-title">Thank You</h4>
+                           </div>
+                            </div>
                            </div>
                        </div>
                    </div>

@@ -4,19 +4,6 @@ import publicWidget from "@web/legacy/js/public/public_widget";
 import { Interaction } from "@web/public/interaction";
 import { rpc } from "@web/core/network/rpc";
 import { registry } from "@web/core/registry";
-console.log('uuuuuuuuuuuuuuuuuuuuuuuu')
-
-// export class HotelGallery extends Interaction {
-//
-// 	static selector = '.hotel_gallery_snippet';
-//
-// 	setup() {
-// 		this.element = '';
-// 		this.chunks = '';
-// 	}
-//
-
-
 
 export function _chunk(array, size) {
 	const chunk_data = [];

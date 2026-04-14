@@ -2,7 +2,7 @@ from odoo import http
 from odoo.http import request
 
 class HotelManagementRoom(http.Controller):
-
+  """fetching available rooms"""
   @http.route('/rooms',type='http',auth="user",website=True)
   def hotel_rooms(self):
         return request.render("hotel_management.hotel_rooms_template")
@@ -17,6 +17,7 @@ class HotelManagementRoom(http.Controller):
 
   @http.route('/details/<int:room_id>', type='http', auth="user", website=True)
   def hotel_rooms_details(self,room_id):
+      """specific room images attached to the chatter"""
       room_images=[]
       room_details=request.env['ir.attachment'].search([('res_model','=','hotel.rooms'),('res_id','=',room_id)])
       print('room',room_id)

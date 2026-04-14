@@ -17,6 +17,7 @@ class HotelRooms(models.Model):
     # hotel_accommodation_ids=fields.One2many('hotel.accommodation','room_id',string='Accommodations')
     user_id = fields.Many2one( 'res.users',string='User', default=lambda self: self.env.user.id)
     company_id = fields.Many2one('res.company', string='user', default=lambda self: self.env.company.id)
+    room_image=fields.Image(string='Room Image')
 
 
 

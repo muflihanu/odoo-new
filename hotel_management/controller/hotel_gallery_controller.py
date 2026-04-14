@@ -3,6 +3,7 @@ from odoo.http import request
 from datetime import datetime as Datetime
 
 class HotelGalleryController(http.Controller):
+    """fetching hotel gallery images"""
     @http.route('/gallery',type='jsonrpc',auth='user',website=True)
     def get_gallery(self):
         img=[]

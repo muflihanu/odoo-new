@@ -23,6 +23,7 @@
         'views/snippets/hotel_management_room_snippet.xml',
         'views/snippets/hotel_management_romms_template.xml',
         'views/snippets/hotel_management_gallery_carousel_snippet.xml',
+        'views/snippets/rooom_details_template.xml',
         'data/sequence_data.xml',
         'data/hotel_accommodation_email_templates.xml',
         'data/hotel_accommodation_automatic_email_data.xml',

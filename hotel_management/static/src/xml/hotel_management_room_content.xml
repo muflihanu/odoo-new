@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
+
    <t t-name="room_snippet.room_data">
        <section class="room_section" style="background-color:#092234;">
            <div class="container">
@@ -8,7 +9,7 @@
                    <div class="d-flex justify-content-center mt-5 mb-5">
                        <t t-foreach="result" t-as="room" t-key="room_id">
                                <a t-attf-href="/details/{{room.room_id}}" class="btn">
-                           <div class="card me-5" style="width: 18rem;">
+                           <div class="card me-5" style="width:18rem;">
                                 <t t-if="room.image">
                                         <img t-att-src="'data:image/png;base64,' + room.image"
                                              class="img img-fluid rotate-center"

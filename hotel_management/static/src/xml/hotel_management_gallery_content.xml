@@ -4,7 +4,7 @@
 	<t t-name="hotel_management.gallery_snippet_carousel" >
     	<div t-attf-id="hotel_gallery_carousel/{{unique}}" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="2000" style="background-color:#0E392E;">
 			<h1 class="text-center" t-attf-style="color:#ffff;">Hotel Images</h1>
-       	<div class="carousel-inner row w-60   align-items-center  d-flex mt-5 " role="listbox">
+       	<div class="carousel-inner row w-60   align-items-center  d-flex mt-5 mb-5 " role="listbox">
           	<t t-foreach="chunks" t-as="chunk" t-key="chunk.id">
                 	<div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
                      	<div class="row  align-items-center  d-flex justify-content-center">

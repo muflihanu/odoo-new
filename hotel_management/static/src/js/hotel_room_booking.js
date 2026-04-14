@@ -44,13 +44,6 @@ export class HotelRoomBooking extends Interaction {
         this.other_guest_error='';
     }
 
-    start() {
-
-     console.log(123123123, $(".p_ids"))
-        $(".p_ids").chosen();
-
-    }
-
 
 
  check_in_values(ev){
@@ -132,7 +125,7 @@ export class HotelRoomBooking extends Interaction {
 
 
 
-      if (this.count!=0&&values.length!=this.count){
+      if (this.count!=0&&values.length!=this.count || this.count==0 &&values.length>0){
        console.log('guesttttt')
        this.other_guest_error.innerHTML="select currect number of guests";
       }else{
@@ -149,7 +142,7 @@ export class HotelRoomBooking extends Interaction {
 
       }
 
-    if( this.partner_flag==true&&this.check_in_flag==true &&this.days_flag==true &&this.days_flag==true){
+    if( this.partner_flag==true&&this.check_in_flag==true &&this.days_flag==true &&this.days_flag==true && this.file_flag==true){
      console.log('booking')
      console.log('partner',this.partner)
      console.log('count',this.count)
