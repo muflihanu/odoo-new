@@ -11,7 +11,6 @@ class hotelAccommodationWebpage(http.Controller):
 
     @http.route('/hotel_accommodations', type='http', auth='user', website=True)
     def hotel_accommodation_web_page(self):
-        print('hello')
 
         return request.render('hotel_management.hotel_accommodation_booking_template')
 
@@ -20,9 +19,8 @@ class hotelAccommodationWebpage(http.Controller):
 
     @http.route('/hotel_form', type='jsonrpc', auth='user', website=True)
     def hotel_accommodation_web_form(self,data_value,attachment_value):
-        print('data', data_value)
+
         guests=[]
-        print(data_value['other_guest'])
         if data_value['other_guest']!=False:
            for val in data_value['other_guest']:
             guests.append(int(val))

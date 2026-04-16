@@ -1,0 +1,22 @@
+<odoo>
+    <template id="user_portal_template" inherit_id="portal.portal_my_home" name="user portal">
+        <xpath expr="//div[hasclass('o_portal_docs')]">
+            <a t-attf-href="/food_orders" class="btn">
+            <div class="food_order col-md-6 d-flex" style="background-color:#F5F5F5; padding:25px; border:0px;border-radius:10px solid; margin-top:10px;">
+                <div class="order_icon d-block align-self-start mr-5">
+                    <img src="/hotel_management/static/src/images/food_icon.png" loading="lazy" width="50px" height="50px"/>
+                </div>
+                <div class="ml-5">
+                    <div>
+                        <span>Food orders</span>
+                    </div>
+                     <div>
+                        <span>Order your Foods</span>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+        </xpath>
+    </template>
+</odoo>

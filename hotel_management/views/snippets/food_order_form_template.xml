@@ -1,0 +1,50 @@
+<odoo>
+    <template id="food_order_form_template" name="food order page">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row">
+
+                           <div class="card shadow rounded-3 border-0">
+                                <div class="card-body p-4">
+                                    <h3 class="mb-4 text-center" style="color:#5A40DD;">Food Order</h3>
+                                    <form  style="margin-top: 20px;" class="food_order_form">
+                                         <div class="form-group">
+                                    <label class='sel1'>Accommodation:</label>
+                                  <select  id="accommodation_id" name="accommodation_id" class="form-control">
+                                       <t t-foreach="request.env['hotel.accommodation'].sudo().search([('guest_id','=',request.env.user.partner_id)])" t-as="accommodation">
+                                       <option t-att-value="accommodation.id"><t t-esc="accommodation.reference_number"/></option>
+                                       </t>
+                                 </select>
+<!--                                    <p id="partner_error" class="text-danger"></p>-->
+                                 </div>
+                                        <div class="form-group">
+                                    <label class='sel1'>Food Category:</label>
+                                  <select   id="category_ids" name="category_ids"   class="category_ids form-control"  multiple="multiple">
+                                       <t t-foreach="request.env['food.category'].sudo().search([])" t-as="c">
+                                       <option t-att-value="c.id"><t t-esc="c.food_category_name"/></option>
+                                       </t>
+                                 </select>
+<!--                                    <p id="other_guest_error" class="text-danger"></p>-->
+                                 </div>
+                                            <div class="form-group">
+                                    <label class='sel1'>Food Items:</label>
+                                  <select   id="items_ids" name="items_ids"   class="items_ids form-control"  multiple="multiple">
+                                       <t t-foreach="request.env['food.items'].sudo().search([])" t-as="item">
+                                       <option t-att-value="item.category_id"><t t-esc="item.food_name"/></option>
+                                       </t>
+                                 </select>
+                                            </div>
+
+                                        <div class="d-grid mt-5">
+                                            <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Order Now</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+    </template>
+</odoo>

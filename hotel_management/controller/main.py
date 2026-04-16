@@ -4,6 +4,7 @@ from  odoo import http
 from odoo.http import content_disposition,request,serialize_exception
 from odoo.tools import html_escape
 
+
 class XLSXReportController(http.Controller):
     """xlsx report controller"""
     @http.route('/xlsx_reports',type='http',auth="user",csrf=False)

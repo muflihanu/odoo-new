@@ -10,6 +10,4 @@ class HotelGalleryController(http.Controller):
         images=request.env['hotel.gallery'].sudo().search([])
         for image in images:
             img.append({'image':image.gallery_images})
-
-        time=Datetime.now().microsecond
         return img

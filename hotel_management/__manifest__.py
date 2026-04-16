@@ -17,6 +17,7 @@
         'views/order_food_views.xml',
         'views/hotel_guests_views.xml',
         'views/hotel_gallery_views.xml',
+        'views/user_portal_template.xml',
         'views/snippets/hotel_accommodation_webpage_template.xml',
         'views/snippets/hotel_management_snippest_template.xml',
         'views/snippets/hotel_booking_snipet.xml',
@@ -24,6 +25,7 @@
         'views/snippets/hotel_management_romms_template.xml',
         'views/snippets/hotel_management_gallery_carousel_snippet.xml',
         'views/snippets/rooom_details_template.xml',
+        'views/snippets/food_order_form_template.xml',
         'data/sequence_data.xml',
         'data/hotel_accommodation_email_templates.xml',
         'data/hotel_accommodation_automatic_email_data.xml',
@@ -50,6 +52,7 @@
             'hotel_management/static/src/js/hotel_rooms.js',
              'hotel_management/static/src/js/hotel_gallery.js',
             'hotel_management/static/src/xml/hotel_management_gallery_content.xml',
+            'hotel_management/static/src/js/food_orders.js',
 
         ],
 
