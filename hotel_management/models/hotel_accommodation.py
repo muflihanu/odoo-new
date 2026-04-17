@@ -95,7 +95,6 @@ class  HotelAccommodation(models.Model):
             'domain':[('id','in',food_orders)],
             # 'res_id':m,
             'target':'current'
-
         }
 
 

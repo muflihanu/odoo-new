@@ -1,5 +1,6 @@
 <odoo>
     <template id="food_order_form_template" name="food order page">
+<!--          <t t-name="hotel_management.food_orders_template">-->
            <t t-call="website.layout">
                <div id="wrap" class="oe_structure">
                    <div class="container">
@@ -26,15 +27,17 @@
                                        </t>
                                  </select>
 <!--                                    <p id="other_guest_error" class="text-danger"></p>-->
-                                 </div>
-                                            <div class="form-group">
-                                    <label class='sel1'>Food Items:</label>
-                                  <select   id="items_ids" name="items_ids"   class="items_ids form-control"  multiple="multiple">
-                                       <t t-foreach="request.env['food.items'].sudo().search([])" t-as="item">
-                                       <option t-att-value="item.category_id"><t t-esc="item.food_name"/></option>
-                                       </t>
-                                 </select>
+                                 </div>     <label class='sel1'>Food Items:</label>
+                                            <div class="form-group d-flex align-items-center justify-content-center" id="food_orders_div">
+
                                             </div>
+                                        <div class="order_table d-flex align-items-center justify-content-center" >
+                                            <table id="order_table"><tr>
+                                           <th>food</th>
+                                           <th>quantity</th>
+                                       </tr>
+                                            </table>
+                                        </div>
 
                                         <div class="d-grid mt-5">
                                             <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Order Now</button>
@@ -46,5 +49,6 @@
                    </div>
                </div>
            </t>
+<!--          </t>-->
     </template>
 </odoo>
