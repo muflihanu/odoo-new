@@ -27,14 +27,17 @@
                                        </t>
                                  </select>
 <!--                                    <p id="other_guest_error" class="text-danger"></p>-->
-                                 </div>     <label class='sel1'>Food Items:</label>
+                                 </div>
+                                        <p class="category_error text-danger"></p>
+                                        <label class='sel1'>Food Items:</label>
                                             <div class="form-group d-flex align-items-center justify-content-center" id="food_orders_div">
 
                                             </div>
+                                        <p id="qty_error" class="text-danger text-center"></p>
                                         <div class="order_table d-flex align-items-center justify-content-center" >
                                             <table id="order_table"><tr>
-                                           <th>food</th>
-                                           <th>quantity</th>
+                                           <th style="border:1px solid; padding:5px;">food</th>
+                                           <th style="border:1px solid; padding:5px;">quantity</th>
                                        </tr>
                                             </table>
                                         </div>
