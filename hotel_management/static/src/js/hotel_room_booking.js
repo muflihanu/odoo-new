@@ -16,13 +16,17 @@ export class HotelRoomBooking extends Interaction {
             "t-on-change": (ev) =>this.check_in_values(ev),
           },
 
+           ".room_type": {
+            "t-on-change": (ev)=>this.getting_available_rooms(ev),
+          },
+
+
         "#btn_submit": {
             "t-on-click": (ev) =>this._form_values(ev),
           }
       }
 
     setup() {
-    // document.getElementById('output').innerHTML = location.search;
 
       $(".p_ids").chosen();
         this.check_in='';
@@ -42,7 +46,20 @@ export class HotelRoomBooking extends Interaction {
         this.count=0;
         this.other_guests_ids=[];
         this.other_guest_error='';
+        this.rooms_avl=0;
     }
+
+
+
+   async getting_available_rooms(ev){
+           this.form_data=new FormData(this.el)
+           this.bed_type=this.form_data.get('room type')
+          console.log('tyyyye',this.bed_type)
+          this.rooms_avl=  await  rpc('/available_rooms',{room_type:this.bed_type})
+         console.log('available rooms',this.rooms_avl)
+
+    }
+
 
 
 

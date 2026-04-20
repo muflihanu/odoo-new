@@ -13,7 +13,6 @@ class FoodOrderController(http.Controller):
         print(category_values)
         category_ids =[]
         for cat in category_values:
-            category_ids=[]
             print(cat)
             print('categorylist',category_ids)
             category_ids.append(int(cat))
@@ -29,11 +28,7 @@ class FoodOrderController(http.Controller):
     def create_food_order(self,accommodation_id,food_names,food_qty,food_price):
         vals=[]
         line_vals=[]
-        print(food_names)
-        print(food_qty)
-        print(food_price)
 
-        # res=dict(zip(food_names,food_qty))
         for f,q in zip(food_names,food_qty):
             vals.append({'food_name':f,'food_qty':q})
 
@@ -44,6 +39,7 @@ class FoodOrderController(http.Controller):
                 'unit_price':p,
                 'subtotal':int(p)*v['food_qty'],
             }))
+        print('vals',line_vals)
         print(accommodation_id)
         print(vals)
 
@@ -52,4 +48,9 @@ class FoodOrderController(http.Controller):
         created=self.env['order.food'].sudo().create({ 'accommodation_id':accommodation_id,
                                                        'order_list_ids':line_vals})
         print(created)
+        return {'result':True}
+
+    @http.route('/food_order_success_template', type='http', auth="public", website=True)
+    def order_success(self):
+        return request.render('hotel_management.food_order_success_template')
 

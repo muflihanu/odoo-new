@@ -2,14 +2,13 @@
 <templates xml:space="preserve">
 
    <t t-name="room_snippet.room_data">
-       <section class="room_section" style="background-color:#092234;">
-           <div class="container">
-                 <h1 class="text-center  mt-5" style="color:#ffff;">AVAILABLE ROOMS</h1>
+       <section class="room_section" >
+           <div class="container " style="background-color:#0E392E;">
+                 <h2 class="text-center  mt-5" style="color:#ffff;">AVAILABLE ROOMS</h2>
                <div class="row d-flex alight-items-center">
                    <div class="d-flex justify-content-center mt-5 mb-5">
                        <t t-foreach="result" t-as="room" t-key="room_id">
-                               <a t-attf-href="/details/{{room.room_id}}" class="btn">
-                           <div class="card me-5" style="width:18rem;">
+                           <div class="card me-5" style="width:300px;">
                                 <t t-if="room.image">
                                         <img t-att-src="'data:image/png;base64,' + room.image"
                                              class="img img-fluid rotate-center"
@@ -17,14 +16,17 @@
                                              loading="lazy" style="width:300px; height:300px;"/>
                                     </t>
                               <div class="card-body">
-                                  <h4 class="card-text">Room No: <t t-esc="room.room_no"/></h4>
-                               <h4 class="card-text">Type:<span class="text-primary"><t t-esc="room.room_type"/></span> </h4>
-                               <h4 class="card-text">Rent:$ <span class="text-success"><t t-esc="room.room_rent"/></span></h4>
-                               <h4 class="card-text">Facility: <t t-esc="room.room_facility"/></h4>
+                                  <h4 class="card-text"><t t-esc="room.room_no"/></h4>
+                               <h5 class="card-text">Type:<span class="text-primary"><t t-esc="room.room_type"/></span> </h5>
+                               <h5 class="card-text">Rent:$ <span class="text-success"><t t-esc="room.room_rent"/></span></h5>
+                               <h5 class="card-text">Facility: <t t-esc="room.room_facility"/></h5>
                               </div>
-
+                             <div class="d-flex align-items-center justify-content-center">
+                                  <a t-attf-href="/details/{{room.room_id}}" style="background-color:#47A636; color:#ffff; margin:5px;" class="btn text-center ml-5">Details</a>
+                                 <a t-attf-href="/hotel_accommodations" class="btn text-center ml-5" style="background-color:#2B41B1; color:#ffff; margin:5px;">Book Now</a>
+                             </div>
                            </div>
-                           </a>
+
                    </t>
                    </div>
 

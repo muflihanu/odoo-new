@@ -7,3 +7,4 @@ class HotelGallery(models.Model):
     _rec_name = 'gallery_images'
 
     gallery_images=fields.Image(string='Hotel Image')
+

@@ -54,12 +54,19 @@
                                         </div>
                                         <div class="form-group">
                                     <label class='sel1'>Room Type:</label>
-                                  <select name="room type" class="form-control" >
-                                       <option value="single">Single</option>
-                                       <option value="double">Double</option>
-                                       <option value="dormitory">Dormitory</option>
+                                  <select id="room_type" name="room type" class="room_type form-control">
+                                       <option t-att-value="single">single</option>
+                                       <option t-att-value="double">double</option>
+                                       <option t-att-value="dormitory">dormitory</option>
                                  </select>
                                  </div>
+                                         <div class="mb-3">
+                                            <label class="form-label">Room:</label>
+                                            <select id="room" name="room" class="room form-control">
+                                       <option t-att-value=""></option>
+
+                                 </select>
+                                        </div>
                                         <div class="d-grid mt-5">
                                             <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Book Now</button>
                                         </div>

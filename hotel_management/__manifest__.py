@@ -52,6 +52,8 @@
             'hotel_management/static/src/js/hotel_rooms.js',
              'hotel_management/static/src/js/hotel_gallery.js',
             'hotel_management/static/src/xml/hotel_management_gallery_content.xml',
+            'hotel_management/static/src/js/lib/jquery.multiselect.js',
+            'hotel_management/static/src/js/lib/jquary.multiselect.css',
             'hotel_management/static/src/js/food_orders.js',
 
         ],

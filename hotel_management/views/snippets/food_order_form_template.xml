@@ -2,15 +2,18 @@
     <template id="food_order_form_template" name="food order page">
 <!--          <t t-name="hotel_management.food_orders_template">-->
            <t t-call="website.layout">
-               <div id="wrap" class="oe_structure">
+               <div id="wrap" class="oe_structure" style="background-image: url('/hotel_management/static/src/images/b.jpg'); height:100%; width:100%;">
                    <div class="container">
-                       <div class="row">
+                       <div class="header mt-4" >
 
-                           <div class="card shadow rounded-3 border-0">
+                       </div>
+                       <div class="row justify-content-center">
+
+                           <div class="card shadow rounded-3 border-0 " style="width:600px; margin-top:50px;">
+                               <h1 class="text-center mt-4" style="color:#2D2FAE; font-weight:50px;">Food Order</h1>
                                 <div class="card-body p-4">
-                                    <h3 class="mb-4 text-center" style="color:#5A40DD;">Food Order</h3>
                                     <form  style="margin-top: 20px;" class="food_order_form">
-                                         <div class="form-group">
+                                         <div class="">
                                     <label class='sel1'>Accommodation:</label>
                                   <select  id="accommodation_id" name="accommodation_id" class="form-control">
                                        <t t-foreach="request.env['hotel.accommodation'].sudo().search([('guest_id','=',request.env.user.partner_id)])" t-as="accommodation">
@@ -19,7 +22,7 @@
                                  </select>
 <!--                                    <p id="partner_error" class="text-danger"></p>-->
                                  </div>
-                                        <div class="form-group">
+                                        <div class="">
                                     <label class='sel1'>Food Category:</label>
                                   <select   id="category_ids" name="category_ids"   class="category_ids form-control"  multiple="multiple">
                                        <t t-foreach="request.env['food.category'].sudo().search([])" t-as="c">
@@ -36,14 +39,15 @@
                                         <p id="qty_error" class="text-danger text-center"></p>
                                         <div class="order_table d-flex align-items-center justify-content-center" >
                                             <table id="order_table"><tr>
-                                           <th style="border:1px solid; padding:5px;">food</th>
-                                           <th style="border:1px solid; padding:5px;">quantity</th>
+                                           <th style="border:1px solid; padding:5px;">Food</th>
+                                           <th style="border:1px solid; padding:5px;">Quantity</th>
                                        </tr>
                                             </table>
                                         </div>
 
                                         <div class="d-grid mt-5">
                                             <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Order Now</button>
+                                              <p id="values_error" class="text-danger mt-5"></p>-->
                                         </div>
                                     </form>
                                 </div>
@@ -54,4 +58,29 @@
            </t>
 <!--          </t>-->
     </template>
+
+
+
+
+     <template id="food_order_success_template" name="order success">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row d-flex">
+                            <h1 class="text-center text-success mt-5">Order Created Successfully!</h1>
+                           <div class="col-12 text-center align-items-center d-flex mt-5">
+
+                                  <div class="card bg-success mb-5 mt-5 text-center" style="width:500px;  margin-left:380px;">
+                                 <img class="card-img-top" src="/hotel_management/static/src/images/success.webp" alt="Card image"/>
+                                <div class="card-img-overlay">
+                               <h4 class="card-title">Thank You</h4>
+                           </div>
+                            </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+
+       </template>
 </odoo>

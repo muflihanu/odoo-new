@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="user_portal_template" inherit_id="portal.portal_my_home" name="user portal">
         <xpath expr="//div[hasclass('o_portal_docs')]">
@@ -16,6 +17,16 @@
                 </div>
             </div>
             </a>
+            <div class="food_order_div">
+                 <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/hotel_management/static/src/images/food_icon.png'"/>
+                    <t t-set="text">Follow your food Orders</t>
+                    <t t-set="title">Food Order</t>
+                    <t t-set="url" t-value="'/food_orders'"/>
+                    <t t-set="placeholder_count" t-value="'purchase_count'"/>
+                </t>
+            </div>
+
 
         </xpath>
     </template>
