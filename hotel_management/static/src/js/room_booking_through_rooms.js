@@ -1,10 +1,9 @@
-import { renderToElement } from "@web/core/utils/render";
-import publicWidget from "@web/legacy/js/public/public_widget";
 import { rpc } from "@web/core/network/rpc";
 import { Interaction } from "@web/public/interaction";
 import { registry } from "@web/core/registry";
 
-export class HotelRoomBooking extends Interaction {
+
+export class RoomBooking extends Interaction {
     static selector = ".booking_form";
 
        dynamicContent = {
@@ -16,13 +15,20 @@ export class HotelRoomBooking extends Interaction {
             "t-on-change": (ev) =>this.check_in_values(ev),
           },
 
+           ".room_type": {
+            "t-on-change": (ev)=>this.getting_available_room(ev),
+          },
+            ".facility": {
+            "t-on-change": (ev)=>this.facility_based_roomss(ev),
+          },
 
-        "#btn_submit": {
+
+        "#r_btn_submit": {
             "t-on-click": (ev) =>this._form_values(ev),
           }
       }
 
-    setup() {
+          setup() {
 
       $(".p_ids").chosen();
         this.check_in='';
@@ -46,9 +52,42 @@ export class HotelRoomBooking extends Interaction {
         this.facility_based_room=0;
     }
 
+     async getting_available_room(ev){
 
+           this.form_data=new FormData(this.el)
+           this.bed_type=this.form_data.get('room type')
+       this.room=document.querySelector('#room')
+       this.facility=document.querySelector('#facility')
+       this.room.innerHTML='';
+          this.rooms_avl=  await  rpc('/types_rooms',{room_type:this.bed_type})
 
- check_in_values(ev){
+       this.rooms_avl.forEach(val => {
+       const optionss = new Option(val);
+        this.room.options.add(optionss);
+});
+
+    }
+
+      async facility_based_roomss(ev){
+       this.form_data=new FormData(this.el)
+
+           this.bed_type=this.form_data.get('room type')
+           this.facility=this.form_data.get('facility')
+       this.room=document.querySelector('#room')
+
+         console.log('facility',this.facility)
+       this.room.innerHTML='';
+          this.facility_based_room=  await  rpc('/facilityss_rooms',{facility:this.facility,room_type:this.bed_type})
+         console.log('available rooms',this.facility_based_room)
+
+       this.facility_based_room.forEach(val => {
+       const option = new Option(val);
+        this.room.options.add(option);
+});
+
+    }
+
+     check_in_values(ev){
 
     this.form_data=new FormData(this.el)
    this.check_in=this.form_data.get('check_in')
@@ -63,9 +102,7 @@ export class HotelRoomBooking extends Interaction {
      }
  }
 
-
-
- expected_days_values(ev){
+  expected_days_values(ev){
     this.form_data=new FormData(this.el)
     this.expected_days=this.form_data.get('expected_days')
      this.expected_error= document.querySelector('#expected_error');
@@ -77,7 +114,7 @@ export class HotelRoomBooking extends Interaction {
      }
  }
 
-   _form_values(ev){
+ _form_values(ev){
     ev.preventDefault();
      this.form_data=new FormData(this.el)
      console.log(this.form_data)
@@ -92,6 +129,8 @@ export class HotelRoomBooking extends Interaction {
       this.part_error=document.querySelector('#partner_error')
       this.count=this.form_data.get('count')
       var values = this.form_data.getAll('p_ids');
+      var facility_vals=this.form_data.getAll('facility');
+      var room_id=this.form_data.getAll('room')
       this.other_guest_error=document.querySelector('#other_guest_error')
       console.log(values)
 
@@ -128,7 +167,7 @@ export class HotelRoomBooking extends Interaction {
 
 
       if (this.count!=0&&values.length!=this.count || this.count==0 &&values.length>0){
-
+       console.log('guesttttt')
        this.other_guest_error.innerHTML="select currect number of guests";
       }else{
 
@@ -139,6 +178,8 @@ export class HotelRoomBooking extends Interaction {
       'bed_type':this.bed_type,
       'partner':this.partner,
       'count':this.count,
+            'facilities_ids':facility_vals,
+      'room_id':room_id ,
       'other_guest':values,
       }
 
@@ -157,6 +198,8 @@ export class HotelRoomBooking extends Interaction {
       'bed_type':this.bed_type,
       'partner':this.partner,
       'count':this.count,
+       'facilities_ids':facility_vals,
+       'room_id':room_id ,
       'other_guest':false,
       }
 
@@ -166,7 +209,7 @@ export class HotelRoomBooking extends Interaction {
            const reader = new FileReader();
         reader.onload = (e) => {
             const base64 = e.target.result.split(",")[1];
-            rpc("/hotel_form", {
+            rpc("/hotel_form_rooms", {
                 data_value:this.data,
                 attachment_value: {
                     name: file.name,
@@ -186,6 +229,4 @@ export class HotelRoomBooking extends Interaction {
 }
     }
 }
-registry.category("public.interactions").add("hotel_management.hotel_booking", HotelRoomBooking);
-
-
+registry.category("public.interactions").add("hotel_management.booking", RoomBooking);

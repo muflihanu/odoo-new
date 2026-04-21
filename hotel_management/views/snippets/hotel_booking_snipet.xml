@@ -2,7 +2,7 @@
      <template id="hotel_booking_template_highlight" name="Hotel Room Booking Form">
                 <section class=" hotel_room_booking_section container   w-100% py-5 ">
                     <div class="row justify-content-center">
-                        <div class="col-md-6 col-lg-5">
+                        <div class="col-md-6 col-lg-5 " t-name="hotel_booking">
                             <div class="card shadow rounded-3 border-0">
                                 <div class="card-body p-4">
                                     <h3 class="mb-4 text-center" style="color:#5A40DD;">Room Booking</h3>
@@ -60,13 +60,7 @@
                                        <option t-att-value="dormitory">dormitory</option>
                                  </select>
                                  </div>
-                                         <div class="mb-3">
-                                            <label class="form-label">Room:</label>
-                                            <select id="room" name="room" class="room form-control">
-                                       <option t-att-value=""></option>
 
-                                 </select>
-                                        </div>
                                         <div class="d-grid mt-5">
                                             <button  id="btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Book Now</button>
                                         </div>

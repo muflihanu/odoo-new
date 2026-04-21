@@ -12,7 +12,7 @@ class HotelManagementRoom(http.Controller):
       available_rooms=request.env['hotel.rooms'].search([('state','in','available')])
       values=[]
       for room in available_rooms:
-               values.append(({'room_no':room.room_no,'room_type':room.bed,'room_rent':room.rent,'room_facility':room.facility_id.facility,'image':room.room_image,'room_id':room.id}))
+               values.append(({'room_no':room.room_no,'room_type':room.bed,'room_rent':room.rent,'room_facility':room.facility_id.facility,'image':room.room_image,'room_id':room.id,'facility_id':room.facility_id.id}))
       return values
 
   @http.route('/details/<int:room_id>', type='http', auth="user", website=True)

@@ -14,6 +14,7 @@ class hotelAccommodationWebpage(http.Controller):
 
         return request.render('hotel_management.hotel_accommodation_booking_template')
 
+
     @http.route('/available_rooms', type='jsonrpc', auth='user', website=True)
     def available_rooms_setting(self,room_type):
         rooms_list=[]
@@ -21,9 +22,17 @@ class hotelAccommodationWebpage(http.Controller):
         rooms=self.env['hotel.rooms'].search([('bed','=',room_type)])
         for rooom in rooms:
            rooms_list.append(rooom.room_no)
-           print(rooms)
-        return rooms
+        return rooms_list
 
+    @http.route('/facility_rooms', type='jsonrpc', auth='user', website=True)
+    def facility_based_rooms(self,facility,room_type):
+        facility_rooms_list = []
+        print('room yty',facility)
+        rooms = self.env['hotel.rooms'].search([('facility_id', '=', int(facility)),('bed', '=', room_type)])
+        print(rooms)
+        for room in rooms:
+            facility_rooms_list.append(room.room_no)
+        return facility_rooms_list
 
 
     @http.route('/hotel_form', type='jsonrpc', auth='user', website=True)
