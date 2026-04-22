@@ -52,6 +52,7 @@ export class RoomBooking extends Interaction {
         this.facility_based_room=0;
     }
 
+    //fetching  room type based rooms
      async getting_available_room(ev){
 
            this.form_data=new FormData(this.el)
@@ -67,7 +68,7 @@ export class RoomBooking extends Interaction {
 });
 
     }
-
+     //fetching facility and room type based rooms
       async facility_based_roomss(ev){
        this.form_data=new FormData(this.el)
 
@@ -86,9 +87,8 @@ export class RoomBooking extends Interaction {
 });
 
     }
-
+     //check-in date validation
      check_in_values(ev){
-
     this.form_data=new FormData(this.el)
    this.check_in=this.form_data.get('check_in')
  this.today = new Date().toISOString().slice(0, 10)
@@ -102,6 +102,7 @@ export class RoomBooking extends Interaction {
      }
  }
 
+ //expected days validation
   expected_days_values(ev){
     this.form_data=new FormData(this.el)
     this.expected_days=this.form_data.get('expected_days')
@@ -114,6 +115,8 @@ export class RoomBooking extends Interaction {
      }
  }
 
+
+ //form submission
  _form_values(ev){
     ev.preventDefault();
      this.form_data=new FormData(this.el)
@@ -129,8 +132,9 @@ export class RoomBooking extends Interaction {
       this.part_error=document.querySelector('#partner_error')
       this.count=this.form_data.get('count')
       var values = this.form_data.getAll('p_ids');
-      var facility_vals=this.form_data.getAll('facility');
-      var room_id=this.form_data.getAll('room')
+      var facility_vals=this.form_data.get('facility');
+      console.log('facility_value',facility_vals)
+      var room_id=this.form_data.get('room')
       this.other_guest_error=document.querySelector('#other_guest_error')
       console.log(values)
 

@@ -33,7 +33,7 @@ export class FoodOrder extends Interaction {
         this.qty_error_p = '';
         this.values_error='';
     }
-
+   //filtering food items based on food category
     async food_items(ev) {
         this.form_data = new FormData(this.el)
         const category_values = this.form_data.getAll('category_ids')

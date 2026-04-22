@@ -3,9 +3,8 @@ import publicWidget from "@web/legacy/js/public/public_widget";
 import { rpc } from "@web/core/network/rpc";
 import { Interaction } from "@web/public/interaction";
 import { registry } from "@web/core/registry";
-
 export class HotelRoomBooking extends Interaction {
-    static selector = ".booking_form";
+    static selector = ".booking_form_data";
 
        dynamicContent = {
 
@@ -15,7 +14,6 @@ export class HotelRoomBooking extends Interaction {
           ".check_in": {
             "t-on-change": (ev) =>this.check_in_values(ev),
           },
-
 
         "#btn_submit": {
             "t-on-click": (ev) =>this._form_values(ev),
@@ -42,12 +40,10 @@ export class HotelRoomBooking extends Interaction {
         this.count=0;
         this.other_guests_ids=[];
         this.other_guest_error='';
-        this.rooms_avl=0;
-        this.facility_based_room=0;
     }
 
 
-
+//check-in date validation
  check_in_values(ev){
 
     this.form_data=new FormData(this.el)
@@ -64,7 +60,7 @@ export class HotelRoomBooking extends Interaction {
  }
 
 
-
+ //expected days validation
  expected_days_values(ev){
     this.form_data=new FormData(this.el)
     this.expected_days=this.form_data.get('expected_days')
@@ -77,10 +73,10 @@ export class HotelRoomBooking extends Interaction {
      }
  }
 
+  //form submission
    _form_values(ev){
     ev.preventDefault();
      this.form_data=new FormData(this.el)
-     console.log(this.form_data)
      this.check_in=this.form_data.get('check_in')
      this.expected_days=this.form_data.get('expected_days')
      this.bed_type=this.form_data.get('room type')
@@ -93,7 +89,6 @@ export class HotelRoomBooking extends Interaction {
       this.count=this.form_data.get('count')
       var values = this.form_data.getAll('p_ids');
       this.other_guest_error=document.querySelector('#other_guest_error')
-      console.log(values)
 
      if(this.partner===''){
       this.part_error.innerHTML="select a customer";

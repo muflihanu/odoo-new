@@ -15,29 +15,10 @@ class hotelAccommodationWebpage(http.Controller):
         return request.render('hotel_management.hotel_accommodation_booking_template')
 
 
-    @http.route('/available_rooms', type='jsonrpc', auth='user', website=True)
-    def available_rooms_setting(self,room_type):
-        rooms_list=[]
-        print('room yty',room_type)
-        rooms=self.env['hotel.rooms'].search([('bed','=',room_type)])
-        for rooom in rooms:
-           rooms_list.append(rooom.room_no)
-        return rooms_list
-
-    @http.route('/facility_rooms', type='jsonrpc', auth='user', website=True)
-    def facility_based_rooms(self,facility,room_type):
-        facility_rooms_list = []
-        print('room yty',facility)
-        rooms = self.env['hotel.rooms'].search([('facility_id', '=', int(facility)),('bed', '=', room_type)])
-        print(rooms)
-        for room in rooms:
-            facility_rooms_list.append(room.room_no)
-        return facility_rooms_list
-
 
     @http.route('/hotel_form', type='jsonrpc', auth='user', website=True)
     def hotel_accommodation_web_form(self,data_value,attachment_value):
-
+        """creating record"""
         guests=[]
         if data_value['other_guest']!=False:
            for val in data_value['other_guest']:
@@ -48,7 +29,7 @@ class hotelAccommodationWebpage(http.Controller):
                'expected_days': data_value['expected_days'],
                'bed_type': data_value['bed_type'],
                'guest_no': data_value['count'],
-               'other_guest_ids': [Command.create({'Guest_name': int(rec)}) for rec in guests],
+               'other_guest_ids': [Command.create({'guest_name': int(rec)}) for rec in guests],
            })
         else:
             booking_id = self.env['hotel.accommodation'].create({

@@ -5,6 +5,7 @@ import { Interaction } from "@web/public/interaction";
 import { rpc } from "@web/core/network/rpc";
 import { registry } from "@web/core/registry";
 
+//fetching gallery images for carousel
 export function _chunk(array, size) {
 	const chunk_data = [];
 	for (let i = 0; i < array.length; i += size) {

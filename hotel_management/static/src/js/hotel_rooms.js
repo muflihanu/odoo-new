@@ -4,6 +4,7 @@ import publicWidget from "@web/legacy/js/public/public_widget";
 import { rpc } from "@web/core/network/rpc";
 publicWidget.registry.HotelMnanagementRooms = publicWidget.Widget.extend({
    selector : '.room_section',
+    // fetching available rooms
    async willStart() {
        const result = await rpc('/hotel_management_room', {});
        console.log('result',result)

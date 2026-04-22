@@ -23,7 +23,7 @@
                               </div>
                              <div class="d-flex align-items-center justify-content-center">
                                   <a t-attf-href="/details/{{room.room_id}}" style="background-color:#47A636; color:#ffff; margin:5px;" class="btn text-center ml-5">Details</a>
-                                 <a t-attf-href="/room_booking_through_rooms_template/#{room.room_id}/#{room.room_type}/#{room.room_facility}/#{room.facility_id}" class="btn text-center ml-5" style="background-color:#2B41B1; color:#ffff; margin:5px;">Book Now</a>
+                                 <a t-attf-href="/room_booking_with/#{room.room_id}/#{room.room_type}/#{room.room_facility}/#{room.facility_id}" class="btn text-center ml-5" style="background-color:#2B41B1; color:#ffff; margin:5px;">Book Now</a>
                              </div>
                            </div>
 

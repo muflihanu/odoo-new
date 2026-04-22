@@ -60,7 +60,7 @@
 
                                     <field name="other_guest_ids" invisible="guest_no in [0,1]">
                                         <list string="other guest list" editable="bottom" >
-                                            <field name="Guest_name"/>
+                                            <field name="guest_name"/>
                                             <field name="gender"/>
                                             <field name="age"/>
                                         </list>

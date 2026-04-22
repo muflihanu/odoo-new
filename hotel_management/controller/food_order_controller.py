@@ -4,17 +4,17 @@ from odoo import Command
 
 class FoodOrderController(http.Controller):
     @http.route('/food_orders',type='http',auth="public",website=True)
-    def food_order_form(self):
 
+    def food_order_form(self):
+        """food order form """
         return request.render('hotel_management.food_order_form_template')
 
     @http.route('/food_items', type='jsonrpc', auth="public", website=True)
     def food_order(self, category_values):
-        print(category_values)
+        """filtering food items based on the category_values"""
         category_ids =[]
         for cat in category_values:
-            print(cat)
-            print('categorylist',category_ids)
+
             category_ids.append(int(cat))
         food_vals = []
         foods = self.env['food.items'].sudo().search([('category_id', 'in', category_ids)])
@@ -26,6 +26,7 @@ class FoodOrderController(http.Controller):
 
     @http.route('/create_order', type='jsonrpc', auth="public", website=True)
     def create_food_order(self,accommodation_id,food_names,food_qty,food_price):
+        """creating record """
         vals=[]
         line_vals=[]
 
@@ -41,9 +42,7 @@ class FoodOrderController(http.Controller):
             }))
         print('vals',line_vals)
         print(accommodation_id)
-        print(vals)
 
-        print(123123,  )
 
         created=self.env['order.food'].sudo().create({ 'accommodation_id':accommodation_id,
                                                        'order_list_ids':line_vals})

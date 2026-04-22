@@ -6,13 +6,13 @@
                             <div class="card shadow rounded-3 border-0">
                                 <div class="card-body p-4">
                                     <h3 class="mb-4 text-center" style="color:#5A40DD;">Room Booking</h3>
-                                    <form  style="margin-top: 20px;" class="booking_form">
+                                    <form  style="margin-top: 20px;" class="booking_form_data">
 
                                          <div class="form-group">
                                     <label class='sel1'>Guest:</label>
                                   <select  id="partner_id" name="partner_id" class="form-control">
                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="partner">
-                                       <option t-att-value="partner.id"><t t-esc="partner.name"/></option>
+                                       <option t-att-selected="partner.id == request.env.user.partner_id.id" t-att-value="partner.id"><t t-esc="partner.name"/></option>
                                        </t>
                                  </select>
                                     <p id="partner_error" class="text-danger"></p>

@@ -6,9 +6,10 @@ class HotelManagementRoom(http.Controller):
   @http.route('/rooms',type='http',auth="user",website=True)
   def hotel_rooms(self):
         return request.render("hotel_management.hotel_rooms_template")
+
   @http.route('/hotel_management_room', type='jsonrpc', auth='user', website=True)
   def hotel_management_room_sp(self):
-     
+      """retrieving available rooms"""
       available_rooms=request.env['hotel.rooms'].search([('state','in','available')])
       values=[]
       for room in available_rooms:
@@ -23,6 +24,5 @@ class HotelManagementRoom(http.Controller):
       print('room',room_id)
       for img in room_details:
           room_images.append(img)
-          print(img)
 
       return request.render("hotel_management.hotel_roomdetails_template",{'room_id':room_id,'room_images':room_images})

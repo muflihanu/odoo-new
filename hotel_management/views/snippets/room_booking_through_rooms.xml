@@ -1,33 +1,88 @@
 <odoo>
           <template id="room_booking_through_rooms_template" name="hotel accommodation booking">
           <t t-call="website.layout">
-       <section class="hotel_section" style="background-color:#F4F4F1;" >
+       <section class="hotel_section"   style=" width:100%; background-color:#fff;" >
            <div class="container" >
-               <div class="row text-center mt-5  justify-content-center" >
-                   <div class="col-md-6 col-lg-5" >
-                            <div class="card shadow rounded-3 border-0"  >
-                                <div class="card-body p-4" style="background-color:#C3D392;">
-                                    <h3 class="mb-4 text-center" style="color:#5A40DD;">Room Booking</h3>
-                                    <form  style="margin-top: 5px;" class="booking_form">
+               <div class="row text-center mt-5 " >
+                   <div class="col-md-6 col-lg-5 col-12 d-flex " style="margin-left:180px;" >
 
-                                         <div class="form-group">
+                            <div class=" shadow rounded-3 border-0"  style="margin-right:500px;" >
+                                <div class="card-body p-4" style="background-color:#C3D392; background-image: url('/hotel_management/static/src/images/wallpaper-vector.jpg'); margin-right:1000px;">
+                                    <h3 class="mb-4 text-center" style="color:#ffff;">Room Booking</h3>
+                                    <form  style="margin-top: 5px;" class="booking_form">
+                                        <div>
+                                            <div class="first-div d-flex">
+                                            <div class="first mt-2 mr-4 col-6">
+                                                   <div class="col-12">
                                     <label class='' style="margin-right:400px; color:#ffff;">Guest:</label>
                                   <select  id="partner_id" name="partner_id" class="form-control">
                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="partner">
-                                       <option t-att-value="partner.id"><t t-esc="partner.name"/></option>
+                                       <option  t-att-selected="partner.id == request.env.user.partner_id.id" t-att-value="partner.id"><t t-esc="partner.name"/></option>
                                        </t>
                                  </select>
                                     <p id="partner_error" class="text-danger"></p>
                                  </div>
-
-                                         <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">count:</label>
+                                         <div class=" col-12">
+                                            <label class="" style="margin-right:400px; color:#ffff;">count:</label>
                                             <input type="number" name="count" class="count form-control" value="0"/>
                                         </div>
 
 
-                                        <div class="form-group">
-                                    <label class='sel1' style="margin-right:400px; color:#ffff;">Guests:</label>
+
+
+                                        <div class=" mt-2 col-12">
+                                            <label class="" style="margin-right:400px; color:#ffff;">Check In:</label>
+                                            <input type="date" name="check_in"  class="check_in form-control" />
+                                            <p id="check_in_error" class="text-danger"></p>
+                                        </div>
+
+                                           <div class=" col-12">
+                                            <label class="" style="margin-right:400px; color:#ffff;">Days:</label>
+                                            <input type="number" name="expected_days" class="expected_days form-control"/>
+                                             <p id="expected_error" class="text-danger"></p>
+                                        </div>
+                                            </div>
+
+                                        <div class="second col-6 ml-5">
+                                              <div class="mb-3">
+                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Attachement:</label>
+                                            <input type="file" name="attach_id" class="attach_id form-control"/>
+                                             <p id="attach_error" class="text-danger"></p>
+
+                                        </div>
+
+                                    <label class='sel1' style="margin-right:400px; color:#ffff;">Type:</label>
+                                  <select    id="room_type" name="room type" class="room_type form-control">
+                                       <option  t-att-selected="type == 'single'" value="single">single</option>
+                                       <option t-att-selected="type == 'double'" value="double">double</option>
+                                       <option t-att-selected="type == 'dormitory'" value="dormitory">dormitory</option>
+                                 </select>
+
+
+                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Facility:</label>
+                                            <select id="facility" name="facility" class="facility form-control">
+                                                 <t t-foreach="request.env['hotel.facility'].sudo().search([])" t-as="f">
+                                              <option t-att-selected="f.id == facility_id" t-att-value="f.id"><t t-esc="f.facility"/> </option>
+                                                 </t>
+                                 </select>
+
+
+
+
+                                            <label class="form-label mt-1" style="margin-right:400px; color:#ffff;">Room:</label>
+                                            <select  id="room" name="room" class="room form-control mt-1">
+                                                  <t t-foreach="request.env['hotel.rooms'].sudo().search([])" t-as="r">
+                                              <option t-att-selected="r.id==room_id" t-att-value="r.id"><t t-esc="r.room_no" /></option>
+                                                  </t>
+                                       </select>
+
+                                            </div>
+                                        </div>
+
+                                     <!--second-->
+                                       <div class="d-grid">
+                                                <div class="col-12">
+                                    <label class='sel1' style=" color:#ffff;">Guests:</label>
                                   <select   id="p_ids" name="p_ids"   class="p_ids form-control"  multiple="multiple"  style="height:30px!important; border:1px solid!important; border-radius:3px!important;">
                                        <t t-foreach="request.env['res.partner'].sudo().search([])" t-as="p">
                                        <option t-att-value="p.id"><t t-esc="p.name"/></option>
@@ -36,52 +91,11 @@
                                     <p id="other_guest_error" class="text-danger"></p>
                                  </div>
 
-                                        <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Check In:</label>
-                                            <input type="date" name="check_in"  class="check_in form-control" />
-                                            <p id="check_in_error" class="text-danger"></p>
-                                        </div>
+                                       </div>
 
-                                        <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Days:</label>
-                                            <input type="number" name="expected_days" class="expected_days form-control"/>
-                                             <p id="expected_error" class="text-danger"></p>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Attachement:</label>
-                                            <input type="file" name="attach_id" class="attach_id form-control"/>
-                                             <p id="attach_error" class="text-danger"></p>
-
-                                        </div>
-                                        <div class="form-group">
-                                    <label class='sel1' style="margin-right:400px; color:#ffff;">Type:</label>
-                                  <select    id="room_type" name="room type" class="room_type form-control">
-                                       <option  t-att-selected="type" t-att-value="single">single</option>
-                                       <option t-att-value="double">double</option>
-                                       <option t-att-value="dormitory">dormitory</option>
-                                 </select>
-                                 </div>
-                                            <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Facility:</label>
-                                            <select id="facility" name="facility" class="facility form-control">
-                                                 <t t-foreach="request.env['hotel.facility'].sudo().search([])" t-as="f">
-                                              <option t-att-selected="f.id == facility_id" t-att-value="f.id"><t t-esc="f.facility"/> </option>
-                                                 </t>
-                                 </select>
-                                        </div>
-
-
-                                         <div class="mb-3">
-                                            <label class="form-label" style="margin-right:400px; color:#ffff;">Room:</label>
-                                            <select  id="room" name="room" class="room form-control">
-                                                  <t t-foreach="request.env['hotel.rooms'].sudo().search([])" t-as="r">
-                                              <option t-att-selected="r.id==room_id" t-att-value="r.id"><t t-esc="r.room_no" /></option>
-                                                  </t>
-                                       </select>
-                                        </div>
                                         <div class="d-grid mt-5">
                                             <button  id="r_btn_submit" class="btn" style="background-color:#5A40DD; color:#ffff;">Book Now</button>
+                                        </div>
                                         </div>
                                     </form>
                                 </div>
