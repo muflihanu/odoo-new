@@ -1,65 +1,19 @@
 {
-    'name': 'Hotel Management',
-    'category': 'Website',
-    'depends': ['base', 'mail', 'account', 'base_automation', 'lunch', 'website'],
-    'installable': True,
-    'application': True,
-    'data': {
-        'security/hotel_management_groups.xml',
-        'security/hotel_management_security.xml',
-        'security/ir.model.access.csv',
-        'views/hotel_accommodation_views.xml',
-        'views/hotel_managment_menu.xml',
-        'views/hotel_rooms_views.xml',
-        'views/hotel_food_items_views.xml',
-        'views/hotel_food_category_views.xml',
-        'views/hotel_facility_views.xml',
-        'views/order_food_views.xml',
-        'views/hotel_guests_views.xml',
-        'views/hotel_gallery_views.xml',
-        'views/user_portal_template.xml',
-        'views/snippets/hotel_accommodation_webpage_template.xml',
-        'views/snippets/hotel_management_snippest_template.xml',
-        'views/snippets/hotel_booking_snipet.xml',
-        'views/snippets/hotel_management_room_snippet.xml',
-        'views/snippets/hotel_management_romms_template.xml',
-        'views/snippets/hotel_management_gallery_carousel_snippet.xml',
-        'views/snippets/rooom_details_template.xml',
-        'views/snippets/food_order_form_template.xml',
-        'views/snippets/room_booking_through_rooms.xml',
-        'data/sequence_data.xml',
-        'data/hotel_accommodation_email_templates.xml',
-        'data/hotel_accommodation_automatic_email_data.xml',
-        'data/hotel_management_automated_action_data.xml',
-        'data/hotel_management_archive_automation_data.xml',
-        'report/hotel_management_report_template.xml',
-        'report/ir.actions.report.xml',
-        'wizard/hotel_management_report_wizard.xml',
+    'name': 'POS Module',
+    'version': '1.0',
+    'depends':['base','product','point_of_sale'],
+    'application':True,
+    'instalable':True,
 
-    },
-    'demo': [
-        'demo/data_demo.xml',
+    'data':[
+        'security/ir.model.access.csv',
+        'views/product_template_view.xml',
 
     ],
 
     'assets': {
-        'web.assets_backend': ['hotel_management/static/src/js/action_manager.js'],
-        'web.assets_frontend': [
-            'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js',
-            'hotel_management/static/src/js/lib/chosen.jquery.min.js',
-            'hotel_management/static/src/js/lib/chosen.min.css',
-            'hotel_management/static/src/js/hotel_room_booking.js',
-            'hotel_management/static/src/js/room_booking_through_rooms.js',
-            'hotel_management/static/src/xml/hotel_management_room_content.xml',
-            'hotel_management/static/src/js/hotel_rooms.js',
-             'hotel_management/static/src/js/hotel_gallery.js',
-            'hotel_management/static/src/xml/hotel_management_gallery_content.xml',
-            'hotel_management/static/src/js/lib/jquery.multiselect.js',
-            'hotel_management/static/src/js/lib/jquary.multiselect.css',
-            'hotel_management/static/src/js/food_orders.js',
-
-
+        'point_of_sale._assets_pos': [
+            'pos_module/static/src/js/product_brand.js',
         ],
-
-    },
+    }
 }
