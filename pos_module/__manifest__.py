@@ -1,7 +1,7 @@
 {
     'name': 'POS Module',
     'version': '1.0',
-    'depends':['base','product'],
+    'depends':['base','product','point_of_sale'],
     'application':True,
     'instalable':True,
 
