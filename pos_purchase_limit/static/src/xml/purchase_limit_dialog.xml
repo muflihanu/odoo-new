@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+  <t t-name="point_of_sale.purchase_limitDialog" t-inherit="web.ConfirmationDialog" t-inherit-mode="extension">
+    <xpath expr="//t[@t-set-slot='footer']" position="inside">
+      <button  class="btn btn-primary" t-on-click="_confirm">
+        Approve
+      </button>
+    </xpath>
+  </t>
+</templates>
