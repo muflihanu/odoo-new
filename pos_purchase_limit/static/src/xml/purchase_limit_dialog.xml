@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-  <t t-name="point_of_sale.purchase_limitDialog" t-inherit="web.ConfirmationDialog" t-inherit-mode="extension">
+  <t t-name="pos_purchase_limit.purchase_limitDialog" t-inherit="web.ConfirmationDialog" t-inherit-mode="primary">
     <xpath expr="//t[@t-set-slot='footer']" position="inside">
-      <button  class="btn btn-primary" t-on-click="_confirm">
+      <t t-log="this.pos.cashier._role"/>
+      <t t-if="this.pos.cashier.raw.role =='manager'">
+        <button  class="btn btn-primary" t-on-click="_approve">
         Approve
       </button>
+      </t>
+
+       <t t-if="this.pos.cashier._role =='manager'">
+        <button  class="btn btn-primary" t-on-click="_approve">
+        Approve
+      </button>
+      </t>
+
     </xpath>
   </t>
 </templates>
