@@ -9,42 +9,39 @@ patch(PosStore.prototype,{
      async setup(){
          super.setup(...arguments);
          this.price_limit=0;
-    },
-        async setDiscountFromUI(line,val){
-         console.log('ddd',this)
-         console.log('line discount',line.prices.no_discount_total_included)
-            console.log('val',val)
-            console.log('discount amount',line.prices.no_discount_total_included*val/100)
-            this.price_dic=line.prices.no_discount_total_included*val/100
-            this.price_limit+=this.price_dic
-            console.log('orginal product discount price',this.price_limit)
 
-            if(this.config.discount_limit!=0 && this.config.discount_limit<this.price_limit){
-                this.price_limit-=this.price_dic
-                console.log('discount limit reach',this.price_limit)
+    },
+
+    async pay(){
+          this.orderinfo=this.getOrder();
+         this.orderlines= this.orderinfo.getOrderlines();
+         console.log('orderlineeeee',this.orderlines)
+        if(this.orderlines){
+            this.orderlines.forEach((item) => {
+                if (item.isDiscountLine == false) {
+                    this.price_limit += item.priceInclNoDiscount - item.priceIncl
+                }
+                else {
+                this.price_limit += Math.abs(item.priceInclNoDiscount)
+
+            }
+             });
+                }
+            if(this.config.discount_limit<this.price_limit){
+                this.discount_amount=this.price_limit.toFixed(2)
+                console.log( this.discount_amount)
                  this.env.services.dialog.add(AlertDialog, {
                     title: _t("Warning"),
-                    body: _t(`Maximum discount limit = ${this.config.discount_limit}`)
+                    body: _t(`Maximum discount limit = ${this.config.discount_limit}   Your discount amount = ${this.discount_amount}`)
             });
+                this.price_limit=0;
+
             }else{
-                console.log('stil have discount value')
-                return await super.setDiscountFromUI(line,val);
+                 return await super.pay();
             }
 
 
-
-    },
-
-
-      async applyDiscount(percent, order = this.getOrder()) {
-        await super.applyDiscount(...arguments);
-        console.log('discount btn')
-        // await this.updatePrograms();
-    },
-
-    async restrictLineDiscountChange(){
-         console.log('discccc')
-        return super.restrictLineDiscountChange();
     }
+
 
 })

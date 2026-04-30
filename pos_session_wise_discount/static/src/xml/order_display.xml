@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="order_display_template" xml:space="preserve">
+    <t t-name="pos_sale.Orderline" t-inherit="point_of_sale.OrderDisplay" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('tax-info')]" position="before">
+             <div class="d-flex justify-content-between w-100 fs-3">
+                        <span>Discount</span>
+                        <span t-esc="this.disc" class="discount"/>
+                        <t t-log="this.disc"/>
+                    </div>
+        </xpath>
+    </t>
+</templates>
