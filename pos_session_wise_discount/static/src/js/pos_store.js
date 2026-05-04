@@ -10,12 +10,12 @@ patch(PosStore.prototype,{
          super.setup(...arguments);
          this.price_limit=0;
 
+
     },
 
     async pay(){
           this.orderinfo=this.getOrder();
          this.orderlines= this.orderinfo.getOrderlines();
-         console.log('orderlineeeee',this.orderlines)
         if(this.orderlines){
             this.orderlines.forEach((item) => {
                 if (item.isDiscountLine == false) {
@@ -29,7 +29,6 @@ patch(PosStore.prototype,{
                 }
             if(this.config.discount_limit<this.price_limit){
                 this.discount_amount=this.price_limit.toFixed(2)
-                console.log( this.discount_amount)
                  this.env.services.dialog.add(AlertDialog, {
                     title: _t("Warning"),
                     body: _t(`Maximum discount limit = ${this.config.discount_limit}   Your discount amount = ${this.discount_amount}`)
