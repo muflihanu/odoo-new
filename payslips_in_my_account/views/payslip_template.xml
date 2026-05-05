@@ -1,0 +1,16 @@
+<odoo>
+     <template id="payslips_template" name="user payslips">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row d-flex">
+                            <h1 class="text-center text-success mt-5">Your payslips</h1>
+                           <div class="col-12 text-center align-items-center d-flex mt-5">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+
+       </template>
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+     <record id="custom_payslip_action" model="ir.actions.act_window">
+        <field name="name">Custom Payslip</field>
+        <field name="res_model">custom.payslip</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+     <record id="custom_payslip_view_form" model="ir.ui.view">
+        <field name="name">Custom Payslip</field>
+        <field name="model">custom.payslip</field>
+        <field name="arch" type="xml">
+            <form string="custom  payslip form" >
+                <sheet>
+                    <group>
+                         <group>
+                             <field name="employee_id"/>
+                             <field name="period"/>
+                             <field name="to"/>
+                         </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="custom_payslip_view_list" model="ir.ui.view">
+        <field name="name">Custom Payslip</field>
+        <field name="model">custom.payslip</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="period"/>
+                <field name="to"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

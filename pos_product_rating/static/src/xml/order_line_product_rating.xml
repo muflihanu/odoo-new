@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="product_brand_template" xml:space="preserve">
+    <t t-name="pos_sale.Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <t t-if="line.product_id.rating">
+                 <div class="d-flex" >
+                         <t t-foreach="Array.from({length:line.product_id.rating})" t-as="k" t-key="k_index">
+                          <i class="fa fa-star" style="color:#DAA520;"/>
+                         </t>
+                    </div>
+
+            </t>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="Payslips_in_my_account_menu_root" name="Payslips in my account "/>
+      <menuitem id="Payslips_in_my_account_sub_menu_one" name="Custom Payslip"  sequence="1" parent="Payslips_in_my_account_menu_root"/>
+    <menuitem id="custom_pay_action" action="custom_payslip_action"   parent="Payslips_in_my_account_sub_menu_one"/>
+
+
+
+</odoo>
