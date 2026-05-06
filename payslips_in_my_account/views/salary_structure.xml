@@ -1,0 +1,48 @@
+<odoo>
+     <record id="salary_structure_action" model="ir.actions.act_window">
+        <field name="name">salary structure</field>
+        <field name="res_model">salary.structure</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+     <record id="salary_structure_view_form" model="ir.ui.view">
+        <field name="name">salary  structure</field>
+        <field name="model">salary.structure</field>
+        <field name="arch" type="xml">
+            <form string="salary structure form">
+                <sheet>
+                    <group>
+                         <group>
+                             <field name="structure_name"/>
+                         </group>
+                        <notebook>
+                            <page name="Line">
+                                <field name="structure_line_ids">
+                                    <list editable="bottom">
+                                        <field name="line_name"/>
+                                        <field name="code"/>
+                                        <field name="category"/>
+                                        <field name="line_amount"/>
+                                    </list>
+                                </field>
+
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="salary_structure_view_list" model="ir.ui.view">
+        <field name="name">salary structure</field>
+        <field name="model">salary.structure</field>
+        <field name="arch" type="xml">
+            <list>
+                 <field name="structure_name"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

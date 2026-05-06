@@ -11,13 +11,48 @@
         <field name="model">custom.payslip</field>
         <field name="arch" type="xml">
             <form string="custom  payslip form" >
+                <header>
+                    <button type="object" name="compute_salary_and_others" string="Compute Salary"/>
+                    <button name="_compute_total" type="object" string="www"/>
+                </header>
                 <sheet>
                     <group>
                          <group>
                              <field name="employee_id"/>
-                             <field name="period"/>
-                             <field name="to"/>
+                             <field name="employee_record"/>
+                             <field name="from_date"/>
+                             <field name="to_date"/>
+                             <field name="wage"/>
+                             <field name="salary_structure_id"/>
+                             <field name="working_hours"/>
                          </group>
+                        <notebook>
+                            <page name="Salary Line">
+                                <field name="custom_payslip_line_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="days"/>
+                                        <field name="total_working_hours"/>
+                                        <field name="amount"/>
+                                    </list>
+                                </field>
+
+                            </page>
+                               <page name="Salary Computation Line">
+                                <field name="salary_computation_line_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="code"/>
+                                        <field name="category"/>
+                                        <field name="amount"/>
+                                    </list>
+                                </field>
+                                    <group class="float-end">
+                                       <field name="total"/>
+                                   </group>
+                            </page>
+                        </notebook>
+
                     </group>
                 </sheet>
             </form>
@@ -29,9 +64,11 @@
         <field name="model">custom.payslip</field>
         <field name="arch" type="xml">
             <list>
-                <field name="employee_id"/>
-                <field name="period"/>
-                <field name="to"/>
+                 <field name="employee_id"/>
+                <field name="employee_record"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+
             </list>
         </field>
     </record>

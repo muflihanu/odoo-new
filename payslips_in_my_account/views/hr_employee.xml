@@ -6,6 +6,17 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button string="Payslip"  type="object" name="playslip_in_my_account"/>
+
+                  <div name="button_box" position="inside">
+                        <button class="oe_start_button" type="object" icon="oi-subtitle"
+                        name="get_payslip_record" string="payslip">
+<!--                        <field name="invoice_count" string="Invoice" widget="statinfo"/>-->
+                        </button>
+                      </div>
+            </xpath>
+            <xpath expr="//field[@name='structure_type_id']" position="after">
+                    <field name="salary_structure_id"/>
+
             </xpath>
         </field>
     </record>

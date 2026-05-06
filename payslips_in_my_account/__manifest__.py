@@ -11,6 +11,8 @@
         'views/payslip_template.xml',
         'views/hr_employee.xml',
         'views/custom_payslip.xml',
+        'views/custom_payslip_line.xml',
+        'views/salary_structure.xml',
 
     },
 
