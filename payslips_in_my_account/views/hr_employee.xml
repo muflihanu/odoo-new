@@ -6,11 +6,18 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button string="Payslip"  type="object" name="playslip_in_my_account"/>
+<!--                  <div name="button_box" position="inside">-->
+<!--                        <button class="oe_start_button" type="object" icon="oi-subtitle"-->
+<!--                        name="get_payslip_record" string="payslip">-->
+<!--&lt;!&ndash;                        <field name="invoice_count" string="Invoice" widget="statinfo"/>&ndash;&gt;-->
+<!--                        </button>-->
+<!--                      </div>-->
+            </xpath>
 
+            <xpath expr="//sheet" position="inside">
                   <div name="button_box" position="inside">
                         <button class="oe_start_button" type="object" icon="oi-subtitle"
                         name="get_payslip_record" string="payslip">
-<!--                        <field name="invoice_count" string="Invoice" widget="statinfo"/>-->
                         </button>
                       </div>
             </xpath>

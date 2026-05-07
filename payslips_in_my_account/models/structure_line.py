@@ -13,6 +13,6 @@ class StructureLine(models.Model):
     line_name = fields.Char(string='Name')
     line_amount = fields.Float(string='Amount')
     code=fields.Char(string='Code')
-    category=fields.Selection(selection=[('allowance','Allowance'),('deduction','Deduction'),('tax','Tax')],string='Category')
+    category=fields.Selection(selection=[('allowance','Allowance'),('deduction','Deduction'),('tax','Tax'),('commission','Commission')],string='Category')
     salary_structure_id = fields.Many2one('salary.structure')
     

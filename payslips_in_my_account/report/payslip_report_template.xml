@@ -1,0 +1,44 @@
+<odoo>
+     <template id="payslip_report">
+       <t t-call="web.html_container">
+               <t t-call="web.external_layout">
+                   <div class="page">
+                       <div class="oe_structure"/>
+                       <h2 class="text-center">Pay Slip Report</h2>
+                        <t t-foreach="docs" t-as="val">
+                       <div class="d-flex mt-5">
+                                        <div class="" style="margin-left:150px; margin-top:15px; margin-bottom:30px;">
+                                             <h5 style="">Name: <t t-esc="val.payslip_name"/></h5>
+                                        <h5 >Employee: <t t-esc="val.employee_id.name"/></h5>
+                                        <h5 >Employee Record: <t t-esc="val.employee_record"/></h5>
+                                        </div>
+                                        <div class="" style="margin-left:50px; margin-top:15px; margin-bottom:30px;">
+                                            <h5 >From: <t t-esc="val.from_date"/></h5>
+                                        <h5>To: <t t-esc="val.to_date"/></h5>
+                                        <h5 >Basic Wage: <t t-esc="val.wage"/></h5>
+                                        </div>
+                               </div>
+                               <div>
+                                   <table class="table" style="border:1px solid;">
+                                       <tr>
+                                           <th style="border:1px solid;">Name</th>
+                                           <th style="border:1px solid;">Code</th>
+                                           <th style="border:1px solid;">Category</th>
+                                           <th style="border:1px solid;">Amount</th>
+                                       </tr>
+                                       <t t-foreach="val.salary_computation_line_ids"   t-as="i" >
+                                       <tr>
+                                           <td style="border:1px solid;"><t t-esc="i.name"/></td>
+                                           <td style="border:1px solid;"><t t-esc="i.code"/></td>
+                                           <td style="border:1px solid;"><t t-esc="i.category"/></td>
+                                           <td style="border:1px solid;"><t t-esc="i.amount"/></td>
+                                       </tr>
+                                        </t>
+                                   </table>
+                               </div>
+                              </t>
+                   </div>
+               </t>
+           </t>
+   </template>
+</odoo>

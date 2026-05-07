@@ -1,3 +1,5 @@
+from openpyxl.styles.builtins import total
+
 from odoo import fields, models,api
 from datetime import date
 from odoo.tools import date_utils
@@ -7,7 +9,7 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     custom_payslip_ids=fields.One2many('custom.payslip',inverse_name='employee_id',string="Customer Payslips")
-    salary_structure_id=fields.Many2one('salary.structure',string="Salary Structure")
+    salary_structure_id=fields.Many2one('salary.structure',string="Salary Structure",required=True)
 
     def playslip_in_my_account(self):
        print('hello')
@@ -18,16 +20,17 @@ class HrEmployee(models.Model):
        emp = self.env['hr.attendance'].search([('employee_id', '=', self.id), ('check_in', '>=', previous_month_first),
                                                ('check_out', '<=', previous_month_last)])
        print(self.resource_calendar_id.full_time_required_hours)
+       full_time=self.resource_calendar_id.full_time_required_hours*4
+       per_hour=self.wage/full_time
        total_worked_hours = 0
        for rec in emp:
            if rec.worked_hours:
               total_worked_hours+=rec.worked_hours
-       days=total_worked_hours*7.5
-       one_day_amount=self.wage*days
-       if one_day_amount>=self.wage:
+       salary=total_worked_hours*per_hour
+       if salary>=self.wage:
            total_salary=self.wage
        else:
-           total_salary=one_day_amount
+           total_salary=salary
        print('total_salary', total_salary)
        line_id= self.env['custom.payslip'].create({
            'employee_id': self.id,
@@ -37,7 +40,6 @@ class HrEmployee(models.Model):
            'salary_structure_id':self.salary_structure_id.id,
            'custom_payslip_line_ids':[Command.create({
                'name':'Salary',
-               'days':days,
                'total_working_hours':total_worked_hours,
                'amount':total_salary,
            })]

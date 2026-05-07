@@ -1,0 +1,55 @@
+<odoo>
+
+        <template id="payslips_details_template" name="page">
+           <t t-call="website.layout">
+               <div id="wrap" class="oe_structure">
+                   <div class="container">
+                       <div class="row">
+                           <div class="col-12 text-center mt-5">
+                                <h1 class="card-text text-primary">Payslip</h1>
+                                <t t-foreach="vals" t-as="val" t-key="val_id">
+                               <div class="d-flex mt-5">
+
+                                        <div class="" style="margin-left:300px; margin-top:15px; margin-bottom:30px;">
+                                             <h5 style="">Name: <t t-esc="val['number']"/></h5>
+                                        <h5 style="margin-left:45px;">Employee: <t t-esc="val['employee']"/></h5>
+                                        <h5 style="margin-left:85px;">Employee Record: <t t-esc="val['emp_record']"/></h5>
+                                        </div>
+                                        <div class="" style="margin-left:100px; margin-top:15px; margin-bottom:30px;">
+                                            <h5 style="margin-left:25px;">From: <t t-esc="val['from']"/></h5>
+                                        <h5>To: <t t-esc="val['to']"/></h5>
+                                        <h5 style="margin-left:30px;">Basic Wage: <t t-esc="val['wage']"/></h5>
+                                        </div>
+                                   <div class="mt-5" style="margin-left:100px;">
+                                        <a t-attf-href="/payslip_print/{{val['slip_id']}}" class="btn btn-primary">Print</a>
+                                   </div>
+
+                               </div>
+
+                                     </t>
+                               <div>
+                                   <table class="table" style="border:1px solid;">
+                                       <tr>
+                                           <th style="border:1px solid;">Name</th>
+                                           <th style="border:1px solid;">Code</th>
+                                           <th style="border:1px solid;">Category</th>
+                                           <th style="border:1px solid;">Amount</th>
+                                       </tr>
+                                       <t t-foreach="salary_lines"   t-as="line" t-key="line_id">
+                                       <tr>
+                                           <td style="border:1px solid;"><t t-esc="line['c_name']"/></td>
+                                           <td style="border:1px solid;"><t t-esc="line['code']"/></td>
+                                           <td style="border:1px solid;"><t t-esc="line['category']"/></td>
+                                           <td style="border:1px solid;"><t t-esc="line['amount']"/></td>
+                                       </tr>
+                                        </t>
+                                   </table>
+                               </div>
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </t>
+    </template>
+</odoo>

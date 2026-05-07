@@ -12,11 +12,13 @@
         <field name="arch" type="xml">
             <form string="custom  payslip form" >
                 <header>
-                    <button type="object" name="compute_salary_and_others" string="Compute Salary"/>
-                    <button name="_compute_total" type="object" string="www"/>
+                    <field name="state" widget="statusbar"/>
+                    <button type="object" name="compute_salary_and_others" string="Compute Salary" invisible="state in 'confirmed'"/>
                 </header>
                 <sheet>
                     <group>
+                          <h1> <field name="payslip_name"/></h1>
+                         <newline/>
                          <group>
                              <field name="employee_id"/>
                              <field name="employee_record"/>
@@ -31,7 +33,7 @@
                                 <field name="custom_payslip_line_ids">
                                     <list editable="bottom">
                                         <field name="name"/>
-                                        <field name="days"/>
+<!--                                        <field name="days"/>-->
                                         <field name="total_working_hours"/>
                                         <field name="amount"/>
                                     </list>

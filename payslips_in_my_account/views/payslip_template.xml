@@ -3,10 +3,28 @@
            <t t-call="website.layout">
                <div id="wrap" class="oe_structure">
                    <div class="container">
-                       <div class="row d-flex">
-                            <h1 class="text-center text-success mt-5">Your payslips</h1>
-                           <div class="col-12 text-center align-items-center d-flex mt-5">
+                       <div class="row">
+                            <h1 class="text-center text-primary mt-5">Your Payslips</h1>
+                           <div class="col-12 text-centermt-5">
+                               <table class="table">
+                                   <tr>
+                                       <th>Name</th>
+                                       <th>From</th>
+                                       <th>To</th>
+                                       <th>Button</th>
+                                   </tr>
+                         <t t-foreach="values" t-as="val" t-key="val_id">
+                                   <tr>
+
+                                           <td><t t-esc="val['name']"/></td>
+                                            <td><t t-esc="val['from']"/></td>
+                                            <td><t t-esc="val['to']"/></td>
+                                            <td> <a t-attf-href="/payslip_details/{{val['payslip_id']}}" class="btn btn-primary">Details</a></td>
+                                   </tr>
+                                    </t>
+                               </table>
                            </div>
+
                        </div>
                    </div>
                </div>
