@@ -17,14 +17,15 @@
         'views/payslip_details_template.xml',
         'report/ir_action_report.xml',
         'report/payslip_report_template.xml',
+        'views/employee_mails.xml',
 
     },
 
 
-    # 'assets': {
-    #     # 'web.assets_backend': ['hotel_management/static/src/js/action_manager.js'],
-    #     'web.assets_frontend': [
-    #        'payslips_in_my_account/static/src/xml/payslip_details_template.xml',
-    #     ],
-    # },
+    'assets': {
+        # 'web.assets_backend': ['hotel_management/static/src/js/action_manager.js'],
+        'web.assets_frontend': [
+           'payslips_in_my_account/static/src/js/employee_mail.js',
+        ],
+    },
 }

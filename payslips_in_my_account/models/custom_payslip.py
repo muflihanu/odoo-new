@@ -51,6 +51,7 @@ class CustomPayslip(models.Model):
          sale_amount=0
          for rec in sales:
              sale_amount+= rec.amount_total
+
          if sale_amount>4000:
           lines.append((0,0,{
              'name': 'Sale Commission',
@@ -58,8 +59,8 @@ class CustomPayslip(models.Model):
              'category': 'commission',
              'amount':sale_amount*5/100,
          }))
+
         if self.salary_structure_id:
-          print( self.salary_structure_id.structure_line_ids)
           for record in self.salary_structure_id.structure_line_ids:
             lines.append((0,0,{
              'custom_payslip_id':self.id,
@@ -97,7 +98,6 @@ class CustomPayslip(models.Model):
             self.total = None
 
         # sequence series......
-
     @api.model_create_multi
     def create(self, vals):
         """create sequence"""

@@ -1,17 +1,19 @@
 <odoo>
      <template id="payslips_template" name="user payslips">
-           <t t-call="website.layout">
-               <div id="wrap" class="oe_structure">
+           <t t-call="portal.portal_layout">
+               <t t-set="is_portal" t-value="True"/>
+               <div id="wrap" class="o_portal_wrap">
+                   <section>
                    <div class="container">
                        <div class="row">
                             <h1 class="text-center text-primary mt-5">Your Payslips</h1>
-                           <div class="col-12 text-centermt-5">
+                           <div class="col-12 text-centermt-5 o_portal">
                                <table class="table">
                                    <tr>
                                        <th>Name</th>
                                        <th>From</th>
                                        <th>To</th>
-                                       <th>Button</th>
+                                       <th>Link</th>
                                    </tr>
                          <t t-foreach="values" t-as="val" t-key="val_id">
                                    <tr>
@@ -27,6 +29,7 @@
 
                        </div>
                    </div>
+                   </section>
                </div>
            </t>
 

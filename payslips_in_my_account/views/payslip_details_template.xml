@@ -1,17 +1,18 @@
 <odoo>
 
         <template id="payslips_details_template" name="page">
-           <t t-call="website.layout">
-               <div id="wrap" class="oe_structure">
+           <t t-call="portal.portal_layout">
+                <t t-set="is_portal" t-value="True"/>
+               <div id="wrap" class="o_portal_wrap">
                    <div class="container">
                        <div class="row">
-                           <div class="col-12 text-center mt-5">
+                           <div class="col-12 text-center mt-5 o_portal">
                                 <h1 class="card-text text-primary">Payslip</h1>
                                 <t t-foreach="vals" t-as="val" t-key="val_id">
-                               <div class="d-flex mt-5">
+                               <div class="d-flex mt-5 o_portal details_div">
 
-                                        <div class="" style="margin-left:300px; margin-top:15px; margin-bottom:30px;">
-                                             <h5 style="">Name: <t t-esc="val['number']"/></h5>
+                                        <div class="" style="margin-left:250px; margin-top:15px; margin-bottom:30px;">
+                                             <h5  style="">Name: <t class="sequence_number" t-esc="val['number']"/></h5>
                                         <h5 style="margin-left:45px;">Employee: <t t-esc="val['employee']"/></h5>
                                         <h5 style="margin-left:85px;">Employee Record: <t t-esc="val['emp_record']"/></h5>
                                         </div>
@@ -21,13 +22,14 @@
                                         <h5 style="margin-left:30px;">Basic Wage: <t t-esc="val['wage']"/></h5>
                                         </div>
                                    <div class="mt-5" style="margin-left:100px;">
-                                        <a t-attf-href="/payslip_print/{{val['slip_id']}}" class="btn btn-primary">Print</a>
+                                        <a t-attf-href="/payslip_print/{{val['slip_id']}}" class="btn btn-primary fa fa-download"> Download</a>
+                                       <button class="btn btn-primary mail_btn oi oi-unarchive"> Mail</button>
                                    </div>
 
                                </div>
 
                                      </t>
-                               <div>
+                               <div class="o_portal">
                                    <table class="table" style="border:1px solid;">
                                        <tr>
                                            <th style="border:1px solid;">Name</th>
@@ -45,7 +47,7 @@
                                         </t>
                                    </table>
                                </div>
-
+                                    <h4 style="margin-left:1030px;"><t t-esc="total_value"/> </h4>
                            </div>
                        </div>
                    </div>

@@ -5,3 +5,4 @@ access_custom_payslip_line,access.custom.payslip.line,model_custom_payslip_line,
 access_salary_structure,access_salary_structure,model_salary_structure,base.group_user,1,1,1,1
 access_structure_line,access_structure_line,model_structure_line,base.group_user,1,1,1,1
 access_salary_computation_line,access_salary_computation_line,model_salary_computation_line,base.group_user,1,1,1,1
+access_employee_mails,access_employee_mails,model_employee_mails,base.group_user,1,1,1,1

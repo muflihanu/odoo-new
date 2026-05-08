@@ -1,7 +1,7 @@
 <odoo>
      <template id="payslip_report">
        <t t-call="web.html_container">
-               <t t-call="web.external_layout">
+               <t t-call="web.internal_layout">
                    <div class="page">
                        <div class="oe_structure"/>
                        <h2 class="text-center">Pay Slip Report</h2>
