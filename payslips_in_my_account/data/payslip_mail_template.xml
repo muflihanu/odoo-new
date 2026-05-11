@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="employee_mails_email_template" model="mail.template">
+            <field name="name"> EMPLOYEE EMAIL TEMPLATE</field>
+       <field name="model_id" ref="payslips_in_my_account.model_employee_mails"/>
+            <field name="subject">Your Payslip </field>
+            <field name="email_from">anuanudemo@gmail.com</field>
+            <field name="email_to">{{object.name_id.email}}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <p>
+                        Hello, <span><t t-out="object.name_id.name"/></span>
+                        <br/>
+                        <br/>
+                        This is Your Payslip!
+                        <t t-foreach="request.env['custom.payslip'].sudo().search([('payslip_name','=',object.payslip_name)])" t-as="slip">
+
+
+                                  <div class="">
+                                   <table class="table" style="border:1px solid;">
+                                       <tr>
+                                           <th style="border:1px solid;">Name</th>
+                                           <th style="border:1px solid;">Code</th>
+                                           <th style="border:1px solid;">Category</th>
+                                           <th style="border:1px solid;">Amount</th>
+                                       </tr>
+                                       <t t-foreach="slip.salary_computation_line_ids" t-as="s">
+                                       <tr>
+                                           <td style="border:1px solid;"><t t-esc="s.name"/></td>
+                                           <td style="border:1px solid;"><t t-esc="s.code"/></td>
+                                           <td style="border:1px solid;"><t t-esc="s.category"/></td>
+                                           <td style="border:1px solid;"><t t-esc="s.amount"/></td>
+                                       </tr>
+                                        </t>
+                                   </table>
+                                       <h4 style="margin-lef:200px;"> <h4 style="margin-lef:200px;"> </h4>Total : <t t-esc="slip.total"/> </h4>
+                               </div>
+
+                        </t>
+                        <br/>
+                        <br/>
+                        Mitchell Admin
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

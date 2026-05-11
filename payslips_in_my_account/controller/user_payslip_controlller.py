@@ -30,10 +30,17 @@ class user_payslip_controller(http.Controller):
          return request.render('payslips_in_my_account.payslips_details_template',{'vals':values,'salary_lines':salary_lines,'total_value':total_value})
 
 
-     @http.route(['/payslip/mail/request/<int:payslip_id>'], type="http", auth="user", website=True)
-     def payslip_mail_request(self,payslip_id):
+     # @http.route(['/payslip/mail/request/<int:payslip_id>'], type="http", auth="user", website=True)
+     # def payslip_mail_request(self,payslip_id):
+     #
+     #     return
 
-         print('mail',payslip_id)
+     @http.route(['/employee_mail/information'], type="jsonrpc", auth="user", website=True)
+     def payslip_mail_record_create(self,sequence,emp,from_d,to):
+         payslip_record=self.env['custom.payslip'].search([('payslip_name','=',sequence)])
+         if payslip_record:
+          email_record=self.env['employee.mails'].create({'name_id':payslip_record.employee_id.id,'payslip_name':payslip_record.payslip_name,'from_date':payslip_record.from_date,'to_date':payslip_record.to_date})
+          print(email_record)
 
          return
 

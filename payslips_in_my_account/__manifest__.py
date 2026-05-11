@@ -1,10 +1,11 @@
 {
     'name': 'Payslip in My Account',
     'category': 'Website',
-    'depends': ['base', 'website','hr','sale'],
+    'depends': ['base', 'website','hr','sale','mail'],
     'installable': True,
     'application': True,
     'data': {
+        'security/paslip_in_my_account_groups.xml',
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'views/payslips_in_my_account_menu.xml',
@@ -18,6 +19,7 @@
         'report/ir_action_report.xml',
         'report/payslip_report_template.xml',
         'views/employee_mails.xml',
+        'data/payslip_mail_template.xml',
 
     },
 

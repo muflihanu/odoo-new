@@ -13,10 +13,12 @@
             <form string="employee mails form">
                 <header>
                     <field name="state" widget="statusbar"/>
+                    <button type="object" name="approve_mail" string="Approve" invisible="state in ('approved','confirm')"/>
+                    <button type="object" name="action_send_mail" string="Send Mail" invisible="state in ('draft','confirm')"/>
                 </header>
                 <sheet>
                     <group>
-                          <h1> <field name="name"/></h1>
+                          <h1> <field name="name_id"/></h1>
                          <newline/>
                          <group>
                              <field name="payslip_name"/>
@@ -26,6 +28,7 @@
                          </group>
                     </group>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -38,7 +41,7 @@
         <field name="model">employee.mails</field>
         <field name="arch" type="xml">
             <list>
-                 <field name="name"/>
+                 <field name="name_id"/>
                 <field name="payslip_name"/>
                 <field name="from_date"/>
                 <field name="to_date"/>

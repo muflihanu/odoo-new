@@ -14,16 +14,16 @@
                                         <div class="" style="margin-left:250px; margin-top:15px; margin-bottom:30px;">
                                              <h5  style="">Name: <t class="sequence_number" t-esc="val['number']"/></h5>
                                         <h5 style="margin-left:45px;">Employee: <t t-esc="val['employee']"/></h5>
-                                        <h5 style="margin-left:85px;">Employee Record: <t t-esc="val['emp_record']"/></h5>
+                                        <h5 style="">Record: <t t-esc="val['emp_record']"/></h5>
                                         </div>
                                         <div class="" style="margin-left:100px; margin-top:15px; margin-bottom:30px;">
                                             <h5 style="margin-left:25px;">From: <t t-esc="val['from']"/></h5>
                                         <h5>To: <t t-esc="val['to']"/></h5>
-                                        <h5 style="margin-left:30px;">Basic Wage: <t t-esc="val['wage']"/></h5>
+                                        <h5 style="margin-right:30px;">Wage: <t t-esc="val['wage']"/></h5>
                                         </div>
-                                   <div class="mt-5" style="margin-left:100px;">
-                                        <a t-attf-href="/payslip_print/{{val['slip_id']}}" class="btn btn-primary fa fa-download"> Download</a>
-                                       <button class="btn btn-primary mail_btn oi oi-unarchive"> Mail</button>
+                                   <div class="mt-3 " style="margin-left:100px;">
+                                        <a t-attf-href="/payslip_print/{{val['slip_id']}}" class="btn btn-primary ml-2 fa fa-download"> Download</a>
+                                       <button class="btn btn-primary mail_btn oi oi-unarchive"> Request For Mail</button>
                                    </div>
 
                                </div>

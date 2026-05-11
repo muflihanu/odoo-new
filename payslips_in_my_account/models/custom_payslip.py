@@ -91,7 +91,7 @@ class CustomPayslip(models.Model):
                     total - line.amount
             print(total)
             if total>0:
-                self.total = total
+                self.total = round(total,2)
             else:
                 self.total = None
         else:
