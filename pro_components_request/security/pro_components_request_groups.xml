@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+
+     <!--category-->
+    <record id="pro_components_request_category" model="ir.module.category">
+        <field name="name">pro components request category</field>
+        <field name="description">pro components request access right security</field>
+    </record>
+
+    <!--privilege -->
+    <record id="privilege_access" model="res.groups.privilege">
+        <field name="name">pro components request privilege access control</field>
+        <field name="category_id" ref="pro_components_request_category"/>
+    </record>
+
+    <!-- defines groups-->
+    <record  model="res.groups" id="group_request_user">
+        <field name="name">Request user</field>
+        <field name="privilege_id" ref="privilege_access"/>
+    </record>
+
+    <record  model="res.groups" id="group_hr">
+        <field name="name">HR Manager</field>
+        <field name="privilege_id" ref="privilege_access"/>
+<!--         <field name="implied_ids" eval="[(4, ref('group_request_user'))]"/>-->
+    </record>
+
+
+        <record  model="res.groups" id="group_manager">
+        <field name="name">Manager</field>
+        <field name="privilege_id" ref="privilege_access"/>
+<!--         <field name="implied_ids" eval="[(4, ref('group_hr'))]"/>-->
+    </record>
+
+
+</data>
+
+
+</odoo>

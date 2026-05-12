@@ -24,17 +24,20 @@ class CustomPayslip(models.Model):
 
     @api.model
     def get_first_date(self):
+     """previous month first date"""
      today = date.today()
      previous_month = date_utils.subtract(today, months=1)
      return date_utils.start_of(previous_month, "month")
 
     @api.model
     def get_last_date(self):
+        """previous month last date"""
         today = date.today()
         previous_month = date_utils.subtract(today, months=1)
         return date_utils.end_of(previous_month, "month")
 
     def compute_salary_and_others(self):
+        """computing salary and other allowance,tax,deduction"""
         lines=[]
         print('compute_salary')
         if self.custom_payslip_line_ids:
@@ -82,6 +85,7 @@ class CustomPayslip(models.Model):
 
     @api.depends('salary_computation_line_ids')
     def compute_total(self):
+        """compute total computation line"""
         total = 0
         if self.salary_computation_line_ids:
             for line in self.salary_computation_line_ids:
@@ -97,7 +101,7 @@ class CustomPayslip(models.Model):
         else:
             self.total = None
 
-        # sequence series......
+
     @api.model_create_multi
     def create(self, vals):
         """create sequence"""

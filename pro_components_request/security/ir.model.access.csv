@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_all_product_line,access_all_product_line,model_all_product_line,base.group_user,1,1,1,1
+access_group_request_user,access_group_request_user,model_employee_request,pro_components_request.group_request_user,1,1,1,0
+access_group_hr,access_group_hr,model_employee_request,pro_components_request.group_hr,1,1,0,0
+access_group_manager,access_group_manager,model_employee_request,pro_components_request.group_manager,1,1,0,1

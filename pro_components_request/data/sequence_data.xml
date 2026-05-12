@@ -1,0 +1,12 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="employee_request_sequence_number" model="ir.sequence">
+         <field name="name">employee request sequence number</field>
+         <field name="code">employee.request_code</field>
+         <field name="prefix">EC/R/</field>
+         <field name="padding">4</field>
+         <field name="number_next">1</field>
+       </record>
+    </data>
+</odoo>

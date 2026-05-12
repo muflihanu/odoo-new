@@ -5,8 +5,8 @@ class user_payslip_controller(http.Controller):
 
 
      @http.route(["/user_payslips/"], type="http",auth="public",website=True)
-
      def user_payslips(self):
+         """listing all payslips available for user"""
          values=[]
          slip_record=self.env['custom.payslip'].search([('employee_id.name','=',self.env.user.name)])
          for record in slip_record:
@@ -16,6 +16,7 @@ class user_payslip_controller(http.Controller):
 
      @http.route(["/payslip_details/<int:payslip_id>"], type="http", auth="user", website=True)
      def payslip_details(self,payslip_id):
+         """displaying particular  payslip details"""
          values=[]
          salary_lines=[]
          total_value=0
@@ -30,17 +31,12 @@ class user_payslip_controller(http.Controller):
          return request.render('payslips_in_my_account.payslips_details_template',{'vals':values,'salary_lines':salary_lines,'total_value':total_value})
 
 
-     # @http.route(['/payslip/mail/request/<int:payslip_id>'], type="http", auth="user", website=True)
-     # def payslip_mail_request(self,payslip_id):
-     #
-     #     return
-
      @http.route(['/employee_mail/information'], type="jsonrpc", auth="user", website=True)
      def payslip_mail_record_create(self,sequence,emp,from_d,to):
+         """creating payslip mail record"""
          payslip_record=self.env['custom.payslip'].search([('payslip_name','=',sequence)])
          if payslip_record:
           email_record=self.env['employee.mails'].create({'name_id':payslip_record.employee_id.id,'payslip_name':payslip_record.payslip_name,'from_date':payslip_record.from_date,'to_date':payslip_record.to_date})
-          print(email_record)
 
          return
 
