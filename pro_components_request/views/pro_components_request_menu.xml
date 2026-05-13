@@ -1,5 +1,5 @@
 <odoo>
-    <menuitem id="pro_components_request_menu_root" name="pro_components_request "/>
+    <menuitem id="pro_components_request_menu_root" name="Pro Components Request "/>
     <menuitem id="employee_request_menu" action="employee_request_action"   parent="pro_components_request_menu_root"/>
 
 </odoo>

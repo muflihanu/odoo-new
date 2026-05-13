@@ -13,28 +13,48 @@
             <form string="employee request form" >
                 <header>
                     <field name="state" widget="statusbar"/>
-                    <button type="object" name="send_request" string="Send Request" invisible="state in ('confirm','first approve','second approve')"  groups="pro_components_request.group_request_user"/>
-                    <button type="object" name="first_approve" string="Approve" invisible="state in ('draft','first approve','second approve')"  groups="pro_components_request.group_hr"/>
-                    <button type="object" name="second_approve" string="Approve" invisible="state in ('draft','confirm','second approve')" groups="pro_components_request.group_manager" />
+                    <button type="object" name="send_request" string="Send Request" invisible="state in ('confirm','first approve','po created')"  groups="pro_components_request.group_request_user"/>
+                    <button type="object" name="first_approve" string="Approve" invisible="state in ('draft','first approve','po created')"  groups="pro_components_request.group_hr"/>
+                    <button type="object" name="second_approve" string="Approve" invisible="state in ('draft','confirm','po created')" groups="pro_components_request.group_manager" />
+                    <button type="object" name="reject_request" string="Reject" invisible="state in ('draft','confirm','po created')" groups="pro_components_request.group_manager" />
+
                 </header>
                 <sheet>
+
+                     <div name="button_box" position="inside">
+                        <button class="oe_start_button" string="Purchase Order" type="object" icon="oi-subtitle" invisible="state in ('draft','confirm','first approve')"
+                        name="get_po_record_smart_button">
+                        </button>
+                          <button type="object" string="Internal Transfer" name="get_internal_transfer_record_smart_button" icon="oi-subtitle" invisible="state in ('draft','confirm','first approve')">
+                          </button>
+                      </div>
                     <group>
                           <h1> <field name="request_sequence"/></h1>
                          <newline/>
                          <group>
                              <field name="employee_id"/>
+                             <field name="reason_bool" invisible="1"/>
                          </group>
                         <notebook>
-
                                <page name="Product Line">
-                                <field name="all_product_line_ids">
+                                <field name="all_product_line_ids" readonly="state in ('confirm')">
                                     <list editable="bottom">
-                                        <field name="product_id"/>
+                                        <field name="state" invisible="1"/>
+                                        <field name="product_id" domain="[('is_storable','=',True)]" />
                                         <field name="quantity"/>
+                                        <field name="product_uom_ids" invisible="1"/>
+                                        <field name="product_unit_price" />
+                                        <field name="unit_of_measure" domain="[('id','in',product_uom_ids)]" invisible="1"/>
                                         <field name="pro_type"/>
-                                        <field name="vendor"/>
+                                <field name="vendor" required="pro_type == 'purchase order'"/>
+
+                                            <field name="source_location_id" invisible="pro_type =='purchase order'" domain="[('usage','=','internal')]" required="pro_type == 'internal transfer'"/>
+                                        <field name="destination_location_id" invisible="pro_type =='purchase order'" domain="[('usage','=','internal')]" required="pro_type == 'internal transfer'"/>
                                     </list>
                                 </field>
+                            </page>
+                            <page name="Rejection Reason">
+                                <field name="reason" invisible="reason_bool == False"/>
                             </page>
                         </notebook>
 
@@ -51,7 +71,7 @@
             <list>
                  <field name="request_sequence"/>
                 <field name="employee_id"/>
-
+                <field name="state"/>
             </list>
         </field>
     </record>

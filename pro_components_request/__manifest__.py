@@ -1,7 +1,7 @@
 {
     'name': 'Pro Components Request',
     'version': '1.0',
-    'depends':['base','product'],
+    'depends':['base','product','stock','purchase'],
     'application':True,
     'instalable':True,
 
