@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
 
      <!--category-->
     <record id="pro_components_request_category" model="ir.module.category">

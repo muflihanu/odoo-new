@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo import api, fields, models, tools
 
 class AllProductLine(models.Model):
@@ -22,6 +23,7 @@ class AllProductLine(models.Model):
 
     @api.depends('pro_type')
     def _compute_product_vendors(self):
+        """ compute product vendor """
         for product in self:
          if product.pro_type == 'purchase order':
                    if len(product.product_id.seller_ids.partner_id)>1:
@@ -33,13 +35,14 @@ class AllProductLine(models.Model):
             product.vendor=None
 
     def inverse_partner(self):
+        """partner inverse"""
         for product in self:
             if product.pro_type == 'purchase order':
                 product.vendor=None
 
     @api.depends('product_id')
     def compute_package_uom(self):
-        values=[]
+        """ compute package uom """
         for product in self:
          if product.product_id.uom_ids:
            vals=product.product_id.mapped('uom_ids')
@@ -54,6 +57,7 @@ class AllProductLine(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_unit_of_measure(self):
+        """onchange product uom """
         if self.product_id:
             self.unit_of_measure=self.product_id.uom_id
 

@@ -1,4 +1,4 @@
-from fileinput import lineno
+# -*- coding: utf-8 -*-
 from odoo import Command
 
 from odoo import fields, models,api
@@ -16,25 +16,36 @@ class EmployeeRequest(models.Model):
     # vendor=fields.Many2one('product.supplierinfo',string="Vendor")
     reason=fields.Text(string="Reason",required=True)
     reason_bool=fields.Boolean(string="Reason",default=False)
-    purchase_order_id = fields.Many2one('purchase.order', string="Purchase Order")
-    internal_transfer_id=fields.Many2one('stock.picking',string="Internal Transfer")
+    # purchase_order_id = fields.Many2one('purchase.order', string="Purchase Order")
+    purchase_order_id = fields.One2many('purchase.order','employee_request_id', string="Purchase Order")
+    # internal_transfer_id=fields.Many2one('stock.picking',string="Internal Transfer")
+    internal_transfer_ids = fields.One2many('stock.picking','stock_employee_request_id', string="Internal Transfer")
+    # internal_bool=fields.Boolean(string="Internal Transfer",default=False)
+    # purchase_bool=fields.Boolean(string="Purchase",default=False)
+    po_count=fields.Integer(string="PO Count",default=0,compute="get_po_count")
+    internal_record_count=fields.Integer(string="Internal Record Count",compute="get_internal_count")
 
 
 
     def send_request(self):
+        """sending the request and changing the state"""
         if self.state == 'draft':
             self.state = 'confirm'
-            self.all_product_line_ids.write({'state':'confirm'})
+            self.all_product_line_ids.state='confirm'
         if self.reason_bool == True:
             self.reason_bool=False
 
     def first_approve(self):
+        """first approval,HR approvel"""
         if self.state == 'confirm':
             self.state = 'first approve'
 
 
     def second_approve(self):
+            """second approval,Manager approval and creating records """
             if self.all_product_line_ids:
+                values = []
+                internal_vals = []
                 for line in self.all_product_line_ids:
                     if line.pro_type == 'purchase order' and line.vendor:
                         existing_po_order=self.env['purchase.order'].search([('partner_id','=',line.vendor.id),('state','=','draft')])
@@ -47,7 +58,11 @@ class EmployeeRequest(models.Model):
                                 'price_unit':line.product_unit_price,
 
                             })]})
-                            self.purchase_order_id=val.id
+
+                            values.append(val.id)
+
+
+
                         else:
                           order=self.env['purchase.order'].create({
                             'partner_id': line.vendor.id,
@@ -58,47 +73,78 @@ class EmployeeRequest(models.Model):
                                 'price_unit': line.product_unit_price,
                             })]
                         })
-                          self.purchase_order_id = order.id
+                          values.append(order.id)
+                    self.purchase_order_id = values
                     if line.pro_type == 'internal transfer':
+
                         code=self.env['stock.picking.type'].search([('code','=','internal')])
                         internal_order=self.env['stock.picking'].create({
                             'picking_type_id':code.id,
                             'move_ids': [Command.create({
                                 'product_id': line.product_id.id,
-                                'product_uom_qty': line.quantity*line.unit_of_measure.relative_factor,
+                                'product_uom_qty': line.quantity/line.product_id.uom_id.relative_factor,
                             })]
                         })
-                        self.internal_transfer_id=internal_order.id
+                        internal_vals.append(internal_order.id)
+                    self.internal_transfer_ids =internal_vals
+
 
 
             self.state = 'po created'
 
 
     def reject_request(self):
+        """MR rejection"""
         self.state = 'draft'
         if self.reason_bool == False:
             self.reason_bool = True
 
+    @api.depends('purchase_order_id','state')
+    def get_po_count(self):
+        """purchase order count  compute """
+        for record in self:
+          if record.state=='po created':
+            record.po_count=len(record.purchase_order_id)
+          else:
+            record.po_count=0
+
+    @api.depends('internal_transfer_ids', 'state')
+    def get_internal_count(self):
+        """internal transfer count  compute """
+        for record in self:
+            if record.state == 'po created':
+                record.internal_record_count = len(record.internal_transfer_ids)
+            else:
+                record.internal_record_count = 0
+
     def get_po_record_smart_button(self):
-        """ record """
+        """  po  smart button  """
+        orders=[]
         self.ensure_one()
+        for rec in self.purchase_order_id:
+            orders.append(rec.id)
+
         return {
             'type': 'ir.actions.act_window',
             'name': 'PO',
-            'view_mode': 'form,list',
+            'view_mode': 'list,form',
             'res_model': 'purchase.order',
-            'res_id': self.purchase_order_id.id,
+            'domain': [('id', 'in', orders)],
         }
 
     def get_internal_transfer_record_smart_button(self):
-        """ record """
+        """ internal transfer smart button  """
+        int_orders = []
+        self.ensure_one()
+        for rec in self.internal_transfer_ids:
+            int_orders.append(rec.id)
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'PO',
-            'view_mode': 'form,list',
+            'name': 'SP',
+            'view_mode': 'list,form',
             'res_model': 'stock.picking',
-            'res_id': self.internal_transfer_id.id,
+            'domain': [('id', 'in', int_orders)],
         }
 
 
