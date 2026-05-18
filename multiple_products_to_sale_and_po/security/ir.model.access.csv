@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_details,access_product_details,model_product_details,base.group_user,1,1,1,1
+access_product_liness,access_product_liness,model_product_liness,base.group_user,1,1,1,1
+access_sale_product_wizard,access_sale_product_wizard,model_sale_product_wizard,base.group_user,1,1,1,1
+access_sale_product_wizard_line,access_sale_product_wizard_line,model_sale_product_wizard_line,base.group_user,1,1,1,1

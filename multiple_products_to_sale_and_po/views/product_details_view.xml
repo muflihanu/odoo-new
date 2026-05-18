@@ -1,0 +1,61 @@
+<odoo>
+     <record id="product_details_action" model="ir.actions.act_window">
+        <field name="name">product details</field>
+        <field name="res_model">product.details</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="product_details_view_form" model="ir.ui.view">
+        <field name="name">product details form</field>
+        <field name="model">product.details</field>
+        <field name="arch" type="xml">
+            <form string="product details form">
+                <sheet>
+                    <header>
+                        <button type="object" name="add" string="Confirm"/>
+                    </header>
+                    <group>
+                        <field name="purchase_order_id" invisible="1"/>
+                    </group>
+                   <notebook>
+                       <page name="Products">
+                           <field name="product_line_ids">
+                                <kanban create="1"  class="o_kanban_mobile">
+                                        <templates >
+                                        <t t-name="card" class="flex-row">
+                                         <aside class="o_kanban_aside_full d-none d-md-block">
+                                          <field name="product_image" widget="image" />
+                                         </aside>
+                                         <main>
+                                          <div class="d-flex">
+                                           <field name="product_id" class="fw-bold fs-5" />
+                                          </div>
+                                          <div>
+                                              <button type="object" name="add_qty" class="fa fa-plus"/>
+                                           <field name="product_qty"/>
+                                               <button type="object" name="minus_qty" class="fa fa-minus"/>
+                                              <field name="select_check"/>
+                                          </div>
+                                              <footer class="pt-0 mt-0">
+                                               <button type="object" name="select_product"  class="btn btn-primary" string="ADD"/>
+                                             </footer>
+                                       </main>
+                                      </t>
+                                 </templates>
+                               </kanban>
+                           </field>
+                       </page>
+                   </notebook>
+                </sheet>
+
+            </form>
+        </field>
+
+    </record>
+
+
+
+
+
+</odoo>

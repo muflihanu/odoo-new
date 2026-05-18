@@ -1,0 +1,13 @@
+<odoo>
+    <record id="sale_orders_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath  expr="//create[@name='add_note_control']" position="after">
+                <button type="object" name="add_sale_product" string="Add multiple product" class="btn text-primary" context="{'sale_order_id':parent.id}"/>
+                    </xpath>
+        </field>
+
+    </record>
+</odoo>

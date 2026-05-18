@@ -1,0 +1,50 @@
+<odoo>
+
+    <record id="sale_product_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.product.wizard form</field>
+        <field name="model">sale.product.wizard</field>
+        <field name="arch" type="xml">
+            <form string="product wizard form">
+                <sheet>
+                    <group>
+                        <field name="sale_order_id" invisible="1"/>
+                    </group>
+                   <notebook>
+                       <page name="Products">
+                           <field name="product_line_ids">
+                                <kanban create="1"  edit="1" class="o_kanban_mobile">
+                                        <templates >
+                                        <t t-name="card" class="flex-row">
+                                         <aside class="o_kanban_aside_full d-none d-md-block">
+                                          <field name="product_image" widget="image" />
+                                         </aside>
+                                         <main>
+                                          <div class="d-flex">
+                                           <field name="product_id" class="fw-bold fs-5" />
+                                          </div>
+                                          <div>
+                                              <button type="object" name="add_qty" class="fa fa-plus"/>
+                                           <field name="product_qty"/>
+                                               <button type="object" name="minus_qty" class="fa fa-minus"/>
+                                          </div>
+                                              <footer class="pt-0 mt-0">
+                                               <button type="object" name="select_product"  class="btn btn-primary" string="ADD"/>
+                                             </footer>
+                                       </main>
+                                      </t>
+                                 </templates>
+                               </kanban>
+
+                           </field>
+                       </page>
+                   </notebook>
+                    <footer>
+                         <button class="btn btn-primary" type="object" name="add_selected_products" string="Confirm"/>
+                          <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+</odoo>

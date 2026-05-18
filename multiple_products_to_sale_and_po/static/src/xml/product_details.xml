@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+   <t t-name="multiple_products_to_sale_and_po.product_detals">
+       <div>
+           <div>
+               <center>
+                   <h1 style="margin:20px;">CRM Dashboard</h1>
+               </center>
+           </div>
+       </div>
+   </t>
+</templates>
