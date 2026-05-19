@@ -8,8 +8,7 @@
 
     'data':[
         'security/ir.model.access.csv',
-        'views/multiple_products_to_sale_and_po_menus.xml',
-        'views/purchase_order_view.xml',
+        'views/purchase_order_line_view.xml',
         'views/product_details_view.xml',
         'views/sale_order.xml',
         'wizard/sale_product_wizard.xml',

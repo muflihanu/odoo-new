@@ -7,6 +7,10 @@ class PurchaseOrder(models.Model):
 
 
 
+
+
+
+
     def add_product(self):
         pro=[]
         order=self.env["purchase.order"].browse(self.env.context.get('order_id'))

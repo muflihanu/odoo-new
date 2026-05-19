@@ -1,12 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-   <t t-name="multiple_products_to_sale_and_po.product_detals">
-       <div>
+   <t t-name="multiple_products_to_sale_and_po.product_detals" >
+       <div class="o_scrollable_p" >
            <div>
+               <button class="btn btn-primary ml-5 mt-5" style="margin-left:50px;" t-on-click="(ev)=>this.create_record(ev)">Confirm</button>
                <center>
-                   <h1 style="margin:20px;">CRM Dashboard</h1>
+                   <h1 style="margin:20px;">Products</h1>
                </center>
            </div>
        </div>
+
+       <div class="row d-flex main-section" style=" overflow:auto;">
+           <t t-foreach="this.state.data" t-as="val" t-key="val_index">
+   <div id="product_details" class="col-md-4 col-sm-6 tot_tasks" style="padding-top: 30px;">
+       <div class="oh-card" style="box-shadow:2px 4px 8px 2px rgba(0,0,0.3,0.2);display: flex; justify-content: center;" role="button">
+           <div class="oh-card-body" style="padding: 5px 5px; float: left; width: 100%; height: auto; box-sizing: border-box; margin: 0;">
+               <div class="stat-widget-one">
+                   <div class="stat-icon bg-mauve-light d-flex justify-content-left align-items-left">
+                       <div style=" width:65px; text-align: center;">
+                           <t t-if="val.image">
+                                <img t-attf-src="data:image/png;base64,{{val.image}}"
+                         style="object-fit:contain; height: 70px; width:70px;"
+                         alt="Product Image"/>
+                           </t>
+                           <t t-else="">
+                               <img src="/multiple_products_to_sale_and_po/static/src/img/image-not-available.png"
+                         style="object-fit:contain; height: 70px; width:70px;"
+                         alt="Image"/>
+                           </t>
+
+
+
+                           <button class="btn btn-primary mt-5" t-on-click="(ev)=>this.add_selected_products(ev, val.pro_id)">Add</button>
+                       </div>
+
+
+                       <div class="stat-content" style=" text-align: center; font-weight: bold; padding-top: 20px; padding-left: 80px;">
+
+                           <div class="stat_count_ex_rev d-flex" style="font-size: 17px;">
+                                <span id="templates">
+                                    <button class="btn btn-primary fa fa-plus" style="margin:10px;" t-on-click.stop="(el) => this.increaseQuantity(el)"/>
+                               </span>
+                              <p> <t t-esc="val.product_qty " class="" style="margin-top:30px;"/></p>
+                               <span id="templates">
+                                    <button class="btn btn-primary fa fa-minus"  style="margin:10px;" t-on-click.stop="(ev) =>this.decreaseQuantity(ev)"/>
+                               </span>
+                           </div>
+                           <div class="stat-head" style="font-size: 14px;">
+                              <h4><t  t-esc="val.product_id"/></h4>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+           </t>
+</div>
    </t>
 </templates>
