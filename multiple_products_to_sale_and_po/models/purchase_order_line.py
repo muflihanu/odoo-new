@@ -1,34 +1,29 @@
-from odoo import fields, models
-from odoo import Command
+from odoo import fields, models,api
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order.line"
 
-
-
+    @api.model
+    def get_products(self):
+        """Retrieving all  the products"""
+        products_values = []
+        product = self.env["product.product"].search([])
+        for pro in product:
+            products_values.append(
+                {'image': pro.image_1920,'product_id': pro.name, 'pro_id': pro.id, 'product_qty': 0,'price':pro.lst_price,})
+        return {'product_values': products_values,}
 
 
 
 
 
     def add_product(self):
-        pro=[]
-        order=self.env["purchase.order"].browse(self.env.context.get('order_id'))
-        product=self.env["product.product"].search([])
-        product_details=self.env['product.details'].create({
-            'purchase_order_id':order.id,
-            'product_line_ids':[Command.create({
-                'product_id':pr.id,
-                 'product_qty':0,
-                  'select_check':False,
-            })for pr in product] })
-        return {
-        'type': 'ir.actions.act_window',
-        'name': 'product',
-        'view_mode': 'form',
-        'res_model': 'product.details',
-        'res_id': product_details.id,
-        'target': 'current'
+      """"redirecting to the product details page"""
+
+      return {
+        'type': 'ir.actions.client',
+        "tag": "purchase_product_details_tag",
+        "params": {'order_id':self.env.context.get('order_id') , },
     }
 
 

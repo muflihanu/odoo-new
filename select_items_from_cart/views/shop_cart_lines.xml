@@ -1,0 +1,11 @@
+<odoo>
+
+    <template id="shop_cart_lines" inherit_id="website_sale.cart_lines" name="select  Products from my cart">
+        <xpath expr="//div[@class='o_cart_product_image']" position="inside">
+
+           <input type="checkbox" class="check">Select</input>
+
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-   <t t-name="multiple_products_to_sale_and_po.ProductDetals" >
+   <t t-name="multiple_products_to_sale_and_po.PurchaseProductDetals" >
        <div class="o_scrollable_p">
            <div>
                <button class="btn btn-primary ml-5 mt-5" style="margin-left:50px;" t-on-click="(ev)=>this.CreateRecord(ev)">Confirm</button>
@@ -30,7 +30,9 @@
                          alt="Image"/>
                            </t>
 
-                           <button class="btn btn-primary mt-5" t-on-click="(ev)=>this.AddSelectedProducts(ev,val.pro_id,val.price)">Add</button>
+
+
+                           <button class="btn btn-primary mt-5" t-on-click="(ev)=>this.AddSelectedProducts(ev, val.pro_id,val.price)">Add</button>
 
                        </div>
 
