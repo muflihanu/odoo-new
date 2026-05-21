@@ -15,8 +15,16 @@ export class WebCart extends Interaction {
             "t-on-change":(ev)=> this.get_selected_product(ev),
         },
     }
+
+    setup(){
+    }
      async  get_selected_product(ev) {
-            console.log('selected', ev)
+
+            const check=ev.target.checked
+         console.log('selected',check )
+            const order_id=ev.target.parentElement.children[2].innerHTML
+            console.log('selected', ev.target.parentElement.children[2].innerHTML)
+         rpc('/selected_orders',{check:check,order_id:order_id})
 
         }
 }

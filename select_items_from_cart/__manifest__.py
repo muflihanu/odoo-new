@@ -2,7 +2,7 @@
     'name': 'Select Items from Cart',
     'category': 'Website',
     'version': '1.0',
-    'depends': ['base', 'website'],
+    'depends': ['base', 'website','sale'],
     'installable': True,
     'application': True,
     'data': {
