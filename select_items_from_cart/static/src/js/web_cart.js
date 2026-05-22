@@ -16,7 +16,13 @@ export class WebCart extends Interaction {
         },
     }
 
-    setup(){
+    setup(ev){
+        document.querySelector("a[name='website_sale_main_button']")?.classList.add('disabled');
+        // var total=document.querySelector('[name="o_order_total_untaxed"]')
+        //  const amountUntaxed = ev.target.querySelector(
+        //     'tr[name="o_order_total_untaxed"] .monetary_field'
+        // );
+        // console.log('this',amountUntaxed)
     }
      async  get_selected_product(ev) {
 
@@ -24,8 +30,11 @@ export class WebCart extends Interaction {
          console.log('selected',check )
             const order_id=ev.target.parentElement.children[2].innerHTML
             console.log('selected', ev.target.parentElement.children[2].innerHTML)
-         rpc('/selected_orders',{check:check,order_id:order_id})
+         await rpc('/selected_orders',{check:check,order_id:order_id})
+        document.querySelector("a[name='website_sale_main_button']")?.classList.remove('disabled');
 
         }
+
+
 }
 registry.category('public.interactions').add('select_items_from_cart.WebCart', WebCart);

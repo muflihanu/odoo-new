@@ -1,0 +1,8 @@
+<odoo>
+     <template id="shop_summary" inherit_id="website_sale.cart" name="select  all Products from my cart">
+        <xpath expr="//t[@t-call='website_sale.quick_reorder_button']" position="after">
+            <button class="btn select btn-primary">Select All</button>
+
+        </xpath>
+    </template>
+</odoo>
