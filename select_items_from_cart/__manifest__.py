@@ -2,13 +2,14 @@
     'name': 'Select Items from Cart',
     'category': 'Website',
     'version': '1.0',
-    'depends': ['base', 'website','sale'],
+    'depends': ['base', 'website','sale', 'website_sale'],
     'installable': True,
     'application': True,
     'data': {
 
         'views/shop_cart_lines.xml',
         'views/shop_summary.xml',
+        'views/cart_summary.xml',
     },
 
 

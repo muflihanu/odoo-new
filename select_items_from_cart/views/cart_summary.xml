@@ -1,0 +1,8 @@
+<odoo>
+
+    <template id="cart_summary" inherit_id="website_sale.cart_summary_content" name="select  Products ">
+        <xpath expr="//tr[@t-foreach='website_sale_order.website_order_line']" position="attributes">
+            <attribute name="t-if">line.select_check</attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -20,9 +20,16 @@ export class SelectAll extends Interaction {
 
     }
       SelectAll(ev) {
-         // document.querySelector('.check{{line.id}}').checked=true
-         console.log('select all',this)
-         rpc('/select/all')
+        var order_line_ids=[]
+         var  check_values=document.querySelectorAll('.check')
+           for (var i = 0; i < check_values.length; i++) {
+                  console.log('work')
+                     check_values[i].checked=true;
+                     order_line_ids.push(check_values[i].dataset.lineId)
+                     console.log('checked',order_line_ids)
+                }
+           rpc('/select/all',{order_line_ids:order_line_ids})
+           document.querySelector("a[name='website_sale_main_button']")?.classList.remove('disabled');
 
         }
 

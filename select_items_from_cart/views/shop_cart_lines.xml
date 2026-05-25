@@ -2,10 +2,8 @@
 
     <template id="shop_cart_lines" inherit_id="website_sale.cart_lines" name="select  Products from my cart">
         <xpath expr="//div[@class='o_cart_product_image']" position="inside">
-
-           <input type="checkbox"  class="check">Select</input>
+           <input type="checkbox" t-att-data-line-id="line.id" t-att-checked="line.select_check" class="check">Select</input>
             <p style="display:none;"><t t-esc="line.id"/></p>
-
         </xpath>
     </template>
 
