@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="quiz_idle_timer_menu_root" name="Quiz Idle Timer"/>
+    <menuitem id="quiz_question_menu" action="quiz_question_action"   parent="quiz_idle_timer_menu_root"/>
+    <menuitem id="quiz_menu" action="quiz_dashboard_action"   parent="quiz_idle_timer_menu_root"/>
+
+</odoo>

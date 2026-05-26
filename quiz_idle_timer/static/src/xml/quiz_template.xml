@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+   <t t-name="quiz_idle_timer.QuizDashboard">
+       <div>
+           <div>
+               <center>
+                   <h1 style="margin:20px;">Start The Quiz!</h1>
+                   <a t-attf-href="/start_quiz/" style="background-color:#47A636; color:#ffff; margin:5px;" class="btn text-center ml-5">Start Quiz</a>
+               </center>
+           </div>
+       </div>
+   </t>
+</templates>
