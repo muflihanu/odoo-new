@@ -17,3 +17,14 @@ class QiuzController(http.Controller):
         print('offset',offset)
         # customer_obj =questions[offset: offset + 1]
         return request.render("quiz_idle_timer.quiz_page",{'questions':pager})
+
+  @http.route('/quiz_values/', type='jsonrpc', auth="user")
+  def get_quiz_values(self):
+      question_answer=[]
+      questions=request.env['quiz.question'].sudo().search([])
+      for ques in questions:
+          question_answer.append({'id': ques.id, 'question': ques.name,'answer':[i.option_name for i in ques.quiz_answer_ids]})
+      return {'question_answer':question_answer}
+
+
+
