@@ -1,6 +1,6 @@
 /** @odoo-module **/
 import { registry } from "@web/core/registry";
-import {Component, useState} from "@odoo/owl";
+import {Component, useState,onWillUnmount,onWillDestroy} from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 const actionRegistry = registry.category("actions");
 import { rpc } from "@web/core/network/rpc";
@@ -11,14 +11,25 @@ class QuizDashboard extends Component {
         super.setup();
         this.orm = useService('orm');
         this.action=useService('action');
-        this.timer=10
+        this.timer=0
+         this.inctime=0
         this.seconds=0
+         this.answer=''
+         this.points=0
+         this.checked_value=false
+
        this.interval=setInterval(()=>this.timercheck(),1000)
         this.FetchData();
         this.state=useState({
             questions:{},
             index:0
         })
+
+            onWillDestroy(() => {
+                 clearInterval(this.interval)
+                document.querySelector('.idle_time').textContent='0'
+
+    });
 
          window.onkeyup =()=>this.detect();
 		window.onclick =()=>this.detect();
@@ -30,7 +41,6 @@ class QuizDashboard extends Component {
 
 
     detect(){
-         console.log('hello')
         this.seconds=0
     }
    //fetching all
@@ -38,21 +48,29 @@ class QuizDashboard extends Component {
 
         var result=await rpc('/quiz_values/',{})
          this.state.questions=result.question_answer
+        var timer=result.timer
+       //  var inc_timer=result.timer
+       // this.inctime=Number(inc_timer)
+       this.timer=Number(timer)
     }
 
    timercheck(){
          this.seconds+=1
        console.log('time',this.seconds)
-
+        document.querySelector('.idle_time').textContent=this.seconds
        if(this.seconds==this.timer){
-           window.ontouchstart
+           this.seconds=0
            if(this.state.index!=this.state.questions.length-1) {
                this.state.index++
-               this.timer += 10
+               // this.timer+=this.inctime
            }else{
                clearInterval(this.interval)
+               window.location.replace('/quiz/over/page/point='+this.points);
            }
+
        }
+
+
 
    }
    get  CurrentQuestion(){
@@ -60,11 +78,22 @@ class QuizDashboard extends Component {
       return this.state.questions[this.state.index]
     }
 
-    NextQuestion(){
+    async NextQuestion(ev){
          if(this.state.index!=this.state.questions.length-1){
              this.state.index++
              console.log('seonds',this.seconds)
              this.seconds=0
+             if(this.answer){
+                  var question_id =ev.target.parentElement.parentElement.children[0].children[0].innerHTML
+              var points= await rpc('/quiz/point/',{'question_id':question_id,'answer_option':this.answer})
+                 this.points+=points
+                 console.log('point',this.points)
+
+             }
+
+         }else{
+              console.log('qqqqqqqqqqqqqqqqq')
+             window.location.replace('/quiz/over/page/point='+this.points);
          }
 
     }
@@ -80,7 +109,11 @@ class QuizDashboard extends Component {
     }
 
     CheckingAnswer(ev){
-             console.log('ticked!!1',ev.target.checked)
+             this.answer= ev.target.parentElement.parentElement.children[0].children[0].innerHTML
+             this.checked_value=ev.target.checked
+             console.log('answer',this.checked_value)
+
+
         }
 
 
