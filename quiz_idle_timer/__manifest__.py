@@ -2,13 +2,15 @@
     'name': 'Quiz Idle Timer',
     'application':True,
     'installable':True,
-    'depends':['base', 'web'],
+    'depends':['base', 'web','mail'],
     'data':{
         'security/ir.model.access.csv',
         'views/quiz_question_view.xml',
         'views/quiz_question_template.xml',
         'views/res_config_settings.xml',
         'views/quiz_over_page.xml',
+        'wizard/sending_quiz_to_users.xml',
+        'data/quiz_email_template.xml',
         'views/quiz_idle_timer_menus.xml',
 
     },
@@ -19,8 +21,7 @@
        'quiz_idle_timer/static/src/js/quiz.js',
        'quiz_idle_timer/static/src/xml/quiz_template.xml',
        'quiz_idle_timer/static/src/js/answer_options.js',
-
-
+       'quiz_idle_timer/static/src/xml/answer_template.xml',
    ],
 },
 

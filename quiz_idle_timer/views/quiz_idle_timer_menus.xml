@@ -7,5 +7,6 @@
     <menuitem id="quiz_question_menu" action="quiz_question_action"   parent="quiz_idle_timer_menu_root"/>
     <menuitem id="quiz_menu" action="quiz_dashboard_action"   parent="quiz_idle_timer_menu_root"/>
     <menuitem id="quizsettings_menu" action="action_quiz_general_config" parent="quiz_idle_timer.quiz_management_menu_action"/>
+    <menuitem id="quiz_for_users_wizard_menu" action="quiz_idle_timer_action_wizard"   parent="quiz_idle_timer_menu_root"/>
 
 </odoo>

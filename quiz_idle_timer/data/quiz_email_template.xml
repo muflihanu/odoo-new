@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <record id="email_template_for_quiz" model="mail.template">
+        <field name="name">Quiz mail</field>
+        <field name="model_id" ref="quiz_idle_timer.model_wizard_sending_quiz_to_users"/>
+        <field name="subject">Play the Quiz!!</field>
+        <field name="email_from">anuanudemo@gmail.com</field>
+        <field name="email_to">{{object.user_id.id}}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>
+                    Hello,
+                    <br/>
+                    <br/>
+                     open the quiz link!
+                    <br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+    </data>
+</odoo>

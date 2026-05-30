@@ -26,6 +26,7 @@ class QiuzController(http.Controller):
 
       return {'question_answer':question_answer,'timer':timer}
 
+
   @http.route('/quiz/point/', type='jsonrpc', auth="user")
   def checking_answer(self,question_id,answer_option):
       point=0

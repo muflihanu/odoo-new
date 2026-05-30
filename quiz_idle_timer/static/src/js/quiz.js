@@ -1,12 +1,14 @@
 /** @odoo-module **/
 import { registry } from "@web/core/registry";
-import {Component, useState,onWillUnmount,onWillDestroy} from "@odoo/owl";
+import {Component, useState,onWillDestroy} from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 const actionRegistry = registry.category("actions");
 import { rpc } from "@web/core/network/rpc";
-class QuizDashboard extends Component {
+import {AnswerOptions} from "./answer_options";
 
+ class QuizDashboard extends Component {
 
+   static components={AnswerOptions}
      setup() {
         super.setup();
         this.orm = useService('orm');
@@ -17,6 +19,7 @@ class QuizDashboard extends Component {
          this.answer=''
          this.points=0
          this.checked_value=false
+
 
        this.interval=setInterval(()=>this.timercheck(),1000)
         this.FetchData();
@@ -32,12 +35,11 @@ class QuizDashboard extends Component {
     });
 
          window.onkeyup =()=>this.detect();
-		window.onclick =()=>this.detect();
-        window.onmouseup =()=>this.detect();
-        window.onmouseover=()=>this.detect();
-
-
+		 window.onclick =()=>this.detect();
+         window.onmouseup =()=>this.detect();
+         window.onmouseover=()=>this.detect();
     }
+
 
 
     detect(){
@@ -54,12 +56,13 @@ class QuizDashboard extends Component {
        this.timer=Number(timer)
     }
 
-   timercheck(){
+   timercheck(ev){
          this.seconds+=1
        console.log('time',this.seconds)
         document.querySelector('.idle_time').textContent=this.seconds
        if(this.seconds==this.timer){
            this.seconds=0
+           console.log('answer checking',this.state.questions[this.state.index].id)
            if(this.state.index!=this.state.questions.length-1) {
                this.state.index++
                // this.timer+=this.inctime
@@ -69,10 +72,8 @@ class QuizDashboard extends Component {
            }
 
        }
-
-
-
    }
+
    get  CurrentQuestion(){
 
       return this.state.questions[this.state.index]
@@ -81,28 +82,24 @@ class QuizDashboard extends Component {
     async NextQuestion(ev){
          if(this.state.index!=this.state.questions.length-1){
              this.state.index++
-             console.log('seonds',this.seconds)
              this.seconds=0
              if(this.answer){
                   var question_id =ev.target.parentElement.parentElement.children[0].children[0].innerHTML
               var points= await rpc('/quiz/point/',{'question_id':question_id,'answer_option':this.answer})
                  this.points+=points
                  console.log('point',this.points)
-
              }
 
          }else{
-              console.log('qqqqqqqqqqqqqqqqq')
              window.location.replace('/quiz/over/page/point='+this.points);
          }
 
     }
 
 
-    PrevQuetion(){
+    PrevQuestion(){
          if(this.state.index>0){
              this.state.index--
-             console.log('seonds',this.seconds)
 
          }
 
@@ -111,9 +108,7 @@ class QuizDashboard extends Component {
     CheckingAnswer(ev){
              this.answer= ev.target.parentElement.parentElement.children[0].children[0].innerHTML
              this.checked_value=ev.target.checked
-             console.log('answer',this.checked_value)
-
-
+             console.log('answer_vals',this.checked_value)
         }
 
 
