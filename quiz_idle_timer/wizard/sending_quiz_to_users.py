@@ -10,6 +10,6 @@ class SendingQuizToUsers(models.TransientModel):
 
     def action_send_mail(self):
         template = self.env.ref('quiz_idle_timer.email_template_for_quiz')
-        print('set',self.read())
+        print('set',self.user_id.email)
         # email_values = {'email_from': self.env.user.email}
         template.send_mail(self.id, force_send=True)

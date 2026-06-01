@@ -16,7 +16,6 @@
        <form>
            <group>
                <field name="user_id" domain="[('share', '=', True)]"/>
-
            </group>
            <footer>
                <button string="Send"

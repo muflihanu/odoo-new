@@ -3,6 +3,7 @@
     'application':True,
     'installable':True,
     'depends':['base', 'web','mail'],
+    'license': 'LGPL-3',
     'data':{
         'security/ir.model.access.csv',
         'views/quiz_question_view.xml',

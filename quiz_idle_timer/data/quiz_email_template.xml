@@ -4,16 +4,18 @@
     <record id="email_template_for_quiz" model="mail.template">
         <field name="name">Quiz mail</field>
         <field name="model_id" ref="quiz_idle_timer.model_wizard_sending_quiz_to_users"/>
+        <field name="use_default_to" eval="False"/>
         <field name="subject">Play the Quiz!!</field>
         <field name="email_from">anuanudemo@gmail.com</field>
-        <field name="email_to">{{object.user_id.id}}</field>
+        <field name="email_to">{{object.user_id.email}}</field>
         <field name="body_html" type="html">
             <div>
                 <p>
-                    Hello,
+                    Hello,<t t-out="object.user_id.name"/>
                     <br/>
                     <br/>
                      open the quiz link!
+                    <a href="https://properly-everyday-unsealed.ngrok-free.dev"> CLICK HERE </a>
                     <br/>
                     <br/>
                 </p>
